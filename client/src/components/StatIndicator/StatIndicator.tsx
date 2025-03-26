@@ -6,9 +6,11 @@ const StatIndicator = (props: { percValue: number; isIncreasing: boolean }) => {
         props.isIncreasing ? "bg-lime/50" : "bg-cherry/50"
       }`}
     >
+      {/** Arrow icon */}
       <BiUpArrowAlt
         className={props.isIncreasing ? "text-lime" : "text-cherry rotate-180"}
       />
+      {/** Text value */}
       <p className={`${props.isIncreasing ? "text-lime" : "text-cherry"}`}>
         {props.percValue}%
       </p>

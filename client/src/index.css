@@ -5,13 +5,19 @@
   --font-roboto: "Roboto", sans-serif;
 
   --color-black: #000000;
+
+  --color-grey: #949494;
+  --color-dark-grey: #2c2c2c;
+  --color-light-grey: #cccccc;
+
   --color-lime: #00ff84;
   --color-cherry: #ff0044;
+  --color-indigo: #4a3aff;
 }
 
 @layer base {
   body {
-    @apply bg-black;
+    @apply bg-white;
   }
 
   h1 {
