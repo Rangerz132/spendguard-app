@@ -35,6 +35,10 @@
   p {
     @apply font-roboto text-base;
   }
+
+  section {
+    @apply flex flex-col space-y-4;
+  }
 }
 
 @layer components {
@@ -44,5 +48,13 @@
 
   .flex-center {
     @apply flex justify-center items-center;
+  }
+
+  .card {
+    @apply rounded-2xl border-2 border-white/10 bg-gradient-to-b from-white/5 to-white/15 p-4;
+  }
+
+  .card-inner {
+    @apply flex flex-col space-y-4;
   }
 }
