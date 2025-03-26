@@ -1,9 +1,11 @@
+import ActivitySection from "../components/Activity/ActivitySection";
 import OverviewSection from "../components/Overview/OverviewSection";
 
 const Home = () => {
   return (
-    <div className="wrapper">
+    <div className="wrapper page-wrapper">
       <OverviewSection />
+      <ActivitySection />
     </div>
   );
 };
