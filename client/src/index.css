@@ -54,8 +54,12 @@
     @apply flex justify-center items-center;
   }
 
+  .detail {
+    @apply rounded-t-2xl bg-white/5 p-4;
+  }
+
   .card {
-    @apply rounded-2xl border-2 border-white/10 bg-gradient-to-b from-white/5 to-white/15 p-4;
+    @apply rounded-2xl bg-white/5 p-4;
   }
 
   .card-inner {

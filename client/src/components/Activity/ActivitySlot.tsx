@@ -1,3 +1,4 @@
+import { BsThreeDotsVertical } from "react-icons/bs";
 import React from "react";
 import { ActivityType } from "./type/ActivityType";
 import formatDate from "../../utils/dateUtils";
@@ -26,11 +27,16 @@ const ActivitySlot = (props: { data: ActivityType }) => {
           </p>
         </div>
       </div>
-      {/** Amount */}
-      <p className={`${props.data.isExpense ? "text-cherry" : "text-lime"}`}>
-        ${props.data.isExpense ? "-" : ""}
-        {props.data.amount}
-      </p>
+
+      <div className="flex flex-row space-x-6 items-center">
+        {/** Amount */}
+        <p className={`${props.data.isExpense ? "text-cherry" : "text-lime"}`}>
+          ${props.data.isExpense ? "-" : ""}
+          {props.data.amount}
+        </p>
+        {/** More */}
+        <BsThreeDotsVertical className="text-grey" />
+      </div>
     </div>
   );
 };

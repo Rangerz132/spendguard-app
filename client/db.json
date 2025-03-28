@@ -1,27 +1,75 @@
 {
   "activities": [
     {
-      "id": "41651",
+      "id": "1",
       "name": "Drake's new album",
       "amount": 12.99,
       "isExpense": true,
-      "category": "Music",
+      "category": "music",
       "createdAt": "2025-03-26T10:00:00Z"
     },
     {
-      "id": "41652",
+      "id": "2",
       "name": "U2 concert ticket",
       "amount": 199.99,
       "isExpense": true,
-      "category": "Music",
+      "category": "music",
       "createdAt": "2025-03-26T10:00:00Z"
     },
     {
-      "id": "dsfqw3",
-      "name": "Mcdonalds",
+      "id": "3",
+      "name": "McDonalds",
       "amount": 16.67,
       "isExpense": true,
-      "category": "Food",
+      "category": "food",
+      "createdAt": "2025-03-26T10:00:00Z"
+    },
+    {
+      "id": "4",
+      "name": "Bus to the metro",
+      "amount": 3.75,
+      "isExpense": true,
+      "category": "transport",
+      "createdAt": "2025-03-26T10:00:00Z"
+    },
+    {
+      "id": "5",
+      "name": "University payment",
+      "amount": 1765.21,
+      "isExpense": true,
+      "category": "education",
+      "createdAt": "2025-03-26T10:00:00Z"
+    },
+    {
+      "id": "6",
+      "name": "Wicked - Cinema ticket",
+      "amount": 13.5,
+      "isExpense": true,
+      "category": "entertainment",
+      "createdAt": "2025-03-26T10:00:00Z"
+    },
+    {
+      "id": "7",
+      "name": "Medicaments",
+      "amount": 37.88,
+      "isExpense": true,
+      "category": "health",
+      "createdAt": "2025-03-26T10:00:00Z"
+    },
+    {
+      "id": "8",
+      "name": "TV",
+      "amount": 2499.99,
+      "isExpense": true,
+      "category": "home",
+      "createdAt": "2025-03-26T10:00:00Z"
+    },
+    {
+      "id": "9",
+      "name": "Travel Cuba",
+      "amount": 967.59,
+      "isExpense": true,
+      "category": "travel",
       "createdAt": "2025-03-26T10:00:00Z"
     }
   ]

@@ -28,73 +28,73 @@ export const getFullCategory = (name: string): ActivityCategoryType => {
 };
 
 export const foodCategoryType: ActivityCategoryType = {
-  name: "Food",
+  name: "food",
   icon: <BiBowlHot />,
   color: "#FFE57F", // soft orange
 };
 
 export const musicCategoryType: ActivityCategoryType = {
-  name: "Music",
+  name: "music",
   icon: <BiMusic />,
   color: "#A67FFF", // purple
 };
 
 export const educationCategoryType: ActivityCategoryType = {
-  name: "Education",
+  name: "education",
   icon: <BiBook />,
   color: "#7FBFFF", // pastel blue
 };
 
 export const sportCategoryType: ActivityCategoryType = {
-  name: "Sport",
+  name: "sport",
   icon: <BiBall />,
   color: "#FF1A1A", // red
 };
 
 export const transportCategoryType: ActivityCategoryType = {
-  name: "Transport",
+  name: "transport",
   icon: <BiBus />,
   color: "#FF8A65", // soft orange
 };
 
 export const healthCategoryType: ActivityCategoryType = {
-  name: "Health",
+  name: "health",
   icon: <BiCapsule />,
   color: "#4DB6AC", // teal
 };
 
 export const entertainmentCategoryType: ActivityCategoryType = {
-  name: "Entertainment",
+  name: "entertainment",
   icon: <BiJoystickAlt />,
   color: "#FFD54F", // golden yellow
 };
 
 export const homeCategoryType: ActivityCategoryType = {
-  name: "Home",
+  name: "home",
   icon: <BiHomeAlt2 />,
   color: "#81C784", // green
 };
 
 export const travelCategoryType: ActivityCategoryType = {
-  name: "Travel",
+  name: "travel",
   icon: <BiLandscape />,
   color: "#64B5F6", // sky blue
 };
 
 export const clotheCategoryType: ActivityCategoryType = {
-  name: "Clothe",
+  name: "clothe",
   icon: <BiCloset />,
   color: "#F06292", // pink
 };
 
 export const personalCareCategoryType: ActivityCategoryType = {
-  name: "Personal Care",
+  name: "personal Care",
   icon: <BiIdCard />,
   color: "#F06292", // pink
 };
 
 export const subscriptionsCategoryType: ActivityCategoryType = {
-  name: "Subscriptions",
+  name: "subscriptions",
   icon: <BiCrown />,
   color: "#90A4AE", // greyish blue
 };

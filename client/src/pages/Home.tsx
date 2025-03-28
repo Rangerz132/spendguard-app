@@ -5,7 +5,7 @@ const Home = () => {
   return (
     <div className="wrapper page-wrapper">
       <OverviewSection />
-      <ActivitySection />
+      <ActivitySection activitySlotVisibleAmount={5} viewMore={true} />
     </div>
   );
 };

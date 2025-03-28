@@ -1,16 +1,25 @@
-import React from "react";
 import ActivityCard from "./ActivityCard";
+import { Link } from "react-router";
 
-const ActivitySection = () => {
+const ActivitySection = (props: {
+  activitySlotVisibleAmount: number;
+  viewMore: boolean;
+}) => {
   return (
     <section>
       <div className="flex flex-row justify-between items-center">
         {/** Title */}
         <h2 className="text-white">Latest activities</h2>
         {/** View more */}
-        <p className="text-dark-grey underline text-xs">View more</p>
+        {props.viewMore && (
+          <Link to="/activities" className="text-dark-grey underline text-xs">
+            View more
+          </Link>
+        )}
       </div>
-      <ActivityCard />
+      <ActivityCard
+        activitySlotVisibleAmount={props.activitySlotVisibleAmount}
+      />
     </section>
   );
 };
