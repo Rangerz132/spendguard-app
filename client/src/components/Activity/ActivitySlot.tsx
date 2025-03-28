@@ -19,17 +19,13 @@ const ActivitySlot = (props: { data: ActivityType }) => {
           {/** Name */}
           <p className="text-white">{props.data.name}</p>
           {/** Date */}
-          <p className="text-xs text-grey">
+          <p className="text-[10px] text-grey">
             {formatDate(props.data.createdAt)}
           </p>
         </div>
       </div>
       {/** Amount */}
-      <p
-        className={` text-sm ${
-          props.data.isExpense ? "text-cherry" : "text-lime"
-        }`}
-      >
+      <p className={`${props.data.isExpense ? "text-cherry" : "text-lime"}`}>
         ${props.data.isExpense ? "-" : ""}
         {props.data.amount}
       </p>
