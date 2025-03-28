@@ -10,18 +10,21 @@ const Navigation = () => {
       {menuRoutes.map((route) => {
         const isActive = location.pathname === route.path;
         return (
-          <div className="flex flex-col items-center space-y-1">
+          <div
+            key={route.name}
+            className="flex flex-col items-center space-y-1"
+          >
             {/** Icons */}
             <Link to={route.path} key={route.name}>
               {React.cloneElement(route.icon, {
-                className: `w-7 h-7  ${
-                  isActive ? "text-indigo" : "text-grey"
-                } hover:text-indigo transition`,
+                className: `w-6 h-6  ${
+                  isActive ? "text-white" : "text-dark-grey"
+                } hover:text-white transition`,
               })}
             </Link>
             {/** Dot */}
             <div
-              className={`w-1 h-1 rounded-full ${isActive ? "bg-indigo" : ""}
+              className={`w-1 h-1 rounded-full ${isActive ? "bg-white" : ""}
               }`}
             ></div>
           </div>

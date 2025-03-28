@@ -3,7 +3,7 @@ import Card from "../Card/Card";
 const OverviewSection = () => {
   return (
     <section>
-      <h2 className="text-white pt-20">Overview</h2>
+      <h2 className="text-white">Overview</h2>
       <Card
         className="w-full"
         data={{

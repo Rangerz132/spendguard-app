@@ -21,11 +21,11 @@
   }
 
   h1 {
-    @apply font-roboto font-bold text-4xl;
+    @apply font-roboto font-bold text-3xl;
   }
 
   h2 {
-    @apply font-roboto font-bold text-2xl;
+    @apply font-roboto font-bold text-xl capitalize;
   }
 
   h3 {
@@ -33,7 +33,7 @@
   }
 
   p {
-    @apply font-roboto text-base;
+    @apply font-roboto text-[14px];
   }
 
   section {
@@ -43,18 +43,26 @@
 
 @layer components {
   .wrapper {
-    @apply mx-auto px-6;
+    @apply mx-auto px-4;
+  }
+
+  .page-wrapper {
+    @apply flex flex-col space-y-6;
   }
 
   .flex-center {
     @apply flex justify-center items-center;
   }
 
+  .detail {
+    @apply rounded-t-2xl bg-white/5 p-4;
+  }
+
   .card {
-    @apply rounded-2xl border-2 border-white/10 bg-gradient-to-b from-white/5 to-white/15 p-4;
+    @apply rounded-2xl bg-white/5 p-4;
   }
 
   .card-inner {
-    @apply flex flex-col space-y-4;
+    @apply flex flex-col space-y-2;
   }
 }
