@@ -36,6 +36,18 @@
     @apply font-roboto text-[14px];
   }
 
+  label {
+    @apply font-roboto text-lg;
+  }
+
+  input {
+    @apply p-2 placeholder:text-grey bg-black text-grey text-base rounded-lg outline-none;
+  }
+
+  textarea {
+    @apply p-2 placeholder:text-grey bg-black text-grey text-base rounded-lg outline-none;
+  }
+
   section {
     @apply flex flex-col space-y-4;
   }
@@ -64,5 +76,9 @@
 
   .card-inner {
     @apply flex flex-col space-y-2;
+  }
+
+  .cta-1 {
+    @apply bg-indigo rounded-lg p-2 text-white text-center;
   }
 }

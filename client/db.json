@@ -20,7 +20,7 @@
       "id": "3",
       "name": "McDonalds",
       "amount": 16.67,
-      "isExpense": true,
+      "isExpense": false,
       "category": "food",
       "createdAt": "2025-03-26T10:00:00Z"
     },
@@ -52,7 +52,7 @@
       "id": "7",
       "name": "Medicaments",
       "amount": 37.88,
-      "isExpense": true,
+      "isExpense": false,
       "category": "health",
       "createdAt": "2025-03-26T10:00:00Z"
     },
