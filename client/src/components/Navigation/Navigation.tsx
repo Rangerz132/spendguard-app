@@ -10,7 +10,10 @@ const Navigation = () => {
       {menuRoutes.map((route) => {
         const isActive = location.pathname === route.path;
         return (
-          <div className="flex flex-col items-center space-y-1">
+          <div
+            key={route.name}
+            className="flex flex-col items-center space-y-1"
+          >
             {/** Icons */}
             <Link to={route.path} key={route.name}>
               {React.cloneElement(route.icon, {

@@ -5,23 +5,23 @@
       "name": "Drake's new album",
       "amount": 12.99,
       "isExpense": true,
-      "category": {
-        "name": "Music",
-        "icon": null,
-        "color": "#8e44ad"
-      },
+      "category": "Music",
       "createdAt": "2025-03-26T10:00:00Z"
     },
     {
-      "id": "41651",
+      "id": "41652",
       "name": "U2 concert ticket",
       "amount": 199.99,
       "isExpense": true,
-      "category": {
-        "name": "Music",
-        "icon": null,
-        "color": "#8e44ad"
-      },
+      "category": "Music",
+      "createdAt": "2025-03-26T10:00:00Z"
+    },
+    {
+      "id": "dsfqw3",
+      "name": "Mcdonalds",
+      "amount": 16.67,
+      "isExpense": true,
+      "category": "Food",
       "createdAt": "2025-03-26T10:00:00Z"
     }
   ]

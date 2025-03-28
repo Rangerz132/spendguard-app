@@ -1,8 +1,11 @@
+import ActivitySection from "../components/Activity/ActivitySection";
 
 const Activites = () => {
   return (
-    <div>Activites</div>
-  )
-}
+    <div className="wrapper page-wrapper">
+      <ActivitySection />
+    </div>
+  );
+};
 
-export default Activites
+export default Activites;

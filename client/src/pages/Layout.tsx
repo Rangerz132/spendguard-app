@@ -7,7 +7,9 @@ const Layout = () => {
     <>
       <Header />
       <Menu />
-      <Outlet />
+      <div className="py-20">
+        <Outlet />
+      </div>
     </>
   );
 };

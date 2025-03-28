@@ -17,6 +17,16 @@ export type ActivityCategoryType = {
   color: string;
 };
 
+export const getFullCategory = (name: string): ActivityCategoryType => {
+  return (
+    categoryTypes.find((category) => category.name === name) ?? {
+      name,
+      icon: null,
+      color: "#000",
+    }
+  );
+};
+
 export const foodCategoryType: ActivityCategoryType = {
   name: "Food",
   icon: <BiBowlHot />,
@@ -89,7 +99,7 @@ export const subscriptionsCategoryType: ActivityCategoryType = {
   color: "#90A4AE", // greyish blue
 };
 
-export const CategoryTypes: ActivityCategoryType[] = [
+export const categoryTypes: ActivityCategoryType[] = [
   foodCategoryType,
   musicCategoryType,
   educationCategoryType,

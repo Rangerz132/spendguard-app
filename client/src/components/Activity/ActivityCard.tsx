@@ -1,80 +1,27 @@
+import { useEffect, useState } from "react";
 import ActivitySlot from "./ActivitySlot";
-import {
-  educationCategoryType,
-  foodCategoryType,
-  musicCategoryType,
-  sportCategoryType,
-  transportCategoryType,
-} from "./type/ActivityCategoryType";
+
+import { ActivityType } from "./type/ActivityType";
+import APIService from "../../api/APIService";
 
 const ActivityCard = () => {
+  const [activities, setActivities] = useState<ActivityType[]>([]);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      const data = await APIService.getActivities();
+      console.log(data);
+      setActivities(data);
+    };
+
+    fetchData();
+  }, []);
+
   return (
     <div className="card flex flex-col space-y-3">
-      <ActivitySlot
-        data={{
-          id: "41651",
-          name: "Drake's new album",
-          amount: 12.99,
-          isExpense: true,
-          category: musicCategoryType,
-          createdAt: new Date(),
-        }}
-      />
-      <div className="w-full h-[0.5px] bg-white/10"></div>
-      <ActivitySlot
-        data={{
-          id: "41651",
-          name: "2nd university payment",
-          amount: 1756.63,
-          isExpense: true,
-          category: educationCategoryType,
-          createdAt: new Date(),
-        }}
-      />{" "}
-      <div className="w-full h-[0.5px] bg-white/10"></div>
-      <ActivitySlot
-        data={{
-          id: "41651",
-          name: "Football",
-          amount: 18.52,
-          isExpense: true,
-          category: sportCategoryType,
-          createdAt: new Date(),
-        }}
-      />{" "}
-      <div className="w-full h-[0.5px] bg-white/10"></div>
-      <ActivitySlot
-        data={{
-          id: "41651",
-          name: "Metro ticket",
-          amount: 6.5,
-          isExpense: true,
-          category: transportCategoryType,
-          createdAt: new Date(),
-        }}
-      />{" "}
-      <div className="w-full h-[0.5px] bg-white/10"></div>
-      <ActivitySlot
-        data={{
-          id: "41651",
-          name: "Ramen ishin",
-          amount: 17.99,
-          isExpense: true,
-          category: foodCategoryType,
-          createdAt: new Date(),
-        }}
-      />{" "}
-      <div className="w-full h-[0.5px] bg-white/10"></div>
-      <ActivitySlot
-        data={{
-          id: "41651",
-          name: "Ramen ishin",
-          amount: 17.99,
-          isExpense: true,
-          category: foodCategoryType,
-          createdAt: new Date(),
-        }}
-      />
+      {activities.map((activity) => (
+        <ActivitySlot key={activity.id} data={activity} />
+      ))}
     </div>
   );
 };
