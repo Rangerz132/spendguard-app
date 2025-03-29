@@ -71,6 +71,60 @@
       "isExpense": true,
       "category": "travel",
       "createdAt": "2025-03-26T10:00:00Z"
+    },
+    {
+      "id": "fbfc983e-4821-4d90-8d82-f48d86ca6d53",
+      "name": "Nickelback concert",
+      "description": "I went to the bell center to see the nickelback concert",
+      "amount": "234",
+      "isExpense": true,
+      "category": "music",
+      "createdAt": "2025-03-29T13:08:38.761Z"
+    },
+    {
+      "id": "cc3a775b-767e-41d0-b39c-391abf9bbdd9",
+      "name": "Nickelback concert",
+      "description": "I went to the bell center to see the nickelback concert",
+      "amount": "234",
+      "isExpense": true,
+      "category": "music",
+      "createdAt": "2025-03-29T13:08:38.767Z"
+    },
+    {
+      "id": "b59f9389-2914-4250-be5f-04d5e525dba5",
+      "name": "Blink-182 ticket",
+      "description": "I bought 2 tickets for the Blink-182 concert",
+      "amount": "350",
+      "isExpense": true,
+      "category": "music",
+      "createdAt": "2025-03-29T13:10:00.766Z"
+    },
+    {
+      "id": "94a7f6ad-8615-45fd-b4d0-70a3e07ed1dc",
+      "name": "Chomage income",
+      "description": "",
+      "amount": "1322",
+      "isExpense": true,
+      "category": "music",
+      "createdAt": "2025-03-29T13:10:24.498Z"
+    },
+    {
+      "id": "450a375b-278a-4c1d-8176-1a35c2677a82",
+      "name": "Test",
+      "description": "test description",
+      "amount": "2",
+      "isExpense": true,
+      "category": "music",
+      "createdAt": "2025-03-29T13:12:50.750Z"
+    },
+    {
+      "id": "e41f2adc-f7b6-4733-9348-cb3fc1021e5e",
+      "name": "Passive test",
+      "description": "",
+      "amount": "2",
+      "isExpense": false,
+      "category": "music",
+      "createdAt": "2025-03-29T13:13:01.691Z"
     }
   ]
 }
