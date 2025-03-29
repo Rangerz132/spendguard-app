@@ -1,7 +1,7 @@
-import React from "react";
+import { Link } from "react-router";
 
 const Logo = () => {
-  return <div className="w-24 h-8 bg-white"></div>;
+  return <Link to="/" className="w-24 h-8 bg-white"></Link>;
 };
 
 export default Logo;

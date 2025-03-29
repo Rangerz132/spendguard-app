@@ -7,7 +7,7 @@
   --color-black: #000000;
 
   --color-grey: #949494;
-  --color-dark-grey: #2c2c2c;
+  --color-dark-grey: #0f0f0f;
   --color-light-grey: #cccccc;
 
   --color-lime: #00ff84;
@@ -67,11 +67,11 @@
   }
 
   .detail {
-    @apply rounded-t-2xl bg-white/5 p-4;
+    @apply rounded-t-2xl bg-dark-grey p-4;
   }
 
   .card {
-    @apply rounded-2xl bg-white/5 p-4;
+    @apply rounded-2xl bg-dark-grey p-4;
   }
 
   .card-inner {

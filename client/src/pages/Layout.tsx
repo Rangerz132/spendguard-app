@@ -1,14 +1,14 @@
 import { Outlet } from "react-router";
 import Menu from "../components/Menu/Menu";
 import Header from "../components/Header/Header";
+import DetailOptionCard from "../components/DetailOption/DetailOptionCard";
 
 const Layout = () => {
   return (
     <>
       <Header />
       <Menu />
-
-      {/**<Overlay /> */}
+      <DetailOptionCard />
       <div className="py-20">
         <Outlet />
       </div>

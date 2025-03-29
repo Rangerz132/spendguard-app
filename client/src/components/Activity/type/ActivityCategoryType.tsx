@@ -13,7 +13,7 @@ import { BiBall } from "react-icons/bi";
 
 export type ActivityCategoryType = {
   name: string;
-  icon: any;
+  icon: React.ReactNode;
   color: string;
 };
 
