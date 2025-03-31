@@ -41,7 +41,7 @@ npm run dev-server
 
 ```bash
 npm cd client
-npm run
+npm run dev
 ```
 
 ## Technologies Used
