@@ -1,3 +1,4 @@
+import { JSX } from "react";
 import { BiDollar } from "react-icons/bi";
 import { BiCrown } from "react-icons/bi";
 import { BiCloset } from "react-icons/bi";
@@ -14,7 +15,7 @@ import { BiBall } from "react-icons/bi";
 
 export type ActivityCategoryType = {
   name: string;
-  icon: React.ReactNode;
+  icon: JSX.Element | null;
   color: string;
 };
 

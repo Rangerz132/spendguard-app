@@ -15,7 +15,7 @@ const ActivitySlot = ({
   addDetails = true,
 }: {
   data: ActivityType;
-  addDetails: boolean;
+  addDetails?: boolean;
 }) => {
   const dispatch = useDispatch();
 

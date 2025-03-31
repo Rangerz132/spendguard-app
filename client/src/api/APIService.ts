@@ -11,7 +11,7 @@ export default class APIService {
   }
 
   // GET
-  static async getActivities() {
+  static async getActivities(): Promise<ActivityType[]> {
     return (await axios.get(`${BASE_URL}/activities`)).data;
   }
 

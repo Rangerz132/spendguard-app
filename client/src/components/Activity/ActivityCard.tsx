@@ -14,7 +14,9 @@ const ActivityCard = (props: { activitySlotVisibleAmount: number }) => {
     const fetchData = async () => {
       const data = await APIService.getActivities();
       setActivities(data);
-      setVisibleActivities(data.slice(0, props.activitySlotVisibleAmount));
+      setVisibleActivities(
+        data.reverse().slice(0, props.activitySlotVisibleAmount)
+      );
     };
 
     fetchData();
@@ -24,7 +26,7 @@ const ActivityCard = (props: { activitySlotVisibleAmount: number }) => {
     <div className="card flex flex-col space-y-3">
       {visibleActivities.map((activity, index) => (
         <div className="flex flex-col space-y-3" key={activity.id}>
-          <ActivitySlot data={activity} />
+          <ActivitySlot data={activity} addDetails={true} />
           {index < visibleActivities.length - 1 && (
             <div className=" w-full h-[0.5px] bg-white/5"></div>
           )}

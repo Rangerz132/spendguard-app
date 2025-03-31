@@ -1,21 +1,24 @@
-import { useState } from "react";
+import { JSX, useState } from "react";
 import Button from "../UI/Button";
 import ToggleButton from "../UI/ToggleButton";
 import { BiCheck } from "react-icons/bi";
 import { ActivityType } from "../Activity/type/ActivityType";
 import { v4 as uuidv4 } from "uuid";
 import APIService from "../../api/APIService";
+import { categoryTypes } from "../Activity/type/ActivityCategoryType";
+import React from "react";
+import { useNavigate } from "react-router";
 
 const CreateActivityCard = () => {
+  const navigate = useNavigate();
   const [isExpense, setIsExpense] = useState<boolean>(true);
-
   const [activity, setActivity] = useState<ActivityType>({
     id: "",
     name: "",
     description: "",
     amount: 0,
     isExpense: isExpense,
-    category: "music",
+    category: categoryTypes[0].name,
     createdAt: "",
   });
 
@@ -41,7 +44,7 @@ const CreateActivityCard = () => {
       };
 
       APIService.createActivity(updatedActivity);
-
+      navigate("/");
       return updatedActivity;
     });
   };
@@ -75,6 +78,24 @@ const CreateActivityCard = () => {
               updateActivity(e.currentTarget.name, e.currentTarget.value)
             }
           ></textarea>
+        </div>
+
+        {/** Category */}
+        <div className="flex flex-col space-y-2">
+          <label className="text-white">Category</label>
+          <select
+            className="text-grey"
+            name="category"
+            onChange={(e) =>
+              updateActivity(e.currentTarget.name, e.currentTarget.value)
+            }
+          >
+            {categoryTypes.map((category) => (
+              <option className="flex flex-row space-x-2 text-grey hover:bg-indigo">
+                {category.name}
+              </option>
+            ))}
+          </select>
         </div>
 
         <div className="flex flex-row justify-between items-center">
