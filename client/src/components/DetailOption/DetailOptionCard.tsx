@@ -3,12 +3,11 @@ import ActivitySlot from "../Activity/ActivitySlot";
 import DetailOptionSlot from "./DetailOptionSlot";
 import { activityOptions } from "./type/activityOptionType";
 import { RootState } from "../../store/store";
+import { useNavigate } from "react-router";
 
 const DetailOptionCard = (props: { children?: React.ReactNode }) => {
   const details = useSelector((store: RootState) => store.details);
-  ////
-  //TODO : Change specific element by props.children
-  ///
+  const navigate = useNavigate();
 
   return (
     <div
@@ -28,7 +27,7 @@ const DetailOptionCard = (props: { children?: React.ReactNode }) => {
               <DetailOptionSlot
                 key={index}
                 activityOption={option}
-                data={details.data}
+                data={{ ...details.data, navigate }}
               />
             ))}
           </div>

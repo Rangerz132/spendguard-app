@@ -1,4 +1,4 @@
-import { BiMessageAltAdd } from "react-icons/bi";
+import { BiHighlight, BiMessageAltAdd } from "react-icons/bi";
 import { BiHomeAlt, BiBookmarkAlt, BiBarChartAlt } from "react-icons/bi";
 import { RouteObject, createBrowserRouter } from "react-router";
 <BiHomeAlt />;
@@ -7,6 +7,7 @@ import Analytics from "./pages/Analytics";
 import Activites from "./pages/Activites";
 import Layout from "./pages/Layout";
 import AddActivity from "./pages/AddActivity";
+import UpdateActivity from "./pages/UpdateActivity";
 
 const routeDefinitions = {
   root: {
@@ -26,6 +27,13 @@ const routeDefinitions = {
         name: "Add Activity",
         id: "addActivity",
         icon: <BiMessageAltAdd />,
+      },
+      {
+        path: "/updateActivity",
+        element: <UpdateActivity />,
+        name: "Update Activity",
+        id: "updateActivity",
+        icon: <BiHighlight />,
       },
       {
         path: "/analytics",

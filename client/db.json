@@ -41,22 +41,13 @@
       "createdAt": "2025-03-26T10:00:00Z"
     },
     {
-      "id": "cc3a775b-767e-41d0-b39c-391abf9bbdd9",
+      "id": "77a21c1b-b87d-4959-98a8-7b10f5813a7f",
       "name": "Nickelback concert",
-      "description": "I went to the bell center to see the nickelback concert",
-      "amount": "234",
+      "description": "Went to the Nickelback center at the Bell center",
+      "amount": "243",
       "isExpense": true,
       "category": "music",
-      "createdAt": "2025-03-29T13:08:38.767Z"
-    },
-    {
-      "id": "b59f9389-2914-4250-be5f-04d5e525dba5",
-      "name": "Blink-182 ticket",
-      "description": "I bought 2 tickets for the Blink-182 concert",
-      "amount": "350",
-      "isExpense": true,
-      "category": "music",
-      "createdAt": "2025-03-29T13:10:00.766Z"
+      "createdAt": "2025-03-31T17:13:15.864Z"
     }
   ]
 }

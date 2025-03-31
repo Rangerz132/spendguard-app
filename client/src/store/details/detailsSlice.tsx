@@ -35,6 +35,6 @@ export const detailsSlice = createSlice({
   },
 });
 
-export const { setDetails, showDetails } = detailsSlice.actions;
+export const { setDetails, showDetails, hideDetails } = detailsSlice.actions;
 
 export default detailsSlice.reducer;
