@@ -1,9 +1,15 @@
 import React from "react";
 import { ActivityOptionType } from "./type/activityOptionType";
 
-const DetailOptionSlot = (props: { activityOption: ActivityOptionType }) => {
+const DetailOptionSlot = (props: {
+  activityOption: ActivityOptionType;
+  data: any;
+}) => {
   return (
-    <div className="flex flex-row space-x-4 items-center">
+    <div
+      onClick={() => props.activityOption.action(props.data)}
+      className="flex flex-row space-x-4 items-center cursor-pointer"
+    >
       {/** Icon */}
       {React.cloneElement(props.activityOption.icon, {
         className: "w-6 h-6 text-grey",

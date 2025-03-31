@@ -2,16 +2,21 @@ import { Outlet } from "react-router";
 import Menu from "../components/Menu/Menu";
 import Header from "../components/Header/Header";
 import DetailOptionCard from "../components/DetailOption/DetailOptionCard";
+import { OverlayContextProvider } from "../contexts/OverlayContext";
+import Overlay from "../components/Overlay/Overlay";
 
 const Layout = () => {
   return (
     <>
-      <Header />
-      <Menu />
-      <DetailOptionCard />
-      <div className="py-20">
-        <Outlet />
-      </div>
+      <OverlayContextProvider>
+        <Header />
+        <Menu />
+        <Overlay />
+        <DetailOptionCard />
+        <div className="py-20">
+          <Outlet />
+        </div>
+      </OverlayContextProvider>
     </>
   );
 };

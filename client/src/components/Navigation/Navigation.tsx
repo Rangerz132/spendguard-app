@@ -12,7 +12,7 @@ const Navigation = () => {
         return (
           <div
             key={route.name}
-            className="flex flex-col items-center space-y-1"
+            className="flex flex-col items-center space-y-1 cursor-pointer"
           >
             {/** Icons */}
             <Link to={route.path} key={route.name}>

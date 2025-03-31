@@ -27,6 +27,7 @@ export default class APIService {
 
   // DELETE
   static async deleteActivity(activityId: string) {
+    console.log("delete");
     return (await axios.delete(`${BASE_URL}/activities/${activityId}`)).data;
   }
 }

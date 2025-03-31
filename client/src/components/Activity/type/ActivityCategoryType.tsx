@@ -1,3 +1,4 @@
+import { BiDollar } from "react-icons/bi";
 import { BiCrown } from "react-icons/bi";
 import { BiCloset } from "react-icons/bi";
 import { BiLandscape } from "react-icons/bi";
@@ -99,6 +100,12 @@ export const subscriptionsCategoryType: ActivityCategoryType = {
   color: "#90A4AE", // greyish blue
 };
 
+export const jobCategoryType: ActivityCategoryType = {
+  name: "job",
+  icon: <BiDollar />,
+  color: "#0FC2C0", // greyish blue
+};
+
 export const categoryTypes: ActivityCategoryType[] = [
   foodCategoryType,
   musicCategoryType,
@@ -112,4 +119,5 @@ export const categoryTypes: ActivityCategoryType[] = [
   clotheCategoryType,
   personalCareCategoryType,
   subscriptionsCategoryType,
+  jobCategoryType,
 ];
