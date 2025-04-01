@@ -1,4 +1,4 @@
-import ActivityCard from "../components/Activity/ActivityCard";
+import LatestActivityCard from "../components/Activity/LatestActivityCard";
 
 const Activites = () => {
   return (
@@ -8,7 +8,7 @@ const Activites = () => {
           {/** Title */}
           <h2 className="text-white">Latest activities</h2>
         </div>
-        <ActivityCard activitySlotVisibleAmount={20} />
+        <LatestActivityCard activitySlotVisibleAmount={20} />
       </section>
     </div>
   );

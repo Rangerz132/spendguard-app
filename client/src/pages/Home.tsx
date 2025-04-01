@@ -1,6 +1,6 @@
 import { Link } from "react-router";
-import ActivityCard from "../components/Activity/ActivityCard";
 import Card from "../components/Card/Card";
+import LatestActivityCard from "../components/Activity/LatestActivityCard";
 
 const Home = () => {
   return (
@@ -57,7 +57,7 @@ const Home = () => {
           </Link>
         </div>
         {/** Activity card */}
-        <ActivityCard activitySlotVisibleAmount={5} />
+        <LatestActivityCard activitySlotVisibleAmount={5} />
       </section>
     </div>
   );

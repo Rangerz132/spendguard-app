@@ -15,14 +15,24 @@ export default class APIService {
     return (await axios.get(`${BASE_URL}/activities`)).data;
   }
 
+  // GET
+  static async getActivityById(activityId: string): Promise<ActivityType> {
+    const activities = (await axios.get(`${BASE_URL}/activities`)).data;
+
+    return activities.find(
+      (activity: ActivityType) => activity.id === activityId
+    ) as ActivityType;
+  }
+
   // POST
   static async createActivity(activity: ActivityType) {
     return (await axios.post(`${BASE_URL}/activities`, activity)).data;
   }
 
   // PUT
-  static async updateActivity(activityId: string) {
-    return (await axios.put(`${BASE_URL}/activities/${activityId}`)).data;
+  static async updateActivity(activity: ActivityType) {
+    return (await axios.put(`${BASE_URL}/activities/${activity.id}`, activity))
+      .data;
   }
 
   // DELETE

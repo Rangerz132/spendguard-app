@@ -2,6 +2,7 @@ import { JSX } from "react";
 import { BiTrash, BiXCircle } from "react-icons/bi";
 import { BiHighlight } from "react-icons/bi";
 import { setStatus } from "../../../store/status/statusSlice";
+import APIService from "../../../api/APIService";
 
 export type ActivityOptionType = {
   icon: JSX.Element;
@@ -14,7 +15,6 @@ export const activityModifyOption: ActivityOptionType = {
   title: "Modify the activity",
   action: (data?: any) => {
     if (data?.navigate) {
-      console.log("hehe");
       data.navigate(`/updateActivity/${data.id}`);
     }
   },
@@ -24,6 +24,7 @@ export const activityDeleteOption: ActivityOptionType = {
   icon: <BiTrash />,
   title: "Remove the activity",
   action: async (data: any) => {
+    await APIService.deleteActivity(data.id);
     if (data?.dispatch) {
       data.dispatch(
         setStatus({
@@ -33,7 +34,6 @@ export const activityDeleteOption: ActivityOptionType = {
         })
       );
     }
-    // return APIService.deleteActivity(data.id);
   },
 };
 

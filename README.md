@@ -8,21 +8,13 @@ SpendGuard is a modern, interactive application built with React that allows use
 
 At the time of writing, SpendGuard is still under active development.
 
-### Upcoming bug fixes
-
-- Enforce input validation for new activities (In Progress)
-- Filter activities to display the latest entries first (In Progress)
-- Add an option to change the default activity type (In Progress)
-- General code refactoring (In Progress)
-
 ### Upcoming features
 
-- Display status cards for user actions (In Progress)
+- Enforce input validation for new activities (In Progress)
 - Introduce new activity filters (In Progress)
+- Build an analytics dashboard (In Progress)
 - Implement a search bar for activity lookup (To Do)
-- Enable activity modification (In Progress)
 - Develop charts and balance tracking (To Do)
-- Build an analytics dashboard (To Do)
 - Add a "Create Budget" page (To Do)
 - Enhance responsiveness for different devices (To Do)
 - Design and integrate a logo (To Do)
