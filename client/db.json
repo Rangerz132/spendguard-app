@@ -12,8 +12,8 @@
     {
       "id": "083a571d-0fba-4248-8348-2ef52e2f4ac7",
       "name": "Bixi",
-      "description": "",
-      "amount": "14",
+      "description": "Small ride in Bixi",
+      "amount": "24",
       "isExpense": true,
       "category": "transport",
       "createdAt": "2025-03-31T19:13:37.518Z"
@@ -28,15 +28,6 @@
       "createdAt": "2025-03-31T19:17:49.550Z"
     },
     {
-      "id": "3fda65e2-4420-4eb6-97c8-1ce8b1d76b7d",
-      "name": "Tim Hortons",
-      "description": "",
-      "amount": "6.50",
-      "isExpense": true,
-      "category": "food",
-      "createdAt": "2025-04-01T14:37:29.467Z"
-    },
-    {
       "id": "88c81e2b-d83a-430e-a2ec-d0bfcd0b0d8f",
       "name": "University Payment",
       "description": "",
@@ -44,15 +35,6 @@
       "isExpense": true,
       "category": "education",
       "createdAt": "2025-04-01T14:37:55.346Z"
-    },
-    {
-      "id": "1d4d01a6-270c-41c7-8c69-aad2b445e3f8",
-      "name": "Water Bottle",
-      "description": "",
-      "amount": "17",
-      "isExpense": true,
-      "category": "health",
-      "createdAt": "2025-04-01T14:40:19.500Z"
     },
     {
       "id": "00fe144f-90e4-4347-b25d-ee284d478c12",
@@ -65,21 +47,39 @@
     },
     {
       "id": "2e6ed163-758a-4082-8e53-bbc12e369091",
-      "name": "Vodka",
-      "description": "Vodka bottle",
-      "amount": "40",
+      "name": "Vodka + Whiskey",
+      "description": "Vodka bottle + Whiskey bottle",
+      "amount": "70",
       "isExpense": true,
       "category": "food",
       "createdAt": "2025-04-01T16:50:05.131Z"
     },
     {
-      "id": "beb93bfe-d2a0-4de5-9f16-d0df5cbefe16",
-      "name": "U2 Tickets",
-      "description": "",
-      "amount": "308",
+      "id": "f68a39ae-693d-461c-86c0-d00a64b4d5a8",
+      "name": "Jeans",
+      "description": "New pair of jeans at American Eagles",
+      "amount": "78",
       "isExpense": true,
-      "category": "music",
-      "createdAt": "2025-04-01T17:02:50.059Z"
+      "category": "clothe",
+      "createdAt": "2025-04-01T20:32:53.804Z"
+    },
+    {
+      "id": "4b67c3d2-5a4d-48b1-8dde-1b94d7c3a2a7",
+      "name": "Test",
+      "description": "Testttttt",
+      "amount": "12",
+      "isExpense": true,
+      "category": "subscriptions",
+      "createdAt": "2025-04-01T20:33:53.195Z"
+    },
+    {
+      "id": "0ad34cf0-198a-41d2-a646-aabcd463f404",
+      "name": "Cup of coffee",
+      "description": "Cup of coffee at Second Cup",
+      "amount": "4",
+      "isExpense": true,
+      "category": "food",
+      "createdAt": "2025-04-01T20:34:47.002Z"
     }
   ]
 }

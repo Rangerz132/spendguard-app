@@ -1,3 +1,4 @@
+import { BiPulse } from "react-icons/bi";
 import { BiHighlight, BiMessageAltAdd } from "react-icons/bi";
 import { BiHomeAlt, BiBookmarkAlt, BiBarChartAlt } from "react-icons/bi";
 import { RouteObject, createBrowserRouter } from "react-router";
@@ -40,7 +41,7 @@ const routeDefinitions = {
         element: <Analytics />,
         name: "Analytics",
         id: "analytics",
-        icon: <BiBookmarkAlt />,
+        icon: <BiPulse />,
       },
       {
         path: "/activities",
@@ -64,7 +65,9 @@ export const allRoutes = routeDefinitions.root.children.map((route) => ({
 }));
 
 export const menuRoutes = routeDefinitions.root.children
-  .filter((route) => ["home", "addActivity", "activities"].includes(route.id))
+  .filter((route) =>
+    ["home", "addActivity", "analytics", "activities"].includes(route.id)
+  )
   .map((route) => ({
     name: route.name,
     path: route.path,

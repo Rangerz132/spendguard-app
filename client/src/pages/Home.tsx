@@ -1,19 +1,27 @@
-import { Link } from "react-router";
 import Card from "../components/Card/Card";
 import LatestActivityCard from "../components/Activity/LatestActivityCard";
+import ViewMore from "../components/UI/ViewMore";
+import useActivities from "../hooks/useActivities";
 
 const Home = () => {
+  const { getExpensesAmount, getIncomesAmount, getBalanceAmount } =
+    useActivities();
+
   return (
     <div className="wrapper page-wrapper">
       <section>
-        {/** Overview title */}
-        <h2 className="text-white">Overview</h2>
+        <div className="flex flex-row justify-between">
+          {/** Overview title */}
+          <h2 className="text-white">Overview</h2>
+          {/** View more */}
+          <ViewMore path={"/analytics"} />
+        </div>
         {/** Balance title */}
         <Card
           className="w-full"
           data={{
             title: "Total balance",
-            value: 689,
+            value: getBalanceAmount(),
             compared: {
               value: 5,
               isIncreasing: true,
@@ -26,7 +34,7 @@ const Home = () => {
             className="basis-1/2"
             data={{
               title: "Incomes",
-              value: 1024,
+              value: getIncomesAmount(),
               compared: {
                 value: 3,
                 isIncreasing: true,
@@ -38,7 +46,7 @@ const Home = () => {
             className="basis-1/2"
             data={{
               title: "Expenses",
-              value: 335,
+              value: getExpensesAmount(),
               compared: {
                 value: 7,
                 isIncreasing: false,
@@ -52,9 +60,7 @@ const Home = () => {
           {/** Latest activity title */}
           <h2 className="text-white">Latest activities</h2>
           {/** View more */}
-          <Link to="/activities" className="text-light-grey underline text-xs">
-            View more
-          </Link>
+          <ViewMore path={"/activities"} />
         </div>
         {/** Activity card */}
         <LatestActivityCard activitySlotVisibleAmount={5} />

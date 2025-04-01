@@ -59,7 +59,7 @@
 
 @layer components {
   .wrapper {
-    @apply mx-auto px-4;
+    @apply mx-auto px-4 overflow-hidden;
   }
 
   .page-wrapper {

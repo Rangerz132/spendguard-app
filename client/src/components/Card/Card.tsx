@@ -1,5 +1,5 @@
 import CardInner from "./CardInner";
-import { CardType } from "./type";
+import { CardType } from "./type/cardType";
 
 const Card = (props: { className?: string; data: CardType }) => {
   return (
