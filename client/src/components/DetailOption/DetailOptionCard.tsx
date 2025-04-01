@@ -1,4 +1,4 @@
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import ActivitySlot from "../Activity/ActivitySlot";
 import DetailOptionSlot from "./DetailOptionSlot";
 import { activityOptions } from "./type/activityOptionType";
@@ -6,8 +6,11 @@ import { RootState } from "../../store/store";
 import { useNavigate } from "react-router";
 
 const DetailOptionCard = (props: { children?: React.ReactNode }) => {
-  const details = useSelector((store: RootState) => store.details);
   const navigate = useNavigate();
+  const dispatch = useDispatch();
+  const details = useSelector((store: RootState) => store.details);
+
+  //TODO : Change activities by the corresponding children
 
   return (
     <div
@@ -27,7 +30,7 @@ const DetailOptionCard = (props: { children?: React.ReactNode }) => {
               <DetailOptionSlot
                 key={index}
                 activityOption={option}
-                data={{ ...details.data, navigate }}
+                data={{ ...details.data, navigate, dispatch }}
               />
             ))}
           </div>

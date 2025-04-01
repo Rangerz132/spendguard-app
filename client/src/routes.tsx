@@ -29,7 +29,7 @@ const routeDefinitions = {
         icon: <BiMessageAltAdd />,
       },
       {
-        path: "/updateActivity",
+        path: "/updateActivity/:id",
         element: <UpdateActivity />,
         name: "Update Activity",
         id: "updateActivity",

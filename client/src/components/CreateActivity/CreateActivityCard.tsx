@@ -8,9 +8,12 @@ import APIService from "../../api/APIService";
 import { categoryTypes } from "../Activity/type/ActivityCategoryType";
 import React from "react";
 import { useNavigate } from "react-router";
+import { useDispatch } from "react-redux";
+import { setStatus } from "../../store/status/statusSlice";
 
 const CreateActivityCard = () => {
   const navigate = useNavigate();
+  const dispatch = useDispatch();
   const [isExpense, setIsExpense] = useState<boolean>(true);
   const [activity, setActivity] = useState<ActivityType>({
     id: "",
@@ -45,6 +48,7 @@ const CreateActivityCard = () => {
 
       APIService.createActivity(updatedActivity);
       navigate("/");
+      // dispatch(setStatus)
       return updatedActivity;
     });
   };
@@ -90,8 +94,11 @@ const CreateActivityCard = () => {
               updateActivity(e.currentTarget.name, e.currentTarget.value)
             }
           >
-            {categoryTypes.map((category) => (
-              <option className="flex flex-row space-x-2 text-grey hover:bg-indigo">
+            {categoryTypes.map((category, index) => (
+              <option
+                key={index}
+                className="flex flex-row space-x-2 text-grey hover:bg-indigo"
+              >
                 {category.name}
               </option>
             ))}

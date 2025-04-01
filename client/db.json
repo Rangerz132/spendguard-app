@@ -1,55 +1,6 @@
 {
   "activities": [
     {
-      "id": "5",
-      "name": "University payment",
-      "amount": 1765.21,
-      "isExpense": true,
-      "category": "education",
-      "createdAt": "2025-03-26T10:00:00Z"
-    },
-    {
-      "id": "6",
-      "name": "Wicked - Cinema ticket",
-      "amount": 13.5,
-      "isExpense": true,
-      "category": "entertainment",
-      "createdAt": "2025-03-26T10:00:00Z"
-    },
-    {
-      "id": "7",
-      "name": "Medicaments",
-      "amount": 37.88,
-      "isExpense": false,
-      "category": "health",
-      "createdAt": "2025-03-26T10:00:00Z"
-    },
-    {
-      "id": "8",
-      "name": "TV",
-      "amount": 2499.99,
-      "isExpense": true,
-      "category": "home",
-      "createdAt": "2025-03-26T10:00:00Z"
-    },
-    {
-      "id": "9",
-      "name": "Travel Cuba",
-      "amount": 967.59,
-      "isExpense": true,
-      "category": "travel",
-      "createdAt": "2025-03-26T10:00:00Z"
-    },
-    {
-      "id": "77a21c1b-b87d-4959-98a8-7b10f5813a7f",
-      "name": "Nickelback concert",
-      "description": "Went to the Nickelback center at the Bell center",
-      "amount": "243",
-      "isExpense": true,
-      "category": "music",
-      "createdAt": "2025-03-31T17:13:15.864Z"
-    },
-    {
       "id": "fec26058-43e3-4cbf-ae33-f642fb6682fb",
       "name": "Chair",
       "description": "New chair for the kitchen",
@@ -59,15 +10,6 @@
       "createdAt": "2025-03-31T19:02:51.022Z"
     },
     {
-      "id": "73b64100-8074-421d-a812-77d829f15e26",
-      "name": "Tim Hortons",
-      "description": "A donut",
-      "amount": "2",
-      "isExpense": true,
-      "category": "food",
-      "createdAt": "2025-03-31T19:12:41.094Z"
-    },
-    {
       "id": "083a571d-0fba-4248-8348-2ef52e2f4ac7",
       "name": "Bixi",
       "description": "",
@@ -75,6 +17,15 @@
       "isExpense": true,
       "category": "transport",
       "createdAt": "2025-03-31T19:13:37.518Z"
+    },
+    {
+      "id": "6a4ad506-2cf9-4185-990a-869349e9d20d",
+      "name": "Passive Income",
+      "description": "",
+      "amount": "2456",
+      "isExpense": false,
+      "category": "job",
+      "createdAt": "2025-03-31T19:17:49.550Z"
     }
   ]
 }
