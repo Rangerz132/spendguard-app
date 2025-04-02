@@ -1,16 +1,61 @@
 import Card from "../components/Card/Card";
-import ExpenseCard from "../components/Expense/ExpenseCard";
 import ExpenseListCard from "../components/Expense/ExpenseListCard";
 import useActivities from "../hooks/useActivities";
+import CustomLineChart from "../components/Chart/CustomLineChart";
+import { useEffect, useState } from "react";
+import CustomBarChart from "../components/Chart/CustomBarCart";
 
 const Analytics = () => {
+  const [balanceTrends, setBalanceTrends] = useState<any[]>([]);
+  const [expenses, setExpenses] = useState<any[]>([]);
+  const [incomes, setIncomes] = useState<any[]>([]);
+  const [expensesByCategory, setExpensesByCategory] = useState<any[]>([]);
+
   const {
     getExpensesAmount,
     getIncomesAmount,
     getBalanceAmount,
     getExpensesAmountByCategories,
-    activityCategories,
+    getExpensesAmountByDates,
+    getIncomesAmountByDates,
   } = useActivities();
+
+  useEffect(() => {
+    const expenseData = Array.from(getExpensesAmountByDates()).map(
+      ([date, value]) => ({
+        value1: date,
+        value2: value,
+      })
+    );
+
+    const incomeData = Array.from(getIncomesAmountByDates()).map(
+      ([date, value]) => ({
+        value1: date,
+        value2: value,
+      })
+    );
+
+    const expensesByCategoryData = Array.from(
+      getExpensesAmountByCategories()
+    ).map(([date, value]) => ({
+      value1: date,
+      value2: value,
+    }));
+
+    setExpenses(expenseData);
+    setIncomes(incomeData);
+    setExpensesByCategory(expensesByCategoryData);
+    setBalanceTrends(expenseData);
+  }, [
+    getExpensesAmountByDates,
+    getIncomesAmountByDates,
+    getExpensesAmountByCategories,
+  ]);
+
+  const handleBalanceTrends = (e) => {
+    setBalanceTrends(e.target.value === "incomes" ? incomes : expenses);
+  };
+
   return (
     <div className="wrapper page-wrapper">
       <section>
@@ -54,6 +99,25 @@ const Analytics = () => {
             }}
           />
         </div>
+        {/** Balance Chart */}
+        <div className="card">
+          <div className="card-inner">
+            <div className="flex flex-row justify-between items-center">
+              {/** Chart title */}
+              <h3 className="text-grey">Balance trends</h3>
+              {/** Activity type selection */}
+              <select
+                className="text-xs"
+                onChange={(e) => handleBalanceTrends(e)}
+              >
+                <option value="expenses">Expenses</option>
+                <option value="incomes">Incomes</option>
+              </select>
+            </div>
+            {/** Chart */}
+            <CustomLineChart data={balanceTrends} />
+          </div>
+        </div>
       </section>
       <section>
         <div className="flex flex-col space-y-1">
@@ -69,6 +133,14 @@ const Analytics = () => {
           </h4>
         </div>
         <ExpenseListCard />
+        {/** Chart */}
+        <div className="card">
+          <div className="card-inner">
+            {/** Chart title */}
+            <h3 className="text-grey">Expenses category trends</h3>
+            <CustomBarChart data={expensesByCategory} />
+          </div>
+        </div>
       </section>
     </div>
   );

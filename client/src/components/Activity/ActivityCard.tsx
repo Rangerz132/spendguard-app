@@ -5,7 +5,6 @@ import { BiCheck } from "react-icons/bi";
 import { ActivityType } from "../Activity/type/ActivityType";
 import { categoryTypes } from "../Activity/type/ActivityCategoryType";
 import { v4 as uuidv4 } from "uuid";
-
 import React from "react";
 
 const ActivityCard = (props: {
@@ -23,7 +22,7 @@ const ActivityCard = (props: {
       amount: 0,
       isExpense: true,
       category: categoryTypes[0].name,
-      createdAt: new Date(Date.now()).toISOString(),
+      createdAt: new Date().toISOString().substring(0, 10),
     }
   );
 

@@ -1,7 +1,6 @@
 import { BsThreeDotsVertical } from "react-icons/bs";
 import React, { JSX } from "react";
 import { ActivityType } from "./type/ActivityType";
-import formatDate from "../../utils/dateUtils";
 import { getFullCategory } from "./type/ActivityCategoryType";
 import {
   OverlayContext,
@@ -46,7 +45,7 @@ const ActivitySlot = ({
           {/** Name */}
           <p className="text-white">{data.name}</p>
           {/** Date */}
-          <p className="text-[10px] text-grey">{formatDate(data.createdAt)}</p>
+          <p className="text-[10px] text-grey">{data.createdAt}</p>
         </div>
       </div>
 

@@ -21,7 +21,7 @@
   }
 
   h1 {
-    @apply font-roboto font-bold text-3xl;
+    @apply font-roboto font-bold text-3xl capitalize;
   }
 
   h2 {
@@ -29,7 +29,7 @@
   }
 
   h3 {
-    @apply font-roboto text-base;
+    @apply font-roboto text-base capitalize;
   }
 
   p {
@@ -84,5 +84,9 @@
 
   .cta-1 {
     @apply bg-indigo rounded-lg p-2 text-white text-center;
+  }
+
+  .carousel {
+    @apply flex flex-row space-x-4 overflow-x-auto -mr-4 pr-4;
   }
 }

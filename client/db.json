@@ -1,85 +1,85 @@
 {
   "activities": [
     {
-      "id": "fec26058-43e3-4cbf-ae33-f642fb6682fb",
-      "name": "Chair",
-      "description": "New chair for the kitchen",
-      "amount": "64",
+      "id": "f179a12d-0633-4b03-aeab-4ae416acd76e",
+      "name": "U2 Tickets",
+      "description": "",
+      "amount": "305",
       "isExpense": true,
-      "category": "home",
-      "createdAt": "2025-03-31T19:02:51.022Z"
+      "category": "music",
+      "createdAt": "2025-04-02"
     },
     {
-      "id": "083a571d-0fba-4248-8348-2ef52e2f4ac7",
-      "name": "Bixi",
-      "description": "Small ride in Bixi",
-      "amount": "24",
+      "id": "53fe69c3-34ce-49cb-a68c-0948058dac46",
+      "name": "Tim Hortons",
+      "description": "",
+      "amount": "12",
       "isExpense": true,
-      "category": "transport",
-      "createdAt": "2025-03-31T19:13:37.518Z"
+      "category": "food",
+      "createdAt": "2025-04-02"
     },
     {
-      "id": "6a4ad506-2cf9-4185-990a-869349e9d20d",
+      "id": "82d940ee-2838-480d-8260-50148c6f074b",
       "name": "Passive Income",
       "description": "",
       "amount": "2456",
       "isExpense": false,
       "category": "job",
-      "createdAt": "2025-03-31T19:17:49.550Z"
+      "createdAt": "2025-04-02"
     },
     {
-      "id": "88c81e2b-d83a-430e-a2ec-d0bfcd0b0d8f",
-      "name": "University Payment",
-      "description": "",
-      "amount": "1736",
-      "isExpense": true,
-      "category": "education",
-      "createdAt": "2025-04-01T14:37:55.346Z"
-    },
-    {
-      "id": "00fe144f-90e4-4347-b25d-ee284d478c12",
-      "name": "Bus",
-      "description": "",
-      "amount": "3",
-      "isExpense": true,
-      "category": "transport",
-      "createdAt": "2025-04-01T15:01:41.542Z"
-    },
-    {
-      "id": "2e6ed163-758a-4082-8e53-bbc12e369091",
+      "id": "17440777-cad9-4e10-9a70-6edd3114c820",
       "name": "Vodka + Whiskey",
-      "description": "Vodka bottle + Whiskey bottle",
-      "amount": "70",
+      "description": "",
+      "amount": "64",
       "isExpense": true,
       "category": "food",
-      "createdAt": "2025-04-01T16:50:05.131Z"
+      "createdAt": "2025-04-02"
     },
     {
-      "id": "f68a39ae-693d-461c-86c0-d00a64b4d5a8",
+      "id": "748de824-cfb2-4a4d-9b34-69d5433b7759",
+      "name": "New Bed",
+      "description": "",
+      "amount": "2199",
+      "isExpense": true,
+      "category": "home",
+      "createdAt": "2025-04-02"
+    },
+    {
+      "id": "aa56b08c-4fb8-4544-83e9-a9830716a280",
       "name": "Jeans",
-      "description": "New pair of jeans at American Eagles",
-      "amount": "78",
+      "description": "",
+      "amount": "79",
       "isExpense": true,
       "category": "clothe",
-      "createdAt": "2025-04-01T20:32:53.804Z"
+      "createdAt": "2025-04-02"
     },
     {
-      "id": "4b67c3d2-5a4d-48b1-8dde-1b94d7c3a2a7",
-      "name": "Test",
-      "description": "Testttttt",
-      "amount": "12",
-      "isExpense": true,
-      "category": "subscriptions",
-      "createdAt": "2025-04-01T20:33:53.195Z"
-    },
-    {
-      "id": "0ad34cf0-198a-41d2-a646-aabcd463f404",
-      "name": "Cup of coffee",
-      "description": "Cup of coffee at Second Cup",
-      "amount": "4",
-      "isExpense": true,
+      "id": "94c0be16-2bd4-4ef3-9612-13cc8d97cbe5",
+      "name": "Restaurant Reimboursement",
+      "description": "",
+      "amount": "245",
+      "isExpense": false,
       "category": "food",
-      "createdAt": "2025-04-01T20:34:47.002Z"
+      "createdAt": "2025-04-01"
+    },
+    {
+      "id": "0fb9b064-16f6-46d3-96dc-af73e5d0d1c2",
+      "name": "University Payment",
+      "description": "",
+      "amount": "1756",
+      "isExpense": true,
+      "category": "education",
+      "createdAt": "2025-04-01"
+    },
+    {
+      "id": "cd01470c-53b9-40e6-b9ff-14af57e8c5fc",
+      "name": "Bus",
+      "description": "Took the bus...",
+      "amount": "334",
+      "isExpense": true,
+      "category": "transport",
+      "createdAt": "2025-04-02"
     }
   ]
 }

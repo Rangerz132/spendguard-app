@@ -9,7 +9,7 @@ const ExpenseCard = (props: {
 }) => {
   const category = getFullCategory(props.category);
   return (
-    <div className={`${props.className} card min-w-40`}>
+    <div className={`${props.className} card min-w-40 shrink-0`}>
       <div className="card-inner ">
         <div className="flex flex-row space-x-2 items-center">
           {/** Icon category*/}
