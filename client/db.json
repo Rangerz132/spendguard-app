@@ -76,10 +76,28 @@
       "id": "cd01470c-53b9-40e6-b9ff-14af57e8c5fc",
       "name": "Bus",
       "description": "Took the bus...",
-      "amount": "334",
+      "amount": "20",
       "isExpense": true,
       "category": "transport",
       "createdAt": "2025-04-02"
+    },
+    {
+      "id": "9799bbe7-ffb2-4a82-ba87-7b4b1b7dc5f6",
+      "name": "Taxi",
+      "description": "",
+      "amount": "55",
+      "isExpense": true,
+      "category": "transport",
+      "createdAt": "2025-04-04"
+    },
+    {
+      "id": "9ca0ca58-d607-4b1f-be1c-b5680673040e",
+      "name": "Lift",
+      "description": "",
+      "amount": "64",
+      "isExpense": false,
+      "category": "transport",
+      "createdAt": "2025-04-04"
     }
   ]
 }

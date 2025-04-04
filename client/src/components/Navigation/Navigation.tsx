@@ -18,13 +18,13 @@ const Navigation = () => {
             <Link to={route.path} key={route.name}>
               {React.cloneElement(route.icon, {
                 className: `w-6 h-6  ${
-                  isActive ? "text-white" : "text-dark-grey"
-                } hover:text-white transition`,
+                  isActive ? "text-indigo" : "text-grey"
+                } hover:text-indigo transition`,
               })}
             </Link>
             {/** Dot */}
             <div
-              className={`w-1 h-1 rounded-full ${isActive ? "bg-white" : ""}
+              className={`w-1 h-1 rounded-full ${isActive ? "bg-indigo" : ""}
               }`}
             ></div>
           </div>
