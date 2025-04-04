@@ -10,11 +10,8 @@ At the time of writing, SpendGuard is still under active development.
 
 ### Upcoming features
 
-- Enforce input validation for new activities (In Progress)
 - Introduce new activity filters (In Progress)
-- Build an analytics dashboard (In Progress)
 - Implement a search bar for activity lookup (To Do)
-- Develop charts and balance tracking (To Do)
 - Add a "Create Budget" page (To Do)
 - Enhance responsiveness for different devices (To Do)
 - Design and integrate a logo (To Do)

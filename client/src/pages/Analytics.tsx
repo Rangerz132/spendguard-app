@@ -104,7 +104,7 @@ const Analytics = () => {
           <div className="card-inner">
             <div className="flex flex-row justify-between items-center">
               {/** Chart title */}
-              <h3 className="text-grey">Balance trends</h3>
+              <h3 className="text-grey">Activity trends</h3>
               {/** Activity type selection */}
               <select
                 className="text-xs"

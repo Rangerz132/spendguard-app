@@ -6,6 +6,8 @@ import { ActivityType } from "../Activity/type/ActivityType";
 import { categoryTypes } from "../Activity/type/ActivityCategoryType";
 import { v4 as uuidv4 } from "uuid";
 import React from "react";
+import FieldError from "../Form/FieldError";
+import { ValidatorService } from "../../services/inputValidation";
 
 const ActivityCard = (props: {
   initialActivity?: ActivityType;
@@ -25,6 +27,7 @@ const ActivityCard = (props: {
       createdAt: new Date().toISOString().substring(0, 10),
     }
   );
+  const [errors, setErrors] = useState({ name: "", amount: "" });
 
   const updateActivity = (key: string, value: any) => {
     setActivity({ ...activity, [key]: value });
@@ -34,15 +37,42 @@ const ActivityCard = (props: {
     setActivity((prev) => ({ ...prev, isExpense: !prev.isExpense }));
   };
 
+  const validate = (activity: ActivityType) => {
+    const newErrors = {
+      name: ValidatorService.minCharacters(activity.name as string, 3),
+      amount: ValidatorService.cantBeLowerOrEqualThan(
+        activity.amount as number,
+        0
+      ),
+    };
+
+    setErrors(newErrors);
+
+    return Object.values(newErrors).some((error) => error !== "");
+  };
+
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+
+    if (validate(activity)) {
+      console.log("Form contains errors, fix them first.");
+      return;
+    }
+
+    props.onSubmit(e, activity);
+  };
+
   return (
     <div className="card">
       <form
         className="flex flex-col space-y-4"
-        onSubmit={(e) => props.onSubmit(e, activity)}
+        onSubmit={(e) => handleSubmit(e)}
       >
         {/** Name */}
-        <div className="flex flex-col space-y-2">
-          <label className="text-white">Name</label>
+        <div className="flex flex-col space-y-2 relative">
+          <label className="text-white">
+            <span className="text-indigo">*</span> Name
+          </label>
           <input
             type="text"
             name="name"
@@ -52,6 +82,10 @@ const ActivityCard = (props: {
               updateActivity(e.currentTarget.name, e.currentTarget.value)
             }
           ></input>
+          <FieldError
+            message={errors.name}
+            className="absolute right-0 top-0 text-right"
+          />
         </div>
 
         {/** Description */}
@@ -69,7 +103,9 @@ const ActivityCard = (props: {
 
         {/** Category */}
         <div className="flex flex-col space-y-2">
-          <label className="text-white">Category</label>
+          <label className="text-white">
+            <span className="text-indigo">*</span> Category
+          </label>
           <select
             className="text-grey"
             name="category"
@@ -92,7 +128,9 @@ const ActivityCard = (props: {
         <div className="flex flex-row justify-between items-center">
           {/** Expense */}
           <div className="flex flex-row space-x-2  items-center w-[50%]">
-            <label className="text-white">Expense</label>
+            <label className="text-white">
+              <span className="text-indigo">*</span> Expense
+            </label>
             <ToggleButton
               onClick={handleToggle}
               className={
@@ -104,7 +142,7 @@ const ActivityCard = (props: {
             />
           </div>
           {/** Amount */}
-          <div className="flex flex-col space-y-2  w-[50%]">
+          <div className="flex flex-col space-y-2  w-[50%] relative">
             <input
               type="number"
               name="amount"
@@ -116,6 +154,10 @@ const ActivityCard = (props: {
                 updateActivity(e.currentTarget.name, e.currentTarget.value)
               }
             ></input>
+            <FieldError
+              message={errors.amount}
+              className="absolute right-0 -top-5 text-right"
+            />
           </div>
         </div>
 
