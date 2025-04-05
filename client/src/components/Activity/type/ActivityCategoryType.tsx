@@ -122,3 +122,8 @@ export const categoryTypes: ActivityCategoryType[] = [
   subscriptionsCategoryType,
   jobCategoryType,
 ];
+
+export const activityCategoryTypeMap = new Map();
+categoryTypes.map((category) => {
+  activityCategoryTypeMap.set(category.name, category);
+});
