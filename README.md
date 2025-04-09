@@ -10,13 +10,13 @@ At the time of writing, SpendGuard is still under active development.
 
 ### Upcoming features
 
-- Introduce new activity filters (In Progress)
-- Implement a search bar for activity lookup (To Do)
+- Use Express and MongoDB for the back-end instead of simulating it (In Progress)
+- Implement a search bar for activity lookup (In Progress)
+- Implement theme mode (To Do)
+- Add settings menu (To Do)
 - Add a "Create Budget" page (To Do)
-- Enhance responsiveness for different devices (To Do)
-- Design and integrate a logo (To Do)
 - Implement authentication with Auth0 (To Do)
-- Use Express and MongoDB for the back-end instead of simulating it (To Do)
+- Enhance responsiveness for different devices (To Do)
 
 ## Getting started
 

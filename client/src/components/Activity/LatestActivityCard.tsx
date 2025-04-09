@@ -1,17 +1,14 @@
 import { useEffect, useState } from "react";
 import ActivitySlot from "./ActivitySlot";
-
 import { ActivityType } from "./type/ActivityType";
-import APIService from "../../api/APIService";
 import useActivityFilters from "../../hooks/useActivityFilters";
 
 const LatestActivityCard = (props: {
+  activities: ActivityType[];
+  setActivities?: React.Dispatch<React.SetStateAction<ActivityType[]>>;
   activitySlotVisibleAmount: number;
   addFilters?: boolean;
 }) => {
-  const [initialActivities, setInitialActivities] = useState<ActivityType[]>(
-    []
-  );
   const [visibleActivities, setVisibleActivities] = useState<ActivityType[]>(
     []
   );
@@ -21,7 +18,7 @@ const LatestActivityCard = (props: {
     filterActivitiesByCategory,
     filterActivitiesByDecreasingAmount,
     filterActivitiesByIncreasingAmount,
-  } = useActivityFilters(initialActivities);
+  } = useActivityFilters(props.activities);
 
   const filterMap = {
     latest: filterActivitiesByLatest,
@@ -32,13 +29,7 @@ const LatestActivityCard = (props: {
   };
 
   useEffect(() => {
-    const fetchData = async () => {
-      const data = await APIService.getActivities();
-      setInitialActivities(data);
-      showVisibleActivities(data);
-    };
-
-    fetchData();
+    showVisibleActivities(props.activities);
   }, []);
 
   const showVisibleActivities = (activities: ActivityType[]) => {

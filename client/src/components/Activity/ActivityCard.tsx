@@ -162,7 +162,7 @@ const ActivityCard = (props: {
         </div>
 
         {/** Button */}
-        <Button className="cta-1" type="submit">
+        <Button className="cta" type="submit">
           {props.initialActivity ? " Update activity" : "Add activity"}
         </Button>
       </form>

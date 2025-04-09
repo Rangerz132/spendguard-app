@@ -94,7 +94,7 @@
       "id": "9ca0ca58-d607-4b1f-be1c-b5680673040e",
       "name": "Lift",
       "description": "",
-      "amount": "64",
+      "amount": "32",
       "isExpense": false,
       "category": "transport",
       "createdAt": "2025-04-04"

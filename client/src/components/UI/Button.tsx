@@ -9,7 +9,7 @@ const Button = ({
   className?: string;
 } & React.ButtonHTMLAttributes<HTMLButtonElement>) => {
   return (
-    <button {...props} className={`${className} cursor-pointer`}>
+    <button {...props} className={`${className} cursor-pointer capitalize`}>
       {children}
     </button>
   );

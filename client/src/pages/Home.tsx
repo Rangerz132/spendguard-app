@@ -2,15 +2,18 @@ import Card from "../components/Card/Card";
 import LatestActivityCard from "../components/Activity/LatestActivityCard";
 import ViewMore from "../components/UI/ViewMore";
 import useActivities from "../hooks/useActivities";
+import EmptyCard from "../components/Card/EmptyCard";
 
 const Home = () => {
-  const { getExpensesAmount, getIncomesAmount, getBalanceAmount } =
+  const { getExpensesAmount, getIncomesAmount, getBalanceAmount, activities } =
     useActivities();
+
+  const activityShownAmount = 5;
 
   return (
     <div className="wrapper page-wrapper">
       <section>
-        <div className="flex flex-row justify-between">
+        <div className="flex flex-row justify-between items-center">
           {/** Overview title */}
           <h2 className="text-white">Overview</h2>
           {/** View more */}
@@ -62,8 +65,15 @@ const Home = () => {
           {/** View more */}
           <ViewMore path={"/activities"} />
         </div>
-        {/** Activity card */}
-        <LatestActivityCard activitySlotVisibleAmount={5} />
+        {/** Activities */}
+        {activities.length > 0 ? (
+          <LatestActivityCard
+            activitySlotVisibleAmount={activityShownAmount}
+            activities={activities}
+          />
+        ) : (
+          <EmptyCard />
+        )}
       </section>
     </div>
   );

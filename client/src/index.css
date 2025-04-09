@@ -82,7 +82,15 @@
     @apply flex flex-col space-y-2;
   }
 
-  .cta-1 {
+  .card-inner-2 {
+    @apply flex flex-col space-y-4;
+  }
+
+  .card-inner-3 {
+    @apply flex flex-col space-y-6;
+  }
+
+  .cta {
     @apply bg-indigo rounded-lg p-2 text-white text-center;
   }
 
