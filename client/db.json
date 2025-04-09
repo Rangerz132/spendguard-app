@@ -98,6 +98,24 @@
       "isExpense": false,
       "category": "transport",
       "createdAt": "2025-04-04"
+    },
+    {
+      "id": "3f3b5091-d44b-40ce-b3ce-a1b831b3a613",
+      "name": "Teddy Bear",
+      "description": "Bought a teddy bear for my little sister",
+      "amount": "18",
+      "isExpense": true,
+      "category": "personal Care",
+      "createdAt": "2025-04-09"
+    },
+    {
+      "id": "95fc58be-91a9-4054-9d07-b1b23284c385",
+      "name": "Cleaning Service",
+      "description": "",
+      "amount": "214",
+      "isExpense": false,
+      "category": "job",
+      "createdAt": "2025-04-09"
     }
   ]
 }

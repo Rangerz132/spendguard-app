@@ -6,7 +6,7 @@ const Header = () => {
     <div className="w-full bg-black py-6 fixed z-20">
       <div className="flex flex-row justify-between items-center wrapper">
         <Logo />
-        <Avatar />
+        <Avatar enableInteraction={true} />
       </div>
     </div>
   );

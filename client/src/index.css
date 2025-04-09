@@ -97,4 +97,8 @@
   .carousel {
     @apply flex flex-row space-x-4 overflow-x-auto -mr-4 pr-4;
   }
+
+  .icon {
+    @apply w-6 h-6;
+  }
 }

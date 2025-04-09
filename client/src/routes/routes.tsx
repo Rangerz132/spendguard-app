@@ -2,13 +2,13 @@ import { BiPulse } from "react-icons/bi";
 import { BiHighlight, BiMessageAltAdd } from "react-icons/bi";
 import { BiHomeAlt, BiBarChartAlt } from "react-icons/bi";
 import { RouteObject, createBrowserRouter } from "react-router";
+import Layout from "../pages/Layout";
+import Home from "../pages/Home";
+import AddActivity from "../pages/AddActivity";
+import UpdateActivity from "../pages/UpdateActivity";
+import Analytics from "../pages/Analytics";
+import Activities from "../pages/Activities";
 <BiHomeAlt />;
-import Home from "./pages/Home";
-import Analytics from "./pages/Analytics";
-import Activities from "./pages/Activities";
-import Layout from "./pages/Layout";
-import AddActivity from "./pages/AddActivity";
-import UpdateActivity from "./pages/UpdateActivity";
 
 const routeDefinitions = {
   root: {

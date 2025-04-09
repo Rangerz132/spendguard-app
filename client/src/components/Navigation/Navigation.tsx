@@ -1,6 +1,7 @@
 import React from "react";
-import { menuRoutes } from "../../routes";
+
 import { Link, useLocation } from "react-router";
+import { menuRoutes } from "../../routes/routes";
 
 const Navigation = () => {
   const location = useLocation();
@@ -17,7 +18,7 @@ const Navigation = () => {
             {/** Icons */}
             <Link to={route.path} key={route.name}>
               {React.cloneElement(route.icon, {
-                className: `w-6 h-6  ${
+                className: `icon  ${
                   isActive ? "text-indigo" : "text-grey"
                 } hover:text-indigo transition`,
               })}
