@@ -3,32 +3,45 @@ import LatestActivityCard from "../components/Activity/LatestActivityCard";
 import APIService from "../api/APIService";
 import { ActivityType } from "../components/Activity/type/ActivityType";
 import EmptyCard from "../components/Card/EmptyCard";
+import SearchBar from "../components/UI/SearchBar";
 
 const Activites = () => {
   const [activities, setActivities] = useState<ActivityType[]>([]);
+  const [filteredActivities, setFilteredActivities] = useState<ActivityType[]>(
+    []
+  );
   useEffect(() => {
     const fetchData = async () => {
       const data = await APIService.getActivities();
       setActivities(data);
+      setFilteredActivities(data);
     };
 
     fetchData();
   }, []);
 
+  const handleSearchFilter = (value: string) => {
+    const filteredItems = activities.filter((item) =>
+      item.name?.toLowerCase()?.includes(value.toLowerCase())
+    );
+
+    setFilteredActivities(filteredItems);
+  };
+
   return (
     <div className="wrapper page-wrapper">
       <section>
-        <div className="flex flex-row justify-between items-center">
-          {/** Title */}
-          <h2 className="text-white">Latest activities</h2>
-        </div>
+        {/** Title */}
+        <h2 className="text-white">Latest activities</h2>
+        {/** Search bar */}
+        <SearchBar onChange={(e) => handleSearchFilter(e)} />
         {/** Activities */}
-        {activities.length > 0 ? (
+        {filteredActivities.length > 0 ? (
           <LatestActivityCard
             activitySlotVisibleAmount={20}
             addFilters={true}
-            activities={activities}
-            setActivities={setActivities}
+            activities={filteredActivities}
+            setActivities={setFilteredActivities}
           />
         ) : (
           <EmptyCard />
