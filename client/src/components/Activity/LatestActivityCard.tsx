@@ -9,7 +9,9 @@ const LatestActivityCard = (props: {
   activitySlotVisibleAmount: number;
   addFilters?: boolean;
 }) => {
-  const [activities, setActivities] = useState<ActivityType[]>([]);
+  const [initialActivities, setInitialActivities] = useState<ActivityType[]>(
+    []
+  );
   const [visibleActivities, setVisibleActivities] = useState<ActivityType[]>(
     []
   );
@@ -17,12 +19,22 @@ const LatestActivityCard = (props: {
     filterActivitiesByOldest,
     filterActivitiesByLatest,
     filterActivitiesByCategory,
-  } = useActivityFilters(activities);
+    filterActivitiesByDecreasingAmount,
+    filterActivitiesByIncreasingAmount,
+  } = useActivityFilters(initialActivities);
+
+  const filterMap = {
+    latest: filterActivitiesByLatest,
+    oldest: filterActivitiesByOldest,
+    category: filterActivitiesByCategory,
+    highest: filterActivitiesByDecreasingAmount,
+    lowest: filterActivitiesByIncreasingAmount,
+  };
 
   useEffect(() => {
     const fetchData = async () => {
       const data = await APIService.getActivities();
-      setActivities(data);
+      setInitialActivities(data);
       showVisibleActivities(data);
     };
 
@@ -41,16 +53,24 @@ const LatestActivityCard = (props: {
         {/** Activity title */}
         <h3 className="text-grey">Activities</h3>
         {/** Activity filter selection */}
-        <select
-          className="text-xs"
-          onChange={() => showVisibleActivities(filterActivitiesByCategory())}
-        >
-          <option value="latest">Filter by latest</option>
-          <option value="oldest">Filter by oldest</option>
-          <option value="category">Filter by category</option>
-          <option value="highest">Filter by highest</option>
-          <option value="lowest">Filter by lowest</option>
-        </select>
+        {props.addFilters && (
+          <select
+            className="text-xs"
+            onChange={(event) => {
+              const selectedFilter =
+                filterMap[event.target.value as keyof typeof filterMap];
+              if (selectedFilter) {
+                showVisibleActivities(selectedFilter());
+              }
+            }}
+          >
+            <option value="latest">Filter by latest</option>
+            <option value="oldest">Filter by oldest</option>
+            <option value="category">Filter by category</option>
+            <option value="highest">Filter by highest</option>
+            <option value="lowest">Filter by lowest</option>
+          </select>
+        )}
       </div>
       {/** Activity list */}
       {visibleActivities.map((activity, index) => (

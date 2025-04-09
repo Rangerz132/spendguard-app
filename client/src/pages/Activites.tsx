@@ -8,7 +8,7 @@ const Activites = () => {
           {/** Title */}
           <h2 className="text-white">Latest activities</h2>
         </div>
-        <LatestActivityCard activitySlotVisibleAmount={20} />
+        <LatestActivityCard activitySlotVisibleAmount={20} addFilters={true} />
       </section>
     </div>
   );

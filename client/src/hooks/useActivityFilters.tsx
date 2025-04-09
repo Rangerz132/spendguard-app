@@ -1,15 +1,6 @@
-import { useEffect, useState } from "react";
 import { ActivityType } from "../components/Activity/type/ActivityType";
 
 const useActivityFilters = (activities: ActivityType[]) => {
-  const [activityCategories, setActivityCategory] = useState<string[]>([]);
-
-  useEffect(() => {
-    setActivityCategory([
-      ...new Set(activities.map((activity) => activity.category)),
-    ]);
-  }, [activities]);
-
   /** Filter activities by the latest */
   const filterActivitiesByLatest = () => {
     return activities.sort(
@@ -18,9 +9,18 @@ const useActivityFilters = (activities: ActivityType[]) => {
     );
   };
 
+  /** Filter activities by the decreasing amount */
+  const filterActivitiesByDecreasingAmount = () => {
+    return activities.sort((a, b) => a.amount - b.amount);
+  };
+
+  /** Filter activities by the increasing amount */
+  const filterActivitiesByIncreasingAmount = () => {
+    return activities.sort((a, b) => b.amount - a.amount);
+  };
+
   /** Filter activities by the oldest */
   const filterActivitiesByOldest = () => {
-    console.log(activities);
     return activities.sort(
       (a, b) =>
         new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime()
@@ -29,18 +29,15 @@ const useActivityFilters = (activities: ActivityType[]) => {
 
   /** Filter activities by the oldest */
   const filterActivitiesByCategory = () => {
-    const test = activities.filter((activity) =>
-      activityCategories.includes(activity.category)
-    );
-
-    console.log(activityCategories, test);
-    return test;
+    return activities.sort((a, b) => a.category.localeCompare(b.category));
   };
 
   return {
     filterActivitiesByLatest,
     filterActivitiesByOldest,
     filterActivitiesByCategory,
+    filterActivitiesByDecreasingAmount,
+    filterActivitiesByIncreasingAmount,
   };
 };
 
