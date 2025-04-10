@@ -10,11 +10,11 @@ At the time of writing, SpendGuard is still under active development.
 
 ### Upcoming features
 
-- Use Express and MongoDB for the back-end instead of simulating it (In Progress)
-- Implement theme mode (To Do)
-- Add settings menu (To Do)
+- Use Supabase to replace the backend (In Progress)
+- Implement the date comparaison (To Do)
 - Add a "Create Budget" page (To Do)
-- Implement authentication with Auth0 (To Do)
+- Add an "Edit Profile" page (To Do)
+- Add tutorial (To Do)
 - Enhance responsiveness for different devices (To Do)
 
 ## Getting started
@@ -38,7 +38,7 @@ npm run dev
 
 - Tailwind CSS: Provides utility-first styling for a responsive design.
 
-- JSON-Server : Mock API to simulate backend interactions.
+- JSON-Server : Mock API to simulate backend interactions. (TEMP)
 
 - React-Router : Handles client-side routing for navigating between pages seamlessly.
 
@@ -52,7 +52,7 @@ npm run dev
 
 - Activity History: View and manage the latest transactions in an organized timeline.
 
-- Analytics & Charts: Gain insights into spending patterns with dynamic visualizations. (To Do)
+- Analytics & Charts: Gain insights into spending patterns with dynamic visualizations.
 
 - User Authentication: Secure login and account management using Auth0. (To Do)
 
@@ -64,4 +64,4 @@ npm run dev
 
 ## Media
 
-![](client/public/mockup.png)
+![](client/public/images/mockup.png)
