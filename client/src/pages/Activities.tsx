@@ -32,17 +32,20 @@ const Activites = () => {
     <div className="wrapper page-wrapper">
       <section>
         {/** Title */}
-        <h2 className="text-white">Latest activities</h2>
-        {/** Search bar */}
-        <SearchBar onChange={(e) => handleSearchFilter(e)} />
-        {/** Activities */}
+        <h2 className="text-white theme-light:text-black">Latest activities</h2>
+
         {filteredActivities.length > 0 ? (
-          <LatestActivityCard
-            activitySlotVisibleAmount={20}
-            addFilters={true}
-            activities={filteredActivities}
-            setActivities={setFilteredActivities}
-          />
+          <>
+            {/** Search bar */}
+            <SearchBar onChange={(e) => handleSearchFilter(e)} />
+            {/** Activities */}
+            <LatestActivityCard
+              activitySlotVisibleAmount={20}
+              addFilters={true}
+              activities={filteredActivities}
+              setActivities={setFilteredActivities}
+            />
+          </>
         ) : (
           <EmptyCard />
         )}

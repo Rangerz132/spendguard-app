@@ -62,7 +62,7 @@ const Analytics = () => {
     <div className="wrapper page-wrapper">
       <section>
         {/** Analytics title */}
-        <h2 className="text-white">Analytics</h2>
+        <h2 className="text-white theme-light:text-black">Analytics</h2>
         {/** Balance title */}
         <Card
           className="w-full"
@@ -109,7 +109,9 @@ const Analytics = () => {
               <div className="card-inner">
                 <div className="flex flex-row justify-between items-center">
                   {/** Chart title */}
-                  <h3 className="text-grey">Activity trends</h3>
+                  <h3 className="text-theme-dark-grey theme-light:text-theme-light-dark-grey">
+                    Activity trends
+                  </h3>
                   {/** Activity type selection */}
                   <select
                     className="text-xs"
@@ -131,11 +133,13 @@ const Analytics = () => {
       <section>
         <div className="flex flex-col space-y-1">
           {/** Expenses title */}
-          <h2 className="text-white">Expenses this month</h2>
+          <h2 className="text-white theme-light:text-black">
+            Expenses this month
+          </h2>
           {/** Expenses subtitle */}
-          <h4 className="text-grey text-sm">
+          <h4 className="text-theme-dark-grey text-sm theme-light:text-theme-light-dark-grey">
             You spend money in{" "}
-            <span className="font-semibold text-white">
+            <span className="font-semibold text-white theme-light:text-black">
               {getExpensesAmountByCategories().size}
             </span>{" "}
             categories.
@@ -148,7 +152,9 @@ const Analytics = () => {
             <div className="card">
               <div className="card-inner">
                 {/** Chart title */}
-                <h3 className="text-grey">Expenses category trends</h3>
+                <h3 className="text-theme-dark-grey theme-light:text-theme-light-dark-grey">
+                  Expenses category trends
+                </h3>
                 <CustomBarChart data={expensesByCategory} />
               </div>
             </div>

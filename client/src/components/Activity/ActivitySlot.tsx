@@ -43,9 +43,11 @@ const ActivitySlot = ({
         </div>
         <div className="flex flex-col">
           {/** Name */}
-          <p className="text-white">{data.name}</p>
+          <p className="text-white theme-light:text-black">{data.name}</p>
           {/** Date */}
-          <p className="text-[10px] text-grey">{data.createdAt}</p>
+          <p className="text-[10px] text-theme-dark-grey theme-light:text-theme-light-dark-grey">
+            {data.createdAt}
+          </p>
         </div>
       </div>
 
@@ -61,9 +63,9 @@ const ActivitySlot = ({
         </p>
         {/** More */}
         <BsThreeDotsVertical
-          className={`text-grey cursor-pointer ${
+          className={`text-theme-dark-grey cursor-pointer ${
             addDetails ? "" : "hidden absolute"
-          }`}
+          } theme-light:text-theme-light-dark-grey`}
           onClick={() => {
             setOverlay(true);
             setActivityDetail();

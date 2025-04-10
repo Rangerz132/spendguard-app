@@ -16,7 +16,9 @@ export const termsAndPoliciesOption: OptionType = {
 export const switchThemeOption: OptionType = {
   icon: <BiSun />,
   title: "Switch theme",
-  action: () => {},
+  action: () => {
+    document.body.classList.toggle("theme-light");
+  },
 };
 
 export const closeSettingsOption: OptionType = {

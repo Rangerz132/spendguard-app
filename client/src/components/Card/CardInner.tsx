@@ -9,9 +9,11 @@ const CardInner = (props: {
   return (
     <div className="card-inner ">
       {/** Title */}
-      <h3 className="text-grey capitalize">{props.title}</h3>
+      <h3 className="text-theme-dark-grey capitalize theme-light:text-theme-light-dark-grey">
+        {props.title}
+      </h3>
       {/** Value */}
-      <h1 className="text-white">${props.value}</h1>
+      <h1 className="text-white theme-light:text-black">${props.value}</h1>
       <div className="flex flex-row space-x-2 items-center">
         {/** Stat indicator */}
         <StatIndicator
@@ -19,7 +21,9 @@ const CardInner = (props: {
           isIncreasing={props.isIncreasing}
         />
         {/** Since Last month */}
-        <p className="text-grey text-xs">Last month</p>
+        <p className="text-theme-dark-grey text-xs theme-light:text-theme-light-dark-grey">
+          Last month
+        </p>
       </div>
     </div>
   );

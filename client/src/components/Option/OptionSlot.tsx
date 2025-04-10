@@ -18,10 +18,12 @@ const OptionSlot = (props: {
     >
       {/** Icon */}
       {React.cloneElement(activityOption.icon, {
-        className: "w-6 h-6 text-grey",
+        className: "w-6 h-6 text-theme-dark-grey theme-light:text-black",
       })}
       {/** Title */}
-      <p className="text-white text-base">{activityOption.title}</p>
+      <p className="text-white text-base theme-light:text-theme-light-dark-grey">
+        {activityOption.title}
+      </p>
     </div>
   );
 };

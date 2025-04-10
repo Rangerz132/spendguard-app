@@ -42,7 +42,9 @@ const LatestActivityCard = (props: {
     <div className="card flex flex-col space-y-3 ">
       <div className="flex flex-row justify-between items-center">
         {/** Activity title */}
-        <h3 className="text-grey">Activities</h3>
+        <h3 className="text-theme-dark-grey theme-light:text-theme-light-dark-grey">
+          Activities
+        </h3>
         {/** Activity filter selection */}
         {props.addFilters && (
           <select
@@ -68,7 +70,7 @@ const LatestActivityCard = (props: {
         <div className="flex flex-col space-y-3" key={activity.id}>
           <ActivitySlot data={activity} addDetails={true} />
           {index < visibleActivities.length - 1 && (
-            <div className=" w-full h-[0.5px] bg-white/5"></div>
+            <div className=" w-full h-[0.5px] bg-white/5 theme-light:bg-black/5"></div>
           )}
         </div>
       ))}

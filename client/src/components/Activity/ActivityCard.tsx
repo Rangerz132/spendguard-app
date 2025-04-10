@@ -70,7 +70,7 @@ const ActivityCard = (props: {
       >
         {/** Name */}
         <div className="flex flex-col space-y-2 relative">
-          <label className="text-white">
+          <label className="text-white theme-light:text-black">
             <span className="text-indigo">*</span> Name
           </label>
           <input
@@ -90,7 +90,9 @@ const ActivityCard = (props: {
 
         {/** Description */}
         <div className="flex flex-col space-y-2">
-          <label className="text-white">Description</label>
+          <label className="text-white theme-light:text-black">
+            Description
+          </label>
           <textarea
             name="description"
             placeholder="Enter a description..."
@@ -103,7 +105,7 @@ const ActivityCard = (props: {
 
         {/** Category */}
         <div className="flex flex-col space-y-2">
-          <label className="text-white">
+          <label className="text-white theme-light:text-black">
             <span className="text-indigo">*</span> Category
           </label>
           <select
@@ -117,7 +119,7 @@ const ActivityCard = (props: {
             {categoryTypes.map((category, index) => (
               <option
                 key={index}
-                className="flex flex-row space-x-2 text-grey hover:bg-indigo"
+                className="flex flex-row space-x-2 text-grey hover:bg-indigo theme-light:text-theme-light-grey"
               >
                 {category.name}
               </option>
@@ -127,14 +129,14 @@ const ActivityCard = (props: {
 
         <div className="flex flex-row justify-between items-center">
           {/** Expense */}
-          <div className="flex flex-row space-x-2  items-center w-[50%]">
-            <label className="text-white">
+          <div className="flex flex-row space-x-2 items-center w-[50%]">
+            <label className="text-white theme-light:text-black">
               <span className="text-indigo">*</span> Expense
             </label>
             <ToggleButton
               onClick={handleToggle}
               className={
-                "w-6 h-6 bg-black rounded-md flex items-center justify-center"
+                "w-6 h-6 bg-black rounded-md flex items-center justify-center theme-light:bg-white"
               }
               children={
                 activity.isExpense && <BiCheck className="text-indigo" />

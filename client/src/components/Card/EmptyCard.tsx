@@ -8,9 +8,11 @@ const EmptyCard = () => {
       <div className="card-inner-3 ">
         <div className="text-center">
           {/** Title */}
-          <h3 className="text-white">You don't have any activities</h3>
+          <h3 className="text-white theme-light:text-black">
+            You don't have any activities
+          </h3>
           {/** Description */}
-          <p className="text-grey">
+          <p className="text-theme-dark-grey theme-light:text-theme-light-dark-grey">
             List of activities you've created will appear here.
           </p>
         </div>

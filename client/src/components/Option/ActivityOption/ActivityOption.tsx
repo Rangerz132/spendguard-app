@@ -1,7 +1,7 @@
 import { BiHighlight, BiTrash, BiXCircle } from "react-icons/bi";
-import { OptionType } from "./OptionType";
 import APIService from "../../../api/APIService";
 import { setStatus } from "../../../store/status/statusSlice";
+import { OptionType } from "../type/OptionType";
 
 export const activityModifyOption: OptionType = {
   icon: <BiHighlight />,

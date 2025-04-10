@@ -46,7 +46,7 @@ const UpdateActivity = () => {
   return (
     <div className="wrapper page-wrapper">
       <section>
-        <h2 className="text-white">Update activity</h2>
+        <h2 className="text-white theme-light:text-black">Update activity</h2>
         {activity && (
           <ActivityCard onSubmit={handleSubmit} initialActivity={activity} />
         )}

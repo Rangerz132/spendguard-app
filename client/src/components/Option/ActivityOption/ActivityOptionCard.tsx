@@ -4,12 +4,13 @@ import { useNavigate } from "react-router";
 import { RootState } from "../../../store/store";
 import ActivitySlot from "../../Activity/ActivitySlot";
 import OptionSlot from "../OptionSlot";
-import { activityOptions } from "./ActivityOptionType";
+
 import {
   OverlayContext,
   useOverlayContext,
 } from "../../../contexts/OverlayContext";
 import { hideDetails } from "../../../store/details/detailsSlice";
+import { activityOptions } from "./ActivityOption";
 
 const ActivityOptionCard = (props: { children?: React.ReactNode }) => {
   const navigate = useNavigate();
@@ -28,7 +29,7 @@ const ActivityOptionCard = (props: { children?: React.ReactNode }) => {
           {/** Activity Slot */}
           <ActivitySlot data={details.data} addDetails={false} />
           {/** Border*/}
-          <div className="bg-white/5 w-full h-[0.5px]"></div>
+          <div className="bg-white/5 w-full h-[0.5px] theme-light:bg-black/5"></div>
           {/** Options*/}
           <div className="flex flex-col space-y-6">
             {activityOptions.map((option, index) => (

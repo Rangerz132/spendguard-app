@@ -15,7 +15,7 @@ const Home = () => {
       <section>
         <div className="flex flex-row justify-between items-center">
           {/** Overview title */}
-          <h2 className="text-white">Overview</h2>
+          <h2 className="text-white theme-light:text-black">Overview</h2>
           {/** View more */}
           <ViewMore path={"/analytics"} />
         </div>
@@ -61,7 +61,9 @@ const Home = () => {
       <section>
         <div className="flex flex-row justify-between items-center">
           {/** Latest activity title */}
-          <h2 className="text-white">Latest activities</h2>
+          <h2 className="text-white theme-light:text-black">
+            Latest activities
+          </h2>
           {/** View more */}
           <ViewMore path={"/activities"} />
         </div>

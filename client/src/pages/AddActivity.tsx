@@ -29,7 +29,9 @@ const AddActivity = () => {
   return (
     <div className="wrapper page-wrapper">
       <section>
-        <h2 className="text-white">Create a new activity</h2>
+        <h2 className="text-white theme-light:text-black">
+          Create a new activity
+        </h2>
         <ActivityCard onSubmit={handleSubmit} />
       </section>
     </div>
