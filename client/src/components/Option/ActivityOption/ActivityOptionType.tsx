@@ -1,16 +1,9 @@
-import { JSX } from "react";
-import { BiTrash, BiXCircle } from "react-icons/bi";
-import { BiHighlight } from "react-icons/bi";
-import { setStatus } from "../../../store/status/statusSlice";
+import { BiHighlight, BiTrash, BiXCircle } from "react-icons/bi";
+import { OptionType } from "./OptionType";
 import APIService from "../../../api/APIService";
+import { setStatus } from "../../../store/status/statusSlice";
 
-export type ActivityOptionType = {
-  icon: JSX.Element;
-  title: string;
-  action: (data?: any) => void;
-};
-
-export const activityModifyOption: ActivityOptionType = {
+export const activityModifyOption: OptionType = {
   icon: <BiHighlight />,
   title: "Modify the activity",
   action: (data?: any) => {
@@ -20,7 +13,7 @@ export const activityModifyOption: ActivityOptionType = {
   },
 };
 
-export const activityDeleteOption: ActivityOptionType = {
+export const activityDeleteOption: OptionType = {
   icon: <BiTrash />,
   title: "Remove the activity",
   action: async (data: any) => {
@@ -37,13 +30,13 @@ export const activityDeleteOption: ActivityOptionType = {
   },
 };
 
-export const activityCloseOption: ActivityOptionType = {
+export const activityCloseOption: OptionType = {
   icon: <BiXCircle />,
   title: "Close the activity",
   action: () => {},
 };
 
-export const activityOptions: ActivityOptionType[] = [
+export const activityOptions: OptionType[] = [
   activityModifyOption,
   activityDeleteOption,
   activityCloseOption,

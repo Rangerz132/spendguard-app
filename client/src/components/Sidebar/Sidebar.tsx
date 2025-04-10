@@ -1,15 +1,17 @@
-import { BiSun } from "react-icons/bi";
-import { BiAlignLeft } from "react-icons/bi";
-import { BiSmile } from "react-icons/bi";
-import { BiXCircle } from "react-icons/bi";
-
 import Avatar from "../Avatar/Avatar";
 import {
   SettingsContext,
   useSettingsContext,
 } from "../../contexts/SettingsContext";
+import { settingsOptions } from "../Option/SettingsOption/SettingsOption";
+import OptionSlot from "../Option/OptionSlot";
+import {
+  OverlayContext,
+  useOverlayContext,
+} from "../../contexts/OverlayContext";
 
 const Sidebar = () => {
+  const { setOverlay } = useOverlayContext(OverlayContext);
   const { settings, setSettings } = useSettingsContext(SettingsContext);
 
   return (
@@ -28,28 +30,25 @@ const Sidebar = () => {
             <p className="text-grey text-xs">8s9fhw729ksa</p>
           </div>
         </div>
+        {/** Border */}
         <div className="w-full bg-white/5 h-[0.5px]"></div>
+        {/** Setting options */}
         <div className="text-grey p-6 flex flex-col space-y-6 capitalize">
-          {/** Edit profile */}
-          <div className="flex flex-row space-x-2 ">
-            <BiSmile className="icon text-grey " />
-            <p className="text-white text-base">Edit profile</p>
-          </div>
-          {/** Terms and policies */}
-          <div className="flex flex-row space-x-2 ">
-            <BiAlignLeft className="icon text-grey " />
-            <p className="text-white text-base">Terms and policies</p>
-          </div>
-          {/** Switch Theme */}
-          <div className="flex flex-row space-x-2 ">
-            <BiSun className="icon text-grey " />
-            <p className="text-white text-base">Switch Theme</p>
-          </div>
-          {/** Close */}
-          <div className="flex flex-row space-x-2">
-            <BiXCircle className="icon text-grey" />
-            <p className="text-white text-base">Close settings</p>
-          </div>
+          {settingsOptions.map((settingOption) => (
+            <OptionSlot
+              key={settingOption.title}
+              activityOption={{
+                icon: settingOption.icon,
+                title: settingOption.title,
+                action: () => {},
+              }}
+              data={undefined}
+              onClick={() => {
+                setSettings(false);
+                setOverlay(false);
+              }}
+            />
+          ))}
         </div>
       </div>
     </div>

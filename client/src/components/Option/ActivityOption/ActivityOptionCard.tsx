@@ -1,16 +1,21 @@
 import { useDispatch, useSelector } from "react-redux";
-import ActivitySlot from "../Activity/ActivitySlot";
-import DetailOptionSlot from "./DetailOptionSlot";
-import { activityOptions } from "./type/activityOptionType";
-import { RootState } from "../../store/store";
-import { useNavigate } from "react-router";
 
-const DetailOptionCard = (props: { children?: React.ReactNode }) => {
+import { useNavigate } from "react-router";
+import { RootState } from "../../../store/store";
+import ActivitySlot from "../../Activity/ActivitySlot";
+import OptionSlot from "../OptionSlot";
+import { activityOptions } from "./ActivityOptionType";
+import {
+  OverlayContext,
+  useOverlayContext,
+} from "../../../contexts/OverlayContext";
+import { hideDetails } from "../../../store/details/detailsSlice";
+
+const ActivityOptionCard = (props: { children?: React.ReactNode }) => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
+  const { setOverlay } = useOverlayContext(OverlayContext);
   const details = useSelector((store: RootState) => store.details);
-
-  //TODO : Change activities by the corresponding children
 
   return (
     <div
@@ -27,10 +32,14 @@ const DetailOptionCard = (props: { children?: React.ReactNode }) => {
           {/** Options*/}
           <div className="flex flex-col space-y-6">
             {activityOptions.map((option, index) => (
-              <DetailOptionSlot
+              <OptionSlot
                 key={index}
                 activityOption={option}
                 data={{ ...details.data, navigate, dispatch }}
+                onClick={() => {
+                  dispatch(hideDetails());
+                  setOverlay(false);
+                }}
               />
             ))}
           </div>
@@ -40,4 +49,4 @@ const DetailOptionCard = (props: { children?: React.ReactNode }) => {
   );
 };
 
-export default DetailOptionCard;
+export default ActivityOptionCard;

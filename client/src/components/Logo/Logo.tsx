@@ -1,5 +1,5 @@
 import { Link } from "react-router";
-import LogoSVG from "../../../public/images/spendguard-logo.svg";
+import LogoSVG from "../../../public/images/logo-color.svg";
 
 const Logo = () => {
   return (

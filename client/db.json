@@ -73,15 +73,6 @@
       "createdAt": "2025-04-01"
     },
     {
-      "id": "cd01470c-53b9-40e6-b9ff-14af57e8c5fc",
-      "name": "Bus",
-      "description": "Took the bus...",
-      "amount": "20",
-      "isExpense": true,
-      "category": "transport",
-      "createdAt": "2025-04-02"
-    },
-    {
       "id": "9799bbe7-ffb2-4a82-ba87-7b4b1b7dc5f6",
       "name": "Taxi",
       "description": "",
@@ -115,6 +106,33 @@
       "amount": "214",
       "isExpense": false,
       "category": "job",
+      "createdAt": "2025-04-09"
+    },
+    {
+      "id": "d0915f1a-13cc-45cb-b757-61091540761d",
+      "name": "Gym",
+      "description": "",
+      "amount": "24",
+      "isExpense": true,
+      "category": "health",
+      "createdAt": "2025-04-09"
+    },
+    {
+      "id": "f851e1cf-8a93-41a0-a948-dbf8a3f3cb2e",
+      "name": "New running Shoes",
+      "description": "",
+      "amount": "205",
+      "isExpense": true,
+      "category": "clothe",
+      "createdAt": "2025-04-09"
+    },
+    {
+      "id": "7ef7b483-c345-4f0e-a6dc-2443460d5df9",
+      "name": "Cup of coffee",
+      "description": "Cup of coffee at Tim Hortons",
+      "amount": "2",
+      "isExpense": true,
+      "category": "food",
       "createdAt": "2025-04-09"
     }
   ]

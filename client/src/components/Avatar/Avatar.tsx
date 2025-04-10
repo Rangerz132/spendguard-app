@@ -6,6 +6,7 @@ import {
   SettingsContext,
   useSettingsContext,
 } from "../../contexts/SettingsContext";
+import Avatar09 from "../../../public/images/avatars/avatar-09.png";
 
 const Avatar = (props: { enableInteraction: boolean }) => {
   const { setOverlay } = useOverlayContext(OverlayContext);
@@ -21,7 +22,9 @@ const Avatar = (props: { enableInteraction: boolean }) => {
         props.enableInteraction && "cursor-pointer"
       }`}
       onClick={() => props.enableInteraction && handleClick()}
-    ></div>
+    >
+      <img src={Avatar09} className="w-full h-full" />
+    </div>
   );
 };
 
