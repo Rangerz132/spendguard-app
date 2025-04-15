@@ -8,6 +8,7 @@ import {
 } from "../../contexts/OverlayContext";
 import { useDispatch } from "react-redux";
 import { setDetails, showDetails } from "../../store/details/detailsSlice";
+import { format } from "date-fns";
 
 const ActivitySlot = ({
   data,
@@ -46,7 +47,8 @@ const ActivitySlot = ({
           <p className="text-white theme-light:text-black">{data.name}</p>
           {/** Date */}
           <p className="text-[10px] text-theme-dark-grey theme-light:text-theme-light-dark-grey">
-            {data.createdAt}
+            {data?.created_at &&
+              format(new Date(data.created_at), "dd-MM-yyyy")}
           </p>
         </div>
       </div>
@@ -57,8 +59,8 @@ const ActivitySlot = ({
         }`}
       >
         {/** Amount */}
-        <p className={`${data.isExpense ? "text-cherry" : "text-lime"}`}>
-          ${data.isExpense ? "-" : ""}
+        <p className={`${data.is_expense ? "text-cherry" : "text-lime"}`}>
+          ${data.is_expense ? "-" : ""}
           {data.amount}
         </p>
         {/** More */}

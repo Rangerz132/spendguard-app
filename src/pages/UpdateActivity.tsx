@@ -1,23 +1,24 @@
 import { useNavigate, useParams } from "react-router";
 import ActivityCard from "../components/Activity/ActivityCard";
 import { ActivityType } from "../components/Activity/type/ActivityType";
-import APIService from "../api/APIService";
+
 import { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import { setStatus } from "../store/status/statusSlice";
+import { getActivityById, updateActivity } from "../services/supabaseService";
 
 const UpdateActivity = () => {
   const { id } = useParams();
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  const [activity, setActivity] = useState<ActivityType | undefined>(undefined);
+  const [activity, setActivity] = useState<ActivityType | null>(null);
 
   useEffect(() => {
     const fetchActivity = async () => {
       if (!id) {
         return;
       }
-      const activityData = await APIService.getActivityById(id);
+      const activityData = await getActivityById(id);
       setActivity(activityData);
     };
 
@@ -31,7 +32,7 @@ const UpdateActivity = () => {
     e.preventDefault();
     setActivity(() => ({ ...updatedActivity }));
 
-    APIService.updateActivity(updatedActivity as ActivityType).then(() => {
+    updateActivity(updatedActivity as ActivityType).then(() => {
       navigate("/");
       dispatch(
         setStatus({

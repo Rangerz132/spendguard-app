@@ -9,7 +9,7 @@ const CustomTooltip: React.FC<TooltipProps<number, string>> = ({
   if (active && payload && payload.length) {
     return (
       <div className="card flex flex-col items-center justify-center border border-indigo">
-        <p className="text-grey text-xs capitalize theme-light:text-theme-light-dark-grey">
+        <p className="text-theme-dark-grey text-xs capitalize theme-light:text-theme-light-dark-grey">
           {label}
         </p>
         <p className="text-white capitalize theme-light:text-black">

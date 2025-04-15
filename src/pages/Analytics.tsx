@@ -5,6 +5,7 @@ import CustomLineChart from "../components/Chart/CustomLineChart";
 import { useEffect, useState } from "react";
 import CustomBarChart from "../components/Chart/CustomBarCart";
 import EmptyCard from "../components/Card/EmptyCard";
+import { format } from "date-fns";
 
 const Analytics = () => {
   const [balanceTrends, setBalanceTrends] = useState<any[]>([]);
@@ -25,14 +26,14 @@ const Analytics = () => {
   useEffect(() => {
     const expenseData = Array.from(getExpensesAmountByDates()).map(
       ([date, value]) => ({
-        value1: date,
+        value1: format(new Date(date), "dd-MM-yyyy"),
         value2: value,
       })
     );
 
     const incomeData = Array.from(getIncomesAmountByDates()).map(
       ([date, value]) => ({
-        value1: date,
+        value1: format(new Date(date), "dd-MM-yyyy"),
         value2: value,
       })
     );

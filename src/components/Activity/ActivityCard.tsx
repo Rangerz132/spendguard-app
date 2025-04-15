@@ -22,9 +22,9 @@ const ActivityCard = (props: {
       name: "",
       description: "",
       amount: 0,
-      isExpense: true,
+      is_expense: true,
       category: categoryTypes[0].name,
-      createdAt: new Date().toISOString().substring(0, 10),
+      created_at: new Date(),
     }
   );
   const [errors, setErrors] = useState({ name: "", amount: "" });
@@ -34,7 +34,7 @@ const ActivityCard = (props: {
   };
 
   const handleToggle = () => {
-    setActivity((prev) => ({ ...prev, isExpense: !prev.isExpense }));
+    setActivity((prev) => ({ ...prev, is_expense: !prev.is_expense }));
   };
 
   const validate = (activity: ActivityType) => {
@@ -139,7 +139,7 @@ const ActivityCard = (props: {
                 "w-6 h-6 bg-black rounded-md flex items-center justify-center theme-light:bg-white"
               }
               children={
-                activity.isExpense && <BiCheck className="text-indigo" />
+                activity.is_expense && <BiCheck className="text-indigo" />
               }
             />
           </div>

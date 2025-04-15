@@ -1,7 +1,8 @@
 import { BiHighlight, BiTrash, BiXCircle } from "react-icons/bi";
-import APIService from "../../../api/APIService";
+
 import { setStatus } from "../../../store/status/statusSlice";
 import { OptionType } from "../type/OptionType";
+import { deleteActivity } from "../../../services/supabaseService";
 
 export const activityModifyOption: OptionType = {
   icon: <BiHighlight />,
@@ -17,7 +18,7 @@ export const activityDeleteOption: OptionType = {
   icon: <BiTrash />,
   title: "Remove the activity",
   action: async (data: any) => {
-    await APIService.deleteActivity(data.id);
+    await deleteActivity(data.id);
     if (data?.dispatch) {
       data.dispatch(
         setStatus({

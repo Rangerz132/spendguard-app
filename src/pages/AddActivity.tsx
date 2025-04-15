@@ -2,20 +2,21 @@ import { useDispatch } from "react-redux";
 import ActivityCard from "../components/Activity/ActivityCard";
 import { useNavigate } from "react-router";
 import { setStatus } from "../store/status/statusSlice";
-import APIService from "../api/APIService";
 
 import { ActivityType } from "../components/Activity/type/ActivityType";
+import { createActivity } from "../services/supabaseService";
 
 const AddActivity = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
-  const handleSubmit = (
+  const handleSubmit = async (
     e: React.FormEvent<HTMLFormElement>,
     activity: ActivityType
   ) => {
     e.preventDefault();
-    APIService.createActivity(activity);
+    await createActivity(activity);
+
     navigate("/");
     dispatch(
       setStatus({

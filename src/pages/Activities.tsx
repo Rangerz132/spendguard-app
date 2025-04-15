@@ -1,9 +1,10 @@
 import { useEffect, useState } from "react";
 import LatestActivityCard from "../components/Activity/LatestActivityCard";
-import APIService from "../api/APIService";
+
 import { ActivityType } from "../components/Activity/type/ActivityType";
 import EmptyCard from "../components/Card/EmptyCard";
 import SearchBar from "../components/UI/SearchBar";
+import { getActivities } from "../services/supabaseService";
 
 const Activites = () => {
   const [activities, setActivities] = useState<ActivityType[]>([]);
@@ -12,7 +13,7 @@ const Activites = () => {
   );
   useEffect(() => {
     const fetchData = async () => {
-      const data = await APIService.getActivities();
+      const data = await getActivities();
       setActivities(data);
       setFilteredActivities(data);
     };

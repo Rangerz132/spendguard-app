@@ -1,6 +1,7 @@
 import { useCallback, useEffect, useState } from "react";
-import APIService from "../api/APIService";
+
 import { ActivityType } from "../components/Activity/type/ActivityType";
+import { getActivities } from "../services/supabaseService";
 
 const useActivities = () => {
   const [activities, setActivities] = useState<ActivityType[]>([]);
@@ -8,7 +9,7 @@ const useActivities = () => {
 
   useEffect(() => {
     const fetchActivities = async () => {
-      const data = await APIService.getActivities();
+      const data = await getActivities();
       setActivities(data);
       setActivityCategory([
         ...new Set(data.map((activity) => activity.category)),
@@ -24,7 +25,7 @@ const useActivities = () => {
       return 0;
     } else {
       return activities
-        .filter((activity) => activity.isExpense)
+        .filter((activity) => activity.is_expense)
         .reduce((acc, activity) => acc + (Number(activity.amount) || 0), 0);
     }
   };
@@ -35,7 +36,7 @@ const useActivities = () => {
       return 0;
     } else {
       return activities
-        .filter((activity) => !activity.isExpense)
+        .filter((activity) => !activity.is_expense)
         .reduce((acc, activity) => acc + (Number(activity.amount) || 0), 0);
     }
   };
@@ -58,7 +59,7 @@ const useActivities = () => {
     } else {
       const validActivities = activities
         .filter((activity) => activity.category === category)
-        .filter((activity) => activity.isExpense);
+        .filter((activity) => activity.is_expense);
 
       return validActivities.reduce(
         (acc, activity) => acc + Number(activity.amount || 0),
@@ -88,13 +89,13 @@ const useActivities = () => {
   }, [activities]);
 
   /** Return the expenses amount per date */
-  const getExpensesAmountByDates = useCallback((): Map<string, number> => {
-    const expensesAmountByDates = new Map<string, number>();
+  const getExpensesAmountByDates = useCallback((): Map<Date, number> => {
+    const expensesAmountByDates = new Map<Date, number>();
 
     activities
-      .filter((activity) => activity.isExpense)
+      .filter((activity) => activity.is_expense)
       .forEach((activity) => {
-        const date = activity.createdAt;
+        const date = activity.created_at;
         const amount = Number(activity.amount) || 0;
 
         expensesAmountByDates.set(
@@ -107,13 +108,13 @@ const useActivities = () => {
   }, [activities]);
 
   /** Return the incomes amount per date */
-  const getIncomesAmountByDates = useCallback((): Map<string, number> => {
-    const incomesAmountByDates = new Map<string, number>();
+  const getIncomesAmountByDates = useCallback((): Map<Date, number> => {
+    const incomesAmountByDates = new Map<Date, number>();
 
     activities
-      .filter((activity) => !activity.isExpense)
+      .filter((activity) => !activity.is_expense)
       .forEach((activity) => {
-        const date = activity.createdAt;
+        const date = activity.created_at;
         const amount = Number(activity.amount) || 0;
 
         incomesAmountByDates.set(

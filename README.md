@@ -10,7 +10,6 @@ At the time of writing, SpendGuard is still under active development.
 
 ### Upcoming features
 
-- Use Supabase to replace the backend (In Progress)
 - Implement the date comparaison (To Do)
 - Add a "Create Budget" page (To Do)
 - Add an "Edit Profile" page (To Do)
@@ -20,12 +19,6 @@ At the time of writing, SpendGuard is still under active development.
 ## Getting started
 
 To set up and run the project locally, follow these steps:
-
-```bash
-npm cd client
-npm install
-npm run dev-server
-```
 
 ```bash
 npm cd client

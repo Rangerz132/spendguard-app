@@ -3,7 +3,7 @@ export type ActivityType = {
   name: string | undefined;
   description?: string;
   amount: number;
-  isExpense: boolean;
+  is_expense: boolean;
   category: string;
-  createdAt: string;
+  created_at: Date;
 };
