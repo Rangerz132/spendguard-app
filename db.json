@@ -130,10 +130,28 @@
       "id": "7ef7b483-c345-4f0e-a6dc-2443460d5df9",
       "name": "Cup of coffee",
       "description": "Cup of coffee at Tim Hortons",
-      "amount": "2",
+      "amount": "3",
       "isExpense": true,
       "category": "food",
       "createdAt": "2025-04-09"
+    },
+    {
+      "id": "f872a2ab-cd63-4cc2-8b58-0f9ed00cb68a",
+      "name": "Amazon Prime Video",
+      "description": "",
+      "amount": "17",
+      "isExpense": true,
+      "category": "subscriptions",
+      "createdAt": "2025-04-10"
+    },
+    {
+      "id": "8871dee1-d168-4b19-b57d-deed6eaebd23",
+      "name": "Cat food",
+      "description": "",
+      "amount": "100",
+      "isExpense": true,
+      "category": "pet",
+      "createdAt": "2025-04-10"
     }
   ]
 }

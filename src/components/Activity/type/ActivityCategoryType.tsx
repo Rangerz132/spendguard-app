@@ -1,3 +1,4 @@
+import { BiBone } from "react-icons/bi";
 import { JSX } from "react";
 import { BiDollar } from "react-icons/bi";
 import { BiCrown } from "react-icons/bi";
@@ -86,7 +87,7 @@ export const travelCategoryType: ActivityCategoryType = {
 export const clotheCategoryType: ActivityCategoryType = {
   name: "clothe",
   icon: <BiCloset />,
-  color: "#F06292", // pink
+  color: "#8e8166", // pink
 };
 
 export const personalCareCategoryType: ActivityCategoryType = {
@@ -107,6 +108,12 @@ export const jobCategoryType: ActivityCategoryType = {
   color: "#0FC2C0", // greyish blue
 };
 
+export const petCategoryType: ActivityCategoryType = {
+  name: "pet",
+  icon: <BiBone />,
+  color: "#485a9c", // pale grey blue
+};
+
 export const categoryTypes: ActivityCategoryType[] = [
   foodCategoryType,
   musicCategoryType,
@@ -121,6 +128,7 @@ export const categoryTypes: ActivityCategoryType[] = [
   personalCareCategoryType,
   subscriptionsCategoryType,
   jobCategoryType,
+  petCategoryType,
 ];
 
 export const activityCategoryTypeMap = new Map();
