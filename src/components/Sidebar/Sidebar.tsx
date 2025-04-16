@@ -9,6 +9,7 @@ import {
   OverlayContext,
   useOverlayContext,
 } from "../../contexts/OverlayContext";
+import SignOut from "../Sign/SignOut";
 
 const Sidebar = () => {
   const { setOverlay } = useOverlayContext(OverlayContext);
@@ -16,12 +17,12 @@ const Sidebar = () => {
 
   return (
     <div
-      className={`w-[75vw] h-screen fixed bg-theme-dark-dark-grey z-21 left-0 transition-transform duration-500 ${
+      className={`w-[75vw] h-full fixed bg-theme-dark-dark-grey z-21 left-0 transition-transform duration-500 ${
         settings ? "" : "-translate-x-[100%]"
       } theme-light:bg-white`}
     >
-      <div className=" flex flex-col ">
-        <div className="flex flex-row space-x-2 items-center p-6">
+      <div className=" flex flex-col relative h-full">
+        <div className="flex flex-row space-x-2 items-center p-6 ">
           {/** Avatar */}
           <Avatar enableInteraction={false} />
           {/** Info */}
@@ -48,6 +49,9 @@ const Sidebar = () => {
             />
           ))}
         </div>
+      </div>
+      <div className="absolute left-6 bottom-6">
+        <SignOut />
       </div>
     </div>
   );

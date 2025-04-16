@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { OptionType } from "./type/OptionType";
 
 const OptionSlot = (props: {
@@ -7,9 +7,11 @@ const OptionSlot = (props: {
   onClick: () => void;
 }) => {
   const { activityOption, data } = props;
-
+  const [isHover, setIsHover] = useState<boolean>(false);
   return (
     <div
+      onMouseEnter={() => setIsHover(true)}
+      onMouseLeave={() => setIsHover(false)}
       onClick={() => {
         activityOption.action(data);
         props.onClick();
@@ -21,7 +23,13 @@ const OptionSlot = (props: {
         className: "w-6 h-6 text-theme-dark-grey theme-light:text-black",
       })}
       {/** Title */}
-      <p className="text-white text-base theme-light:text-theme-light-dark-grey">
+      <p
+        className={` text-base transition ${
+          isHover
+            ? "text-indigo"
+            : "text-white theme-light:text-theme-light-dark-grey"
+        }`}
+      >
         {activityOption.title}
       </p>
     </div>

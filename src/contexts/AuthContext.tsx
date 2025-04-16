@@ -13,6 +13,7 @@ type AuthContextType = {
     error?: any;
   }>;
   signOut: any;
+  signInUser: any;
 };
 
 export const AuthContext = createContext<any>(null);
@@ -38,6 +39,28 @@ export function AuthContextProvider({
     return { success: true, data };
   };
 
+  const signInUser = async (email: string, password: string) => {
+    const { data, error } = await supabase.auth.signInWithPassword({
+      email,
+      password,
+    });
+
+    if (error) {
+      console.error("There was a problem signing in", error);
+      return { success: false, error };
+    }
+
+    return { success: true, data };
+  };
+
+  const signOut = () => {
+    const { error } = supabase.auth.signOut();
+
+    if (error) {
+      console.error("There was an error:", error);
+    }
+  };
+
   useEffect(() => {
     supabase.auth.getSession().then(({ data: { session } }) => {
       if (session?.user?.email) {
@@ -50,17 +73,9 @@ export function AuthContextProvider({
     });
   }, []);
 
-  const signOut = () => {
-    const { error } = supabase.auth.signOut();
-
-    if (error) {
-      console.error("There was an error:", error);
-    }
-  };
-
   return (
     <AuthContext.Provider
-      value={{ session, setSession, signUpNewUser, signOut }}
+      value={{ session, setSession, signUpNewUser, signOut, signInUser }}
     >
       {children}
     </AuthContext.Provider>

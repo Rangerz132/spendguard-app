@@ -8,12 +8,12 @@ import StatusCard from "../components/Status/StatusCard";
 import Sidebar from "../components/Sidebar/Sidebar";
 import { SettingsContextProvider } from "../contexts/SettingsContext";
 import ActivityOptionCard from "../components/Option/ActivityOption/ActivityOptionCard";
-import { AuthContextProvider } from "../contexts/AuthContext";
+import PrivateLayout from "./PrivateLayout";
 
-const Layout = () => {
+const MainLayout = () => {
   return (
     <>
-      <AuthContextProvider>
+      <PrivateLayout>
         <OverlayContextProvider>
           <SettingsContextProvider>
             <Header />
@@ -27,9 +27,9 @@ const Layout = () => {
             </div>
           </SettingsContextProvider>
         </OverlayContextProvider>
-      </AuthContextProvider>
+      </PrivateLayout>
     </>
   );
 };
 
-export default Layout;
+export default MainLayout;
