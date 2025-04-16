@@ -8,13 +8,28 @@ import AddActivity from "../pages/AddActivity";
 import UpdateActivity from "../pages/UpdateActivity";
 import Analytics from "../pages/Analytics";
 import Activities from "../pages/Activities";
-<BiHomeAlt />;
+import Signin from "../pages/Signin";
+import Signup from "../pages/Signup";
 
 const routeDefinitions = {
   root: {
     path: "/",
     element: <Layout />,
     children: [
+      {
+        path: "/signin",
+        element: <Signin />,
+        name: "Signin",
+        id: "signin",
+        icon: null,
+      },
+      {
+        path: "/signup",
+        element: <Signup />,
+        name: "Signup",
+        id: "signup",
+        icon: null,
+      },
       {
         path: "/",
         element: <Home />,

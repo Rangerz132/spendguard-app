@@ -8,23 +8,26 @@ import StatusCard from "../components/Status/StatusCard";
 import Sidebar from "../components/Sidebar/Sidebar";
 import { SettingsContextProvider } from "../contexts/SettingsContext";
 import ActivityOptionCard from "../components/Option/ActivityOption/ActivityOptionCard";
+import { AuthContextProvider } from "../contexts/AuthContext";
 
 const Layout = () => {
   return (
     <>
-      <OverlayContextProvider>
-        <SettingsContextProvider>
-          <Header />
-          <Menu />
-          <Sidebar />
-          <Overlay />
-          <ActivityOptionCard />
-          <StatusCard />
-          <div className="py-20">
-            <Outlet />
-          </div>
-        </SettingsContextProvider>
-      </OverlayContextProvider>
+      <AuthContextProvider>
+        <OverlayContextProvider>
+          <SettingsContextProvider>
+            <Header />
+            <Menu />
+            <Sidebar />
+            <Overlay />
+            <ActivityOptionCard />
+            <StatusCard />
+            <div className="py-20">
+              <Outlet />
+            </div>
+          </SettingsContextProvider>
+        </OverlayContextProvider>
+      </AuthContextProvider>
     </>
   );
 };
