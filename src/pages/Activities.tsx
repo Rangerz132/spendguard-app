@@ -34,11 +34,10 @@ const Activites = () => {
       <section>
         {/** Title */}
         <h2 className="text-white theme-light:text-black">Latest activities</h2>
-
+        {/** Search bar */}
+        <SearchBar onChange={(e) => handleSearchFilter(e)} />
         {filteredActivities.length > 0 ? (
           <>
-            {/** Search bar */}
-            <SearchBar onChange={(e) => handleSearchFilter(e)} />
             {/** Activities */}
             <LatestActivityCard
               activitySlotVisibleAmount={20}

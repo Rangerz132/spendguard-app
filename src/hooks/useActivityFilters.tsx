@@ -5,7 +5,8 @@ const useActivityFilters = (activities: ActivityType[]) => {
   const filterActivitiesByLatest = () => {
     return activities.sort(
       (a, b) =>
-        new Date(a.createdAt).getTime() - new Date(b.createdAt).getTime()
+        new Date(a.created_at as Date).getTime() -
+        new Date(b.created_at as Date).getTime()
     );
   };
 
@@ -23,7 +24,8 @@ const useActivityFilters = (activities: ActivityType[]) => {
   const filterActivitiesByOldest = () => {
     return activities.sort(
       (a, b) =>
-        new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime()
+        new Date(b.created_at as Date).getTime() -
+        new Date(a.created_at as Date).getTime()
     );
   };
 

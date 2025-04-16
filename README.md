@@ -10,10 +10,11 @@ At the time of writing, SpendGuard is still under active development.
 
 ### Upcoming features
 
-- Implement the date comparaison (To Do)
-- Add a "Create Budget" page (To Do)
+- Add authentification (To Do)
 - Add an "Edit Profile" page (To Do)
 - Add tutorial (To Do)
+- Add a "Create Budget" page (To Do)
+- Implement the date comparaison (To Do)
 - Enhance responsiveness for different devices (To Do)
 
 ## Getting started

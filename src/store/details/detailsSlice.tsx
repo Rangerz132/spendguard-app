@@ -12,9 +12,9 @@ const initialState: DetailsState = {
     name: "",
     description: "",
     amount: 0,
-    isExpense: true,
+    is_expense: true,
     category: "music",
-    createdAt: "",
+    created_at: null,
   },
   isShowed: false,
 };
