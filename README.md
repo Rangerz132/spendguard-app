@@ -8,14 +8,18 @@ SpendGuard is a modern, interactive budgeting application built with React that 
 
 At the time of writing, SpendGuard is still under active development.
 
-### Upcoming features
+### Upcoming features / improvements
 
-- Add authentification (In Progress)
-- Add an "Edit Profile" page (To Do)
-- Add tutorial (To Do)
-- Add a "Create Budget" page (To Do)
+- Add a "Create Budget" page (In Progess)
+- Improve the SignIn / SignUp page visually (In Progess)
 - Implement the date comparaison (To Do)
+- Add "Oboarding" (To Do)
+- Add an "Edit Profile" page (To Do)
 - Enhance responsiveness for different devices (To Do)
+
+## Known bugs
+
+- Showcase correctly activities when an activity is deleted (In Progess)
 
 ## Getting started
 
@@ -48,12 +52,11 @@ npm run dev
 
 - Analytics & Charts: Gain insights into spending patterns with dynamic visualizations.
 
-- User Authentication: Secure login and account management using Auth0. (In progress)
+- User Authentication: Secure login and account management using Auth0.
 
 - Modular Components: Well-structured, reusable components for easy maintenance and scalability.
 
 - State Management: Efficient data handling with the Context API, providing a smooth state transition across components.
-
 
 ## Media
 
