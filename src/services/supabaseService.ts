@@ -1,10 +1,13 @@
 import { ActivityType } from "../components/Activity/type/ActivityType";
 import supabase from "../config/supabaseConfig";
-import { useAuthContext } from "../contexts/AuthContext";
 
 // GET
 export const getActivities = async (): Promise<ActivityType[]> => {
-  const { data, error } = await supabase.from("activity").select();
+  const dataUser = await supabase.auth.getUser();
+  const { data, error } = await supabase
+    .from("activity")
+    .select()
+    .eq("user_id", dataUser.data.user?.id);
 
   if (error) {
     console.error("Error fetching activities:", error);

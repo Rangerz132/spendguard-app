@@ -11,9 +11,10 @@ At the time of writing, SpendGuard is still under active development.
 ### Upcoming features / improvements
 
 - Add a "Create Budget" page (In Progess)
-- Improve the SignIn / SignUp page visually (In Progess)
+- Improve the "SignIn" / "SignUp" page visually (In Progess)
 - Implement the date comparaison (To Do)
-- Add "Oboarding" (To Do)
+- Improve the "SignIn" / "SignUp" page visually (In Progess)
+- Add an "Onboarding" page (To Do)
 - Add an "Edit Profile" page (To Do)
 - Enhance responsiveness for different devices (To Do)
 
