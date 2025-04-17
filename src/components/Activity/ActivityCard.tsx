@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Button from "../UI/Button";
 import ToggleButton from "../UI/ToggleButton";
 import { BiCheck } from "react-icons/bi";
@@ -8,6 +8,8 @@ import { v4 as uuidv4 } from "uuid";
 import React from "react";
 import FieldError from "../Form/FieldError";
 import { ValidatorService } from "../../services/inputValidation";
+import { AuthContext, useAuthContext } from "../../contexts/AuthContext";
+import supabase from "../../config/supabaseConfig";
 
 const ActivityCard = (props: {
   initialActivity?: ActivityType;
@@ -25,9 +27,11 @@ const ActivityCard = (props: {
       is_expense: true,
       category: categoryTypes[0].name,
       created_at: new Date(),
+      user_id: null,
     }
   );
   const [errors, setErrors] = useState({ name: "", amount: "" });
+  const { session } = useAuthContext(AuthContext);
 
   const updateActivity = (key: string, value: any) => {
     setActivity({ ...activity, [key]: value });
@@ -51,15 +55,20 @@ const ActivityCard = (props: {
     return Object.values(newErrors).some((error) => error !== "");
   };
 
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
-    if (validate(activity)) {
+    const { data } = await supabase.auth.getUser();
+    const userId = data.user?.id;
+
+    const updatedActivity = { ...activity, user_id: userId as string };
+
+    if (validate(updatedActivity)) {
       console.log("Form contains errors, fix them first.");
       return;
     }
 
-    props.onSubmit(e, activity);
+    props.onSubmit(e, updatedActivity);
   };
 
   return (

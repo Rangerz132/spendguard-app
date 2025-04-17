@@ -10,10 +10,28 @@ import {
   useOverlayContext,
 } from "../../contexts/OverlayContext";
 import SignOut from "../Sign/SignOut";
+import supabase from "../../config/supabaseConfig";
+import { useEffect, useState } from "react";
 
 const Sidebar = () => {
   const { setOverlay } = useOverlayContext(OverlayContext);
   const { settings, setSettings } = useSettingsContext(SettingsContext);
+
+  const [userName, setUserName] = useState<string>("Invalid Name");
+
+  useEffect(() => {
+    const fetchUser = async () => {
+      try {
+        const { data } = await supabase.auth.getUser();
+        const displayName = data.user?.user_metadata.display_name;
+        setUserName(displayName);
+      } catch (error) {
+        console.error(error);
+      }
+    };
+
+    fetchUser();
+  }, []);
 
   return (
     <div
@@ -27,10 +45,7 @@ const Sidebar = () => {
           <Avatar enableInteraction={false} />
           {/** Info */}
           <div className="flex flex-col ">
-            <h3 className="text-white theme-light:text-black">John Doe</h3>
-            <p className="text-theme-dark-grey text-xs theme-light:text-theme-light-grey">
-              8s9fhw729ksa
-            </p>
+            <h3 className="text-white theme-light:text-black">{userName}</h3>
           </div>
         </div>
         {/** Border */}

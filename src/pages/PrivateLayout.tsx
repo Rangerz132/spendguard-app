@@ -3,16 +3,18 @@ import { AuthContext, useAuthContext } from "../contexts/AuthContext";
 import { useEffect } from "react";
 
 const PrivateLayout = ({ children }: { children: React.ReactNode }) => {
-  const { session } = useAuthContext(AuthContext);
+  const { session, loading } = useAuthContext(AuthContext);
   const navigate = useNavigate();
 
   useEffect(() => {
-    if (!session) {
+    if (!loading && !session) {
       navigate("/signin");
     }
-  }, [session, navigate]);
+  }, [session, loading, navigate]);
 
-  if (!session) return null; // or a loading spinner while redirecting
+  if (loading) {
+    return null;
+  }
 
   return <>{children}</>;
 };

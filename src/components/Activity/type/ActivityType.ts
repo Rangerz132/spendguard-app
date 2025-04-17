@@ -6,4 +6,5 @@ export type ActivityType = {
   is_expense: boolean;
   category: string;
   created_at: Date | null;
+  user_id: string | null;
 };

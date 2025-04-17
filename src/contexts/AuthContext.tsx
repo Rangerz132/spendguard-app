@@ -4,7 +4,7 @@ import supabase from "../config/supabaseConfig";
 type AuthContextType = {
   session: any;
   setSession: any;
-  signUpNewUser: (
+  signUp: (
     email: string,
     password: string
   ) => Promise<{
@@ -13,7 +13,8 @@ type AuthContextType = {
     error?: any;
   }>;
   signOut: any;
-  signInUser: any;
+  signIn: any;
+  signInWithOAuth: any;
 };
 
 export const AuthContext = createContext<any>(null);
@@ -24,11 +25,20 @@ export function AuthContextProvider({
   children: React.ReactNode;
 }) {
   const [session, setSession] = useState<any>(null);
+  const [loading, setLoading] = useState(true);
 
-  const signUpNewUser = async (email: string, password: string) => {
+  /** Sign up via email  */
+  const signUp = async (
+    email: string,
+    password: string,
+    displayName: string
+  ) => {
     const { data, error } = await supabase.auth.signUp({
       email,
       password,
+      options: {
+        data: { display_name: `${displayName}` },
+      },
     });
 
     if (error) {
@@ -39,7 +49,21 @@ export function AuthContextProvider({
     return { success: true, data };
   };
 
-  const signInUser = async (email: string, password: string) => {
+  /** Sign up/in with Google  */
+  const signInWithOAuth = async () => {
+    const { error } = await supabase.auth.signInWithOAuth({
+      provider: "google",
+    });
+
+    console.log();
+
+    if (error) {
+      console.error("OAuth error:", error.message);
+    }
+  };
+
+  /** Sign in via email  */
+  const signIn = async (email: string, password: string) => {
     const { data, error } = await supabase.auth.signInWithPassword({
       email,
       password,
@@ -53,8 +77,9 @@ export function AuthContextProvider({
     return { success: true, data };
   };
 
-  const signOut = () => {
-    const { error } = supabase.auth.signOut();
+  /** Sign out */
+  const signOut = async () => {
+    const { error } = await supabase.auth.signOut();
 
     if (error) {
       console.error("There was an error:", error);
@@ -63,19 +88,34 @@ export function AuthContextProvider({
 
   useEffect(() => {
     supabase.auth.getSession().then(({ data: { session } }) => {
-      if (session?.user?.email) {
-        setSession(session);
-      }
+      setSession(session);
+      setLoading(false);
     });
 
-    supabase.auth.onAuthStateChange((event, session) => {
-      setSession(session);
-    });
+    const { data: listener } = supabase.auth.onAuthStateChange(
+      (_event, session) => {
+        setSession(session);
+        setLoading(false);
+      }
+    );
+
+    return () => {
+      listener.subscription.unsubscribe();
+    };
   }, []);
 
   return (
     <AuthContext.Provider
-      value={{ session, setSession, signUpNewUser, signOut, signInUser }}
+      value={{
+        session,
+        setSession,
+        signUp,
+        signOut,
+        signIn,
+        signInWithOAuth,
+        loading,
+        setLoading,
+      }}
     >
       {children}
     </AuthContext.Provider>
