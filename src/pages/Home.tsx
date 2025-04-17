@@ -3,6 +3,7 @@ import LatestActivityCard from "../components/Activity/LatestActivityCard";
 import ViewMore from "../components/UI/ViewMore";
 import useActivities from "../hooks/useActivities";
 import EmptyCard from "../components/Card/EmptyCard";
+import LinkButton from "../components/UI/LinkButton";
 
 const Home = () => {
   const { getExpensesAmount, getIncomesAmount, getBalanceAmount, activities } =
@@ -61,6 +62,19 @@ const Home = () => {
       <section>
         <div className="flex flex-row justify-between items-center">
           {/** Latest activity title */}
+          <h2 className="text-white theme-light:text-black">Budget</h2>
+          {/** View more */}
+          <ViewMore path={"/activities"} />
+        </div>
+        <EmptyCard
+          title={"You don't have any budget"}
+          description={"Your budget statistics would appear here"}
+          button={<LinkButton path={"/budget"}>Add a budget</LinkButton>}
+        />
+      </section>
+      <section>
+        <div className="flex flex-row justify-between items-center">
+          {/** Latest activity title */}
           <h2 className="text-white theme-light:text-black">
             Latest activities
           </h2>
@@ -74,7 +88,11 @@ const Home = () => {
             activities={activities}
           />
         ) : (
-          <EmptyCard />
+          <EmptyCard
+            title={"You don't have any activities"}
+            description={"List of activities you've created will appear here."}
+            button={<LinkButton path={"/addActivity"}>Add activity</LinkButton>}
+          />
         )}
       </section>
     </div>

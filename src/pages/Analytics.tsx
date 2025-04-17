@@ -6,6 +6,7 @@ import { useEffect, useState } from "react";
 import CustomBarChart from "../components/Chart/CustomBarCart";
 import EmptyCard from "../components/Card/EmptyCard";
 import { format } from "date-fns";
+import LinkButton from "../components/UI/LinkButton";
 
 const Analytics = () => {
   const [balanceTrends, setBalanceTrends] = useState<any[]>([]);
@@ -128,7 +129,11 @@ const Analytics = () => {
             </div>
           </>
         ) : (
-          <EmptyCard />
+          <EmptyCard
+            title={"You don't have any activities"}
+            description={"List of activities you've created will appear here."}
+            button={<LinkButton path={"/addActivity"}>Add activity</LinkButton>}
+          />
         )}
       </section>
       <section>

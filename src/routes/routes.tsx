@@ -1,3 +1,4 @@
+import { BiCalendar } from "react-icons/bi";
 import { BiPulse } from "react-icons/bi";
 import { BiHighlight, BiMessageAltAdd } from "react-icons/bi";
 import { BiHomeAlt, BiBarChartAlt } from "react-icons/bi";
@@ -11,6 +12,7 @@ import Activities from "../pages/Activities";
 import Signin from "../pages/Signin";
 import Signup from "../pages/Signup";
 import MainLayout from "../pages/MainLayout";
+import Budget from "../pages/Budget";
 
 const authRoutes = [
   {
@@ -40,6 +42,13 @@ const appRoutes = {
       name: "Add Activity",
       id: "addActivity",
       icon: <BiMessageAltAdd />,
+    },
+    {
+      path: "/budget",
+      element: <Budget />,
+      name: "budget",
+      id: "budget",
+      icon: <BiCalendar />,
     },
     {
       path: "/updateActivity/:id",
@@ -81,7 +90,9 @@ export const allRoutes = appRoutes.children!.map((route) => ({
 
 export const menuRoutes = appRoutes
   .children!.filter((route) =>
-    ["home", "addActivity", "analytics", "activities"].includes(route.id!)
+    ["home", "addActivity", "budget", "analytics", "activities"].includes(
+      route.id!
+    )
   )
   .map((route) => ({
     name: route.name!,

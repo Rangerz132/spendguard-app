@@ -27,15 +27,15 @@
   }
 
   h1 {
-    @apply font-roboto font-bold text-3xl capitalize;
+    @apply font-roboto font-bold text-3xl;
   }
 
   h2 {
-    @apply font-roboto font-bold text-xl capitalize;
+    @apply font-roboto font-bold text-xl;
   }
 
   h3 {
-    @apply font-roboto text-base capitalize;
+    @apply font-roboto text-base;
   }
 
   p {

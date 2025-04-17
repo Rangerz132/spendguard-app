@@ -5,6 +5,7 @@ import { ActivityType } from "../components/Activity/type/ActivityType";
 import EmptyCard from "../components/Card/EmptyCard";
 import SearchBar from "../components/UI/SearchBar";
 import { getActivities } from "../services/supabaseService";
+import LinkButton from "../components/UI/LinkButton";
 
 const Activites = () => {
   const [activities, setActivities] = useState<ActivityType[]>([]);
@@ -47,7 +48,11 @@ const Activites = () => {
             />
           </>
         ) : (
-          <EmptyCard />
+          <EmptyCard
+            title={"You don't have any activities"}
+            description={"List of activities you've created will appear here."}
+            button={<LinkButton path={"/addActivity"}>Add activity</LinkButton>}
+          />
         )}
       </section>
     </div>
