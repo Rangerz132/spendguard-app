@@ -1,8 +1,7 @@
 import { BiHighlight, BiTrash, BiXCircle } from "react-icons/bi";
-
 import { setStatus } from "../../../store/status/statusSlice";
 import { OptionType } from "../type/OptionType";
-import { deleteActivity } from "../../../services/supabaseService";
+import { deleteActivity } from "../../../services/supabase/activityService";
 
 export const activityModifyOption: OptionType = {
   icon: <BiHighlight />,

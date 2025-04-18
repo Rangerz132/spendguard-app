@@ -1,12 +1,12 @@
-import Card from "../components/Card/Card";
-import ExpenseListCard from "../components/Expense/ExpenseListCard";
-import useActivities from "../hooks/useActivities";
-import CustomLineChart from "../components/Chart/CustomLineChart";
 import { useEffect, useState } from "react";
-import CustomBarChart from "../components/Chart/CustomBarCart";
-import EmptyCard from "../components/Card/EmptyCard";
+import useActivities from "../../../hooks/useActivities";
 import { format } from "date-fns";
-import LinkButton from "../components/UI/LinkButton";
+import Card from "../../../components/Card/Card";
+import CustomLineChart from "../../../components/Chart/CustomLineChart";
+import EmptyCard from "../../../components/Card/EmptyCard";
+import LinkButton from "../../../components/UI/LinkButton";
+import ExpenseListCard from "../../../components/Expense/ExpenseListCard";
+import CustomBarChart from "../../../components/Chart/CustomBarCart";
 
 const Analytics = () => {
   const [balanceTrends, setBalanceTrends] = useState<any[]>([]);
@@ -166,7 +166,11 @@ const Analytics = () => {
             </div>
           </>
         ) : (
-          <EmptyCard />
+          <EmptyCard
+            title={"You don't have any activities"}
+            description={"List of activities you've created will appear here."}
+            button={<LinkButton path={"/addActivity"}>Add activity</LinkButton>}
+          />
         )}
       </section>
     </div>

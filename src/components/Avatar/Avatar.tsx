@@ -6,7 +6,7 @@ import {
   SettingsContext,
   useSettingsContext,
 } from "../../contexts/SettingsContext";
-import Avatar09 from "../../../public/images/avatars/avatar-09.png";
+import Avatar09 from "/images/avatars/avatar-09.png";
 
 const Avatar = (props: { enableInteraction: boolean }) => {
   const { setOverlay } = useOverlayContext(OverlayContext);

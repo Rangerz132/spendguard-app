@@ -1,11 +1,14 @@
 import { useNavigate, useParams } from "react-router";
-import ActivityCard from "../components/Activity/ActivityCard";
-import { ActivityType } from "../components/Activity/type/ActivityType";
-
 import { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
-import { setStatus } from "../store/status/statusSlice";
-import { getActivityById, updateActivity } from "../services/supabaseService";
+import { ActivityType } from "../../../components/Activity/type/ActivityType";
+import {
+  getActivityById,
+  updateActivity,
+} from "../../../services/supabase/activityService";
+import { setStatus } from "../../../store/status/statusSlice";
+import ActivityCard from "../../../components/Activity/ActivityCard";
+import BackArrowButton from "../../../components/UI/BackArrowButton";
 
 const UpdateActivity = () => {
   const { id } = useParams();
@@ -45,9 +48,13 @@ const UpdateActivity = () => {
   };
 
   return (
-    <div className="wrapper page-wrapper">
+    <div className="wrapper page-wrapper py-6">
       <section>
-        <h2 className="text-white theme-light:text-black">Update activity</h2>
+        <div className="flex flex-row space-x-2 items-center">
+          <BackArrowButton path="/" />
+          <h2 className="text-white theme-light:text-black">Update activity</h2>
+        </div>
+
         {activity && (
           <ActivityCard onSubmit={handleSubmit} initialActivity={activity} />
         )}

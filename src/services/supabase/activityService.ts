@@ -1,5 +1,5 @@
-import { ActivityType } from "../components/Activity/type/ActivityType";
-import supabase from "../config/supabaseConfig";
+import { ActivityType } from "../../components/Activity/type/ActivityType";
+import supabase from "../../config/supabaseConfig";
 
 // GET
 export const getActivities = async (): Promise<ActivityType[]> => {

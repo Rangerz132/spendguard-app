@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import Button from "../UI/Button";
 import ToggleButton from "../UI/ToggleButton";
 import { BiCheck } from "react-icons/bi";

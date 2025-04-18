@@ -1,10 +1,9 @@
 import { useDispatch } from "react-redux";
-import ActivityCard from "../components/Activity/ActivityCard";
 import { useNavigate } from "react-router";
-import { setStatus } from "../store/status/statusSlice";
-
-import { ActivityType } from "../components/Activity/type/ActivityType";
-import { createActivity } from "../services/supabaseService";
+import { ActivityType } from "../../../components/Activity/type/ActivityType";
+import { createActivity } from "../../../services/supabase/activityService";
+import { setStatus } from "../../../store/status/statusSlice";
+import ActivityCard from "../../../components/Activity/ActivityCard";
 
 const AddActivity = () => {
   const dispatch = useDispatch();

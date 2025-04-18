@@ -3,16 +3,16 @@ import { BiPulse } from "react-icons/bi";
 import { BiHighlight, BiMessageAltAdd } from "react-icons/bi";
 import { BiHomeAlt, BiBarChartAlt } from "react-icons/bi";
 import { RouteObject, createBrowserRouter } from "react-router";
-
-import Home from "../pages/Home";
-import AddActivity from "../pages/AddActivity";
-import UpdateActivity from "../pages/UpdateActivity";
-import Analytics from "../pages/Analytics";
-import Activities from "../pages/Activities";
-import Signin from "../pages/Signin";
-import Signup from "../pages/Signup";
-import MainLayout from "../pages/MainLayout";
-import Budget from "../pages/Budget";
+import MainLayout from "../pages/layouts/MainLayout";
+import Signin from "../pages/features/Auth/Signin";
+import Signup from "../pages/features/Auth/Signup";
+import Home from "../pages/features/Home/Home";
+import AddActivity from "../pages/features/Activities/AddActivity";
+import Budgets from "../pages/features/Budgets/Budgets";
+import UpdateActivity from "../pages/features/Activities/UpdateActivity";
+import Analytics from "../pages/features/Analytics/Analytics";
+import Activities from "../pages/features/Activities/Activities";
+import Budget from "../pages/features/Budgets/Budget";
 
 const authRoutes = [
   {
@@ -25,7 +25,24 @@ const authRoutes = [
   },
 ];
 
-const appRoutes = {
+const optionRoutes = [
+  {
+    path: "/updateActivity/:id",
+    element: <UpdateActivity />,
+    name: "Update Activity",
+    id: "updateActivity",
+    icon: null,
+  },
+  {
+    path: "/budget/:id",
+    element: <Budget />,
+    name: "Budget",
+    id: "budget",
+    icon: null,
+  },
+];
+
+const mainRoutes = {
   path: "/",
   element: <MainLayout />,
   children: [
@@ -44,18 +61,11 @@ const appRoutes = {
       icon: <BiMessageAltAdd />,
     },
     {
-      path: "/budget",
-      element: <Budget />,
-      name: "budget",
-      id: "budget",
+      path: "/budgets",
+      element: <Budgets />,
+      name: "budgets",
+      id: "budgets",
       icon: <BiCalendar />,
-    },
-    {
-      path: "/updateActivity/:id",
-      element: <UpdateActivity />,
-      name: "Update Activity",
-      id: "updateActivity",
-      icon: <BiHighlight />,
     },
     {
       path: "/analytics",
@@ -75,22 +85,22 @@ const appRoutes = {
 };
 
 export const routes: RouteObject[] = [
-  ...authRoutes, // Not wrapped in Layout
-  appRoutes, // Wrapped in Layout
+  ...authRoutes,
+  ...optionRoutes,
+  mainRoutes,
 ];
 
 export const router = createBrowserRouter(routes);
 
-// Only export routes that are under layout for menus
-export const allRoutes = appRoutes.children!.map((route) => ({
+export const allRoutes = mainRoutes.children!.map((route) => ({
   name: route.name,
   path: route.path,
   icon: route.icon,
 }));
 
-export const menuRoutes = appRoutes
+export const menuRoutes = mainRoutes
   .children!.filter((route) =>
-    ["home", "addActivity", "budget", "analytics", "activities"].includes(
+    ["home", "addActivity", "budgets", "analytics", "activities"].includes(
       route.id!
     )
   )

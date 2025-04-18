@@ -1,11 +1,10 @@
 import { useEffect, useState } from "react";
-import LatestActivityCard from "../components/Activity/LatestActivityCard";
-
-import { ActivityType } from "../components/Activity/type/ActivityType";
-import EmptyCard from "../components/Card/EmptyCard";
-import SearchBar from "../components/UI/SearchBar";
-import { getActivities } from "../services/supabaseService";
-import LinkButton from "../components/UI/LinkButton";
+import { ActivityType } from "../../../components/Activity/type/ActivityType";
+import { getActivities } from "../../../services/supabase/activityService";
+import SearchBar from "../../../components/UI/SearchBar";
+import LatestActivityCard from "../../../components/Activity/LatestActivityCard";
+import EmptyCard from "../../../components/Card/EmptyCard";
+import LinkButton from "../../../components/UI/LinkButton";
 
 const Activites = () => {
   const [activities, setActivities] = useState<ActivityType[]>([]);

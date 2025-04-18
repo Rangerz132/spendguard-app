@@ -1,7 +1,7 @@
 import { useCallback, useEffect, useState } from "react";
 
 import { ActivityType } from "../components/Activity/type/ActivityType";
-import { getActivities } from "../services/supabaseService";
+import { getActivities } from "../services/supabase/activityService";
 
 const useActivities = () => {
   const [activities, setActivities] = useState<ActivityType[]>([]);

@@ -1,3 +1,5 @@
+import { BiBasket } from "react-icons/bi";
+import { BiRestaurant } from "react-icons/bi";
 import { BiBone } from "react-icons/bi";
 import { JSX } from "react";
 import { BiDollar } from "react-icons/bi";
@@ -8,7 +10,6 @@ import { BiJoystickAlt } from "react-icons/bi";
 import { BiIdCard } from "react-icons/bi";
 import { BiHomeAlt2 } from "react-icons/bi";
 import { BiCapsule } from "react-icons/bi";
-import { BiBowlHot } from "react-icons/bi";
 import { BiBook } from "react-icons/bi";
 import { BiMusic } from "react-icons/bi";
 import { BiBus } from "react-icons/bi";
@@ -30,9 +31,15 @@ export const getFullCategory = (name: string): ActivityCategoryType => {
   );
 };
 
-export const foodCategoryType: ActivityCategoryType = {
-  name: "food",
-  icon: <BiBowlHot />,
+export const groceryCategoryType: ActivityCategoryType = {
+  name: "grocery",
+  icon: <BiBasket />,
+  color: "#FF3333", // soft orange
+};
+
+export const restaurantCategoryType: ActivityCategoryType = {
+  name: "restaurant",
+  icon: <BiRestaurant />,
   color: "#FFE57F", // soft orange
 };
 
@@ -115,7 +122,8 @@ export const petCategoryType: ActivityCategoryType = {
 };
 
 export const categoryTypes: ActivityCategoryType[] = [
-  foodCategoryType,
+  groceryCategoryType,
+  restaurantCategoryType,
   musicCategoryType,
   educationCategoryType,
   sportCategoryType,
