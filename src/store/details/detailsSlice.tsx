@@ -15,6 +15,7 @@ const initialState: DetailsState = {
     is_expense: true,
     category: "music",
     created_at: null,
+    user_id: null,
   },
   isShowed: false,
 };

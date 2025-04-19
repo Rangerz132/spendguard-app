@@ -1,3 +1,4 @@
+import { BudgetCategoryType } from "../../components/Budget/type/BudgetCategoryType";
 import { BudgetType } from "../../components/Budget/type/BudgetType";
 import supabase from "../../config/supabaseConfig";
 
@@ -33,4 +34,21 @@ export const getBudgetById = async (
   }
 
   return data as BudgetType;
+};
+
+// GET
+export const getBudgetAmountById = async (
+  budgetId: string
+): Promise<BudgetCategoryType[] | null> => {
+  const { data, error } = await supabase
+    .from("budget_category")
+    .select()
+    .eq("id", budgetId);
+
+  if (error) {
+    console.error("Error fetching budget categories:", error);
+    return null;
+  }
+
+  return data as BudgetCategoryType[];
 };

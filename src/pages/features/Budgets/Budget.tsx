@@ -55,6 +55,8 @@ const Budget = () => {
             {/** Description */}
             <p className="text-theme-dark-grey">{budget.description}</p>
           </div>
+          {/** Total */}
+          <div className="card"></div>
           {/** Categories */}
           <div className="grid grid-cols-2 gap-4">
             {budgetCategories.map((budgetCategory) => (

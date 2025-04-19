@@ -15,7 +15,6 @@ const useActivities = () => {
         ...new Set(data.map((activity) => activity.category)),
       ]);
     };
-
     fetchActivities();
   }, []);
 
