@@ -15,7 +15,6 @@ const Analytics = () => {
   const [expenses, setExpenses] = useState<any[]>([]);
   const [incomes, setIncomes] = useState<any[]>([]);
   const [expensesByCategory, setExpensesByCategory] = useState<any[]>([]);
-
   const {
     getExpensesAmount,
     getIncomesAmount,
@@ -155,6 +154,7 @@ const Analytics = () => {
             categories.
           </h4>
         </div>
+
         {/** Expense list */}
         {activities.length > 0 ? (
           <>

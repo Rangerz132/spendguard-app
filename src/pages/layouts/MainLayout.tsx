@@ -20,8 +20,6 @@ const MainLayout = () => {
     const fetchActivities = async () => {
       const activities = await getActivities();
       dispatch(setActivities(activities));
-
-      console.log("test");
     };
 
     fetchActivities();

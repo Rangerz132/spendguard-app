@@ -13,7 +13,7 @@ const useActivities = () => {
       ]);
     };
     fetchActivities();
-  }, []);
+  }, [activities]);
 
   /** Return the total expenses amount */
   const getExpensesAmount = (): number => {
@@ -82,16 +82,16 @@ const useActivities = () => {
 
       return expensesAmountByCategories;
     }
-  }, [activities]);
+  }, [activities, activityCategories]);
 
   /** Return the expenses amount per date */
-  const getExpensesAmountByDates = useCallback((): Map<Date, number> => {
-    const expensesAmountByDates = new Map<Date, number>();
+  const getExpensesAmountByDates = useCallback((): Map<string, number> => {
+    const expensesAmountByDates = new Map<string, number>();
 
     activities
       .filter((activity) => activity.is_expense)
       .forEach((activity) => {
-        const date = activity.created_at;
+        const date = activity.created_at as string;
         const amount = Number(activity.amount) || 0;
 
         expensesAmountByDates.set(
@@ -104,13 +104,13 @@ const useActivities = () => {
   }, [activities]);
 
   /** Return the incomes amount per date */
-  const getIncomesAmountByDates = useCallback((): Map<Date, number> => {
-    const incomesAmountByDates = new Map<Date, number>();
+  const getIncomesAmountByDates = useCallback((): Map<string, number> => {
+    const incomesAmountByDates = new Map<string, number>();
 
     activities
       .filter((activity) => !activity.is_expense)
       .forEach((activity) => {
-        const date = activity.created_at;
+        const date = activity.created_at as string;
         const amount = Number(activity.amount) || 0;
 
         incomesAmountByDates.set(

@@ -35,7 +35,6 @@ const ActivityCard = (props: {
 
   const updateActivity = (key: string, value: any) => {
     setActivity({ ...activity, [key]: value });
-    console.log(activity);
   };
 
   const handleToggle = () => {

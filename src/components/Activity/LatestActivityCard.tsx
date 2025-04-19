@@ -29,7 +29,6 @@ const LatestActivityCard = (props: {
 
   useEffect(() => {
     showVisibleActivities(props.activities);
-    console.log(props.activities);
   }, [props.activities]);
 
   const showVisibleActivities = (activities: ActivityType[]) => {
