@@ -5,7 +5,6 @@ import useActivityFilters from "../../hooks/useActivityFilters";
 
 const LatestActivityCard = (props: {
   activities: ActivityType[];
-  setActivities?: React.Dispatch<React.SetStateAction<ActivityType[]>>;
   activitySlotVisibleAmount: number;
   addFilters?: boolean;
 }) => {
@@ -30,12 +29,11 @@ const LatestActivityCard = (props: {
 
   useEffect(() => {
     showVisibleActivities(props.activities);
+    console.log(props.activities);
   }, [props.activities]);
 
   const showVisibleActivities = (activities: ActivityType[]) => {
-    setVisibleActivities(
-      activities.reverse().slice(0, props.activitySlotVisibleAmount)
-    );
+    setVisibleActivities(activities.slice(0, props.activitySlotVisibleAmount));
   };
 
   return (

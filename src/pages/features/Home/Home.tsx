@@ -8,22 +8,24 @@ import EmptyCard from "../../../components/Card/EmptyCard";
 import LinkButton from "../../../components/UI/LinkButton";
 import LatestActivityCard from "../../../components/Activity/LatestActivityCard";
 import { useNavigate } from "react-router";
+import { useSelector } from "react-redux";
+import { RootState } from "../../../store/store";
 
 const Home = () => {
   const { getExpensesAmount, getIncomesAmount, getBalanceAmount, activities } =
     useActivities();
-  const [budgets, setBudgets] = useState<BudgetType[]>([]);
+  // const [budgets, setBudgets] = useState<BudgetType[]>([]);
   const navigate = useNavigate();
   const activityShownAmount = 5;
 
-  useEffect(() => {
-    const fetchBudgets = async () => {
-      const budgetList = await getBudgets();
-      setBudgets(budgetList);
-    };
+  // useEffect(() => {
+  //   const fetchBudgets = async () => {
+  //     const budgetList = await getBudgets();
+  //     setBudgets(budgetList);
+  //   };
 
-    fetchBudgets();
-  }, []);
+  //   fetchBudgets();
+  // }, []);
 
   return (
     <div className="wrapper page-wrapper">
@@ -73,43 +75,7 @@ const Home = () => {
           />
         </div>
       </section>
-      <section>
-        {budgets.length > 0 ? (
-          <section>
-            {/** Title */}
-            <div className="flex flex-row justify-between items-center">
-              {/** Latest activity title */}
-              <h2 className="text-white theme-light:text-black">Budget</h2>
-              {/** View more */}
-              <ViewMore path={"/budgets"} />
-            </div>
-            {/** List of budgets */}
-            {budgets.map((budget, index) =>
-              index === budgets.length - 1 ? (
-                <div
-                  className="card"
-                  key={budget.id}
-                  onClick={() => navigate(`/budget/${budget.id}`)}
-                >
-                  <div className="card-inner">
-                    <h3 className="text-theme-dark-grey theme-light:text-theme-light-dark-grey">
-                      {budget.name}
-                    </h3>
-                  </div>
-                </div>
-              ) : (
-                <></>
-              )
-            )}
-          </section>
-        ) : (
-          <EmptyCard
-            title={"You don't have any budget"}
-            description={"Your budget statistics would appear here"}
-            button={<LinkButton path={"/budget"}>Add a budget</LinkButton>}
-          />
-        )}
-      </section>
+
       <section>
         <div className="flex flex-row justify-between items-center">
           {/** Latest activity title */}

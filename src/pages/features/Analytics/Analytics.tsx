@@ -7,6 +7,8 @@ import EmptyCard from "../../../components/Card/EmptyCard";
 import LinkButton from "../../../components/UI/LinkButton";
 import ExpenseListCard from "../../../components/Expense/ExpenseListCard";
 import CustomBarChart from "../../../components/Chart/CustomBarCart";
+import { useSelector } from "react-redux";
+import { RootState } from "../../../store/store";
 
 const Analytics = () => {
   const [balanceTrends, setBalanceTrends] = useState<any[]>([]);
@@ -21,8 +23,9 @@ const Analytics = () => {
     getExpensesAmountByCategories,
     getExpensesAmountByDates,
     getIncomesAmountByDates,
-    activities,
   } = useActivities();
+
+  const activities = useSelector((root: RootState) => root.activities);
 
   useEffect(() => {
     const expenseData = Array.from(getExpensesAmountByDates()).map(
@@ -54,6 +57,7 @@ const Analytics = () => {
     getExpensesAmountByDates,
     getIncomesAmountByDates,
     getExpensesAmountByCategories,
+    activities,
   ]);
 
   const handleBalanceTrends = (e) => {

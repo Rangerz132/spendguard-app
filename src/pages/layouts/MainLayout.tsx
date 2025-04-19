@@ -8,8 +8,25 @@ import Sidebar from "../../components/Sidebar/Sidebar";
 import Overlay from "../../components/Overlay/Overlay";
 import ActivityOptionCard from "../../components/Option/ActivityOption/ActivityOptionCard";
 import StatusCard from "../../components/Status/StatusCard";
+import { useEffect } from "react";
+import { useDispatch } from "react-redux";
+import { setActivities } from "../../store/activities/activitiesSlice";
+import { getActivities } from "../../services/supabase/activityService";
 
 const MainLayout = () => {
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    const fetchActivities = async () => {
+      const activities = await getActivities();
+      dispatch(setActivities(activities));
+
+      console.log("test");
+    };
+
+    fetchActivities();
+  }, [dispatch]);
+
   return (
     <>
       <PrivateLayout>

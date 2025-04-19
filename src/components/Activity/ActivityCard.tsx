@@ -26,7 +26,7 @@ const ActivityCard = (props: {
       amount: 0,
       is_expense: true,
       category: categoryTypes[0].name,
-      created_at: new Date(),
+      created_at: new Date().toISOString(),
       user_id: null,
     }
   );
@@ -35,6 +35,7 @@ const ActivityCard = (props: {
 
   const updateActivity = (key: string, value: any) => {
     setActivity({ ...activity, [key]: value });
+    console.log(activity);
   };
 
   const handleToggle = () => {

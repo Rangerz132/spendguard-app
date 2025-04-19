@@ -5,6 +5,6 @@ export type ActivityType = {
   amount: number;
   is_expense: boolean;
   category: string;
-  created_at: Date | null;
+  created_at: string | Date | null;
   user_id: string | null;
 };

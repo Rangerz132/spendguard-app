@@ -1,6 +1,6 @@
 import { BiCalendar } from "react-icons/bi";
 import { BiPulse } from "react-icons/bi";
-import { BiHighlight, BiMessageAltAdd } from "react-icons/bi";
+import { BiMessageAltAdd } from "react-icons/bi";
 import { BiHomeAlt, BiBarChartAlt } from "react-icons/bi";
 import { RouteObject, createBrowserRouter } from "react-router";
 import MainLayout from "../pages/layouts/MainLayout";

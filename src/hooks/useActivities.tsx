@@ -1,18 +1,15 @@
 import { useCallback, useEffect, useState } from "react";
-
-import { ActivityType } from "../components/Activity/type/ActivityType";
-import { getActivities } from "../services/supabase/activityService";
+import { useSelector } from "react-redux";
+import { RootState } from "../store/store";
 
 const useActivities = () => {
-  const [activities, setActivities] = useState<ActivityType[]>([]);
+  const activities = useSelector((store: RootState) => store.activities);
   const [activityCategories, setActivityCategory] = useState<string[]>([]);
 
   useEffect(() => {
-    const fetchActivities = async () => {
-      const data = await getActivities();
-      setActivities(data);
+    const fetchActivities = () => {
       setActivityCategory([
-        ...new Set(data.map((activity) => activity.category)),
+        ...new Set(activities.map((activity) => activity.category)),
       ]);
     };
     fetchActivities();

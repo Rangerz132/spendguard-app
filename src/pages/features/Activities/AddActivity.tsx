@@ -4,6 +4,7 @@ import { ActivityType } from "../../../components/Activity/type/ActivityType";
 import { createActivity } from "../../../services/supabase/activityService";
 import { setStatus } from "../../../store/status/statusSlice";
 import ActivityCard from "../../../components/Activity/ActivityCard";
+import { addActivity } from "../../../store/activities/activitiesSlice";
 
 const AddActivity = () => {
   const dispatch = useDispatch();
@@ -14,7 +15,11 @@ const AddActivity = () => {
     activity: ActivityType
   ) => {
     e.preventDefault();
-    await createActivity(activity);
+    await createActivity({
+      ...activity,
+      created_at: new Date(activity.created_at as string),
+    });
+    dispatch(addActivity(activity));
 
     navigate("/");
     dispatch(

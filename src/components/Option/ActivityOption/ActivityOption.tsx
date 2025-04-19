@@ -2,6 +2,7 @@ import { BiHighlight, BiTrash, BiXCircle } from "react-icons/bi";
 import { setStatus } from "../../../store/status/statusSlice";
 import { OptionType } from "../type/OptionType";
 import { deleteActivity } from "../../../services/supabase/activityService";
+import { deleteActivity as deleteActivityRedux } from "../../../store/activities/activitiesSlice";
 
 export const activityModifyOption: OptionType = {
   icon: <BiHighlight />,
@@ -19,6 +20,7 @@ export const activityDeleteOption: OptionType = {
   action: async (data: any) => {
     await deleteActivity(data.id);
     if (data?.dispatch) {
+      data.dispatch(deleteActivityRedux(data.id));
       data.dispatch(
         setStatus({
           message: "You successfully removed an activty.",

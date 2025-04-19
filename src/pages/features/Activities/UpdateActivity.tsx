@@ -1,50 +1,41 @@
 import { useNavigate, useParams } from "react-router";
-import { useEffect, useState } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { ActivityType } from "../../../components/Activity/type/ActivityType";
-import {
-  getActivityById,
-  updateActivity,
-} from "../../../services/supabase/activityService";
 import { setStatus } from "../../../store/status/statusSlice";
 import ActivityCard from "../../../components/Activity/ActivityCard";
 import BackArrowButton from "../../../components/UI/BackArrowButton";
+import { RootState } from "../../../store/store";
+import { updateActivity } from "../../../services/supabase/activityService";
+import { updateActivity as updateActivityRedux } from "../../../store/activities/activitiesSlice";
 
 const UpdateActivity = () => {
   const { id } = useParams();
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  const [activity, setActivity] = useState<ActivityType | null>(null);
 
-  useEffect(() => {
-    const fetchActivity = async () => {
-      if (!id) {
-        return;
-      }
-      const activityData = await getActivityById(id);
-      setActivity(activityData);
-    };
+  const activity = useSelector((state: RootState) =>
+    state.activities.find((activity) => activity.id === id)
+  );
 
-    fetchActivity();
-  }, [id]);
-
-  const handleSubmit = (
+  const handleSubmit = async (
     e: React.FormEvent<HTMLFormElement>,
     updatedActivity: ActivityType
   ) => {
     e.preventDefault();
-    setActivity(() => ({ ...updatedActivity }));
+    await updateActivity({
+      ...updatedActivity,
+      created_at: new Date(updatedActivity.created_at as string),
+    } as ActivityType);
 
-    updateActivity(updatedActivity as ActivityType).then(() => {
-      navigate("/");
-      dispatch(
-        setStatus({
-          message: "You successfully updated an activity",
-          isShowed: true,
-          isValid: true,
-        })
-      );
-    });
+    dispatch(updateActivityRedux(updatedActivity as ActivityType));
+    navigate("/");
+    dispatch(
+      setStatus({
+        message: "You successfully updated an activity",
+        isShowed: true,
+        isValid: true,
+      })
+    );
   };
 
   return (
