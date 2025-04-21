@@ -11,7 +11,7 @@ import { ValidatorService } from "../../services/inputValidation";
 import { AuthContext, useAuthContext } from "../../contexts/AuthContext";
 import supabase from "../../config/supabaseConfig";
 
-const ActivityCard = (props: {
+const ActivityFormCard = (props: {
   initialActivity?: ActivityType;
   onSubmit: (
     e: React.FormEvent<HTMLFormElement>,
@@ -181,4 +181,4 @@ const ActivityCard = (props: {
   );
 };
 
-export default ActivityCard;
+export default ActivityFormCard;

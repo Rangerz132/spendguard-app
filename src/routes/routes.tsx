@@ -13,6 +13,7 @@ import UpdateActivity from "../pages/features/Activities/UpdateActivity";
 import Analytics from "../pages/features/Analytics/Analytics";
 import Activities from "../pages/features/Activities/Activities";
 import Budget from "../pages/features/Budgets/Budget";
+import AddBudget from "../pages/features/Budgets/AddBudget";
 
 const authRoutes = [
   {
@@ -25,7 +26,7 @@ const authRoutes = [
   },
 ];
 
-const optionRoutes = [
+const dynamicRoutes = [
   {
     path: "/updateActivity/:id",
     element: <UpdateActivity />,
@@ -38,6 +39,13 @@ const optionRoutes = [
     element: <Budget />,
     name: "Budget",
     id: "budget",
+    icon: null,
+  },
+  {
+    path: "/addBudget",
+    element: <AddBudget />,
+    name: "AddBudget",
+    id: "addBudget",
     icon: null,
   },
 ];
@@ -86,7 +94,7 @@ const mainRoutes = {
 
 export const routes: RouteObject[] = [
   ...authRoutes,
-  ...optionRoutes,
+  ...dynamicRoutes,
   mainRoutes,
 ];
 

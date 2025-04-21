@@ -3,8 +3,8 @@ import { useNavigate } from "react-router";
 import { ActivityType } from "../../../components/Activity/type/ActivityType";
 import { createActivity } from "../../../services/supabase/activityService";
 import { setStatus } from "../../../store/status/statusSlice";
-import ActivityCard from "../../../components/Activity/ActivityCard";
 import { addActivity } from "../../../store/activities/activitiesSlice";
+import ActivityFormCard from "../../../components/Activity/ActivityFormCard";
 
 const AddActivity = () => {
   const dispatch = useDispatch();
@@ -37,7 +37,7 @@ const AddActivity = () => {
         <h2 className="text-white theme-light:text-black">
           Create a new activity
         </h2>
-        <ActivityCard onSubmit={handleSubmit} />
+        <ActivityFormCard onSubmit={handleSubmit} />
       </section>
     </div>
   );

@@ -12,6 +12,8 @@ import { useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { setActivities } from "../../store/activities/activitiesSlice";
 import { getActivities } from "../../services/supabase/activityService";
+import { setBudgets } from "../../store/budgets/budgetsSlice";
+import { getBudgets } from "../../services/supabase/budgetService";
 
 const MainLayout = () => {
   const dispatch = useDispatch();
@@ -20,6 +22,9 @@ const MainLayout = () => {
     const fetchActivities = async () => {
       const activities = await getActivities();
       dispatch(setActivities(activities));
+
+      const budgets = await getBudgets();
+      dispatch(setBudgets(budgets));
     };
 
     fetchActivities();

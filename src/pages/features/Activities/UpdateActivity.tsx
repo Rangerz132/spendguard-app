@@ -2,11 +2,11 @@ import { useNavigate, useParams } from "react-router";
 import { useDispatch, useSelector } from "react-redux";
 import { ActivityType } from "../../../components/Activity/type/ActivityType";
 import { setStatus } from "../../../store/status/statusSlice";
-import ActivityCard from "../../../components/Activity/ActivityCard";
 import BackArrowButton from "../../../components/UI/BackArrowButton";
 import { RootState } from "../../../store/store";
 import { updateActivity } from "../../../services/supabase/activityService";
 import { updateActivity as updateActivityRedux } from "../../../store/activities/activitiesSlice";
+import ActivityFormCard from "../../../components/Activity/ActivityFormCard";
 
 const UpdateActivity = () => {
   const { id } = useParams();
@@ -47,7 +47,10 @@ const UpdateActivity = () => {
         </div>
 
         {activity && (
-          <ActivityCard onSubmit={handleSubmit} initialActivity={activity} />
+          <ActivityFormCard
+            onSubmit={handleSubmit}
+            initialActivity={activity}
+          />
         )}
       </section>
     </div>

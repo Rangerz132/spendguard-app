@@ -1,22 +1,12 @@
-import { useEffect, useState } from "react";
-import { BudgetType } from "../../../components/Budget/type/BudgetType";
-import { getBudgets } from "../../../services/supabase/budgetService";
+import { useSelector } from "react-redux";
 import EmptyCard from "../../../components/Card/EmptyCard";
 import LinkButton from "../../../components/UI/LinkButton";
 import { useNavigate } from "react-router";
+import { RootState } from "../../../store/store";
 
 const Budgets = () => {
-  const [budgets, setBudgets] = useState<BudgetType[]>([]);
   const navigate = useNavigate();
-
-  useEffect(() => {
-    const fetchBudgets = async () => {
-      const budgetList = await getBudgets();
-      setBudgets(budgetList);
-    };
-
-    fetchBudgets();
-  }, []);
+  const budgets = useSelector((root: RootState) => root.budgets);
 
   return (
     <div className="wrapper page-wrapper">
@@ -25,7 +15,7 @@ const Budgets = () => {
           {/** Title */}
           <h2 className="text-white theme-light:text-black">Budgets</h2>
           {/** List of budgets */}
-          {budgets.reverse().map((budget) => (
+          {budgets.map((budget) => (
             <div
               className="card"
               key={budget.id}
@@ -39,12 +29,13 @@ const Budgets = () => {
               </div>
             </div>
           ))}
+          <LinkButton path={"/addBudget"}>Add a new budget</LinkButton>
         </section>
       ) : (
         <EmptyCard
           title={"You don't have any budget"}
           description={"Your budget statistics would appear here"}
-          button={<LinkButton path={"/budget"}>Add a budget</LinkButton>}
+          button={<LinkButton path={"/budget"}>Add a new budget</LinkButton>}
         />
       )}
     </div>
