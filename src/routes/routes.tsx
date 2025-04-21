@@ -14,6 +14,8 @@ import Analytics from "../pages/features/Analytics/Analytics";
 import Activities from "../pages/features/Activities/Activities";
 import Budget from "../pages/features/Budgets/Budget";
 import AddBudget from "../pages/features/Budgets/AddBudget";
+import ActivityCategory from "../pages/features/Activities/ActivityCategory";
+import DynamicLayout from "../pages/layouts/DynamicLayout";
 
 const authRoutes = [
   {
@@ -29,24 +31,51 @@ const authRoutes = [
 const dynamicRoutes = [
   {
     path: "/updateActivity/:id",
-    element: <UpdateActivity />,
-    name: "Update Activity",
-    id: "updateActivity",
-    icon: null,
+    element: <DynamicLayout />,
+    children: [
+      {
+        path: "",
+        element: <UpdateActivity />,
+        name: "Update Activity",
+        id: "updateActivity",
+      },
+    ],
+  },
+  {
+    path: "/activityCategory/:category",
+    element: <DynamicLayout />,
+    children: [
+      {
+        path: "",
+        element: <ActivityCategory />,
+        name: "Activity Category",
+        id: "activityCategory",
+      },
+    ],
   },
   {
     path: "/budget/:id",
-    element: <Budget />,
-    name: "Budget",
-    id: "budget",
-    icon: null,
+    element: <DynamicLayout />,
+    children: [
+      {
+        path: "",
+        element: <Budget />,
+        name: "Budget",
+        id: "budget",
+      },
+    ],
   },
   {
     path: "/addBudget",
-    element: <AddBudget />,
-    name: "AddBudget",
-    id: "addBudget",
-    icon: null,
+    element: <DynamicLayout />,
+    children: [
+      {
+        path: "",
+        element: <AddBudget />,
+        name: "AddBudget",
+        id: "addBudget",
+      },
+    ],
   },
 ];
 

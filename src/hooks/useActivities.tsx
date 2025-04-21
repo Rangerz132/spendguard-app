@@ -1,6 +1,7 @@
 import { useCallback, useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import { RootState } from "../store/store";
+import { ActivityType } from "../components/Activity/type/ActivityType";
 
 const useActivities = () => {
   const activities = useSelector((store: RootState) => store.activities);
@@ -122,6 +123,10 @@ const useActivities = () => {
     return incomesAmountByDates;
   }, [activities]);
 
+  const getActitiviesByCategory = (category: string): ActivityType[] => {
+    return [...activities].filter((activity) => activity.category === category);
+  };
+
   return {
     getExpensesAmount,
     getIncomesAmount,
@@ -130,6 +135,7 @@ const useActivities = () => {
     getExpensesAmountByCategories,
     getExpensesAmountByDates,
     getIncomesAmountByDates,
+    getActitiviesByCategory,
     activities,
     activityCategories,
   };

@@ -1,6 +1,7 @@
 import React, { JSX } from "react";
 import { getFullCategory } from "../Activity/type/ActivityCategoryType";
 import StatIndicator from "../StatIndicator/StatIndicator";
+import { useNavigate } from "react-router";
 
 const ExpenseCard = (props: {
   className?: string;
@@ -8,8 +9,12 @@ const ExpenseCard = (props: {
   value: number;
 }) => {
   const category = getFullCategory(props.category);
+  const navigate = useNavigate();
   return (
-    <div className={`${props.className} card min-w-40 shrink-0`}>
+    <div
+      onClick={() => navigate(`/activityCategory/${props.category}`)}
+      className={`${props.className} card min-w-40 shrink-0`}
+    >
       <div className="card-inner ">
         <div className="flex flex-row space-x-2 items-center">
           {/** Icon category*/}
