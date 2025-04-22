@@ -45,7 +45,7 @@ const LatestActivityCard = (props: {
         {/** Activity filter selection */}
         {props.addFilters && (
           <select
-            className="text-xs"
+            className="text-xs border-0"
             onChange={(event) => {
               const selectedFilter =
                 filterMap[event.target.value as keyof typeof filterMap];

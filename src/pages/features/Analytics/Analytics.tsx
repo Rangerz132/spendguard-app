@@ -119,7 +119,7 @@ const Analytics = () => {
                   </h3>
                   {/** Activity type selection */}
                   <select
-                    className="text-xs"
+                    className="text-xs border-0"
                     onChange={(e) => handleBalanceTrends(e)}
                   >
                     <option value="expenses">Expenses</option>
