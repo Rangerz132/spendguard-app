@@ -13,7 +13,7 @@ const ExpenseCard = (props: {
   return (
     <div
       onClick={() => navigate(`/activityCategory/${props.category}`)}
-      className={`${props.className} card min-w-40 shrink-0`}
+      className={`${props.className} card min-w-40 shrink-0 cursor-pointer`}
     >
       <div className="card-inner ">
         <div className="flex flex-row space-x-2 items-center">

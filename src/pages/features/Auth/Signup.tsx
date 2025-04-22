@@ -53,28 +53,45 @@ const Signup = () => {
         </div>
 
         <form onSubmit={handleSignUp}>
-          <div className="flex flex-col space-y-6">
+          <div className="flex flex-col space-y-4">
             {/** Name input */}
-            <input
-              onChange={(e) => setDisplayName(e.target.value)}
-              placeholder="Full Name"
-              type="text"
-              className="border border-theme-dark-grey theme-light:border-theme-light-grey "
-            ></input>
+            <div className="w-full flex flex-col space-y-2">
+              <label className="text-theme-dark-grey text-sm theme-light:text-theme-light-dark-grey">
+                Full Name
+              </label>
+              <input
+                onChange={(e) => setDisplayName(e.target.value)}
+                placeholder="John Doe"
+                type="text"
+                className="border border-theme-dark-grey theme-light:border-theme-light-grey "
+              ></input>
+            </div>
+
             {/** Email input */}
-            <input
-              onChange={(e) => setEmail(e.target.value)}
-              placeholder="Email"
-              type="email"
-              className="border border-theme-dark-grey theme-light:border-theme-light-grey "
-            ></input>
+            <div className="w-full flex flex-col space-y-2">
+              <label className="text-theme-dark-grey text-sm theme-light:text-theme-light-dark-grey">
+                Email
+              </label>
+              <input
+                onChange={(e) => setEmail(e.target.value)}
+                placeholder="john.doe@hotmail.com"
+                type="email"
+                className="border border-theme-dark-grey  theme-light:border-theme-light-grey w-full"
+              ></input>
+            </div>
+
             {/** Password input */}
-            <input
-              onChange={(e) => setPassword(e.target.value)}
-              placeholder="Password"
-              type="password"
-              className="border border-theme-dark-grey  theme-light:border-theme-light-grey "
-            ></input>
+            <div className="w-full flex flex-col space-y-2">
+              <label className="text-theme-dark-grey text-sm theme-light:text-theme-light-dark-grey">
+                Password
+              </label>
+              <input
+                onChange={(e) => setPassword(e.target.value)}
+                placeholder=""
+                type="password"
+                className="border border-theme-dark-grey theme-light:border-theme-light-grey"
+              ></input>
+            </div>
             {/** Signup button */}
             <Button className="cta" type="submit">
               Sign up
