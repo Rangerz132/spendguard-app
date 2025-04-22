@@ -7,6 +7,8 @@ import supabase from "../../config/supabaseConfig";
 import FieldError from "../Form/FieldError";
 import LinkButton from "../UI/LinkButton";
 import Button from "../UI/Button";
+import BudgetCategorySelection from "./BudgetCategorySelection";
+import BudgetCategoryEdit from "./BudgetCategoryEdit";
 
 const BudgetFormCard = (props: {
   initialBudget?: BudgetType;
@@ -55,69 +57,98 @@ const BudgetFormCard = (props: {
   };
 
   return (
-    <div className="card">
-      <form
-        className="flex flex-col space-y-4"
-        onSubmit={(e) => handleSubmit(e)}
-      >
-        <div className="flex flex-col space-y-2 relative">
-          <label className="text-white theme-light:text-black">
-            <span className="text-indigo">*</span> Name
-          </label>
-          <input
-            type="text"
-            name="name"
-            placeholder="Enter a name..."
-            defaultValue={props.initialBudget?.name || ""}
-            onChange={(e) =>
-              updateBudget(e.currentTarget.name, e.currentTarget.value)
-            }
-          ></input>
-          <FieldError
-            message={errors.name}
-            className="absolute right-0 top-0 text-right"
-          />
-        </div>
+    <>
+      <div className="card">
+        <form
+          className="flex flex-col space-y-4"
+          onSubmit={(e) => handleSubmit(e)}
+        >
+          <div className="flex flex-col space-y-2 relative">
+            <label className="text-white theme-light:text-black">
+              <span className="text-indigo">*</span> Name
+            </label>
+            <input
+              type="text"
+              name="name"
+              placeholder="Enter a name..."
+              defaultValue={props.initialBudget?.name || ""}
+              onChange={(e) =>
+                updateBudget(e.currentTarget.name, e.currentTarget.value)
+              }
+            ></input>
+            <FieldError
+              message={errors.name}
+              className="absolute right-0 top-0 text-right"
+            />
+          </div>
 
-        {/** Description */}
-        <div className="flex flex-col space-y-2">
-          <label className="text-white theme-light:text-black">
-            Description
-          </label>
-          <textarea
-            name="description"
-            placeholder="Enter a description..."
-            defaultValue={props.initialBudget?.description || ""}
-            onChange={(e) =>
-              updateBudget(e.currentTarget.name, e.currentTarget.value)
-            }
-          ></textarea>
-        </div>
-        {/** Categories */}
-        <div className="flex flex-col space-y-2">
-          <label className="text-white theme-light:text-black">
-            <span className="text-indigo">*</span> Categories
-          </label>
-          <LinkButton path={"/"} className="cta">
-            Add a new category
-          </LinkButton>
-        </div>
-        {/** Date */}
-        <div className="flex flex-col space-y-2">
-          <label className="text-white theme-light:text-black">
-            <span className="text-indigo">*</span> Select a date limit
-          </label>
-          <input
-            name="description"
-            type="date"
-            onChange={(e) =>
-              updateBudget(e.currentTarget.name, e.currentTarget.value)
-            }
-          ></input>
-        </div>
-        <Button className="cta">Add budget</Button>
-      </form>
-    </div>
+          {/** Description */}
+          <div className="flex flex-col space-y-2">
+            <label className="text-white theme-light:text-black">
+              Description
+            </label>
+            <textarea
+              name="description"
+              placeholder="Enter a description..."
+              defaultValue={props.initialBudget?.description || ""}
+              onChange={(e) =>
+                updateBudget(e.currentTarget.name, e.currentTarget.value)
+              }
+            ></textarea>
+          </div>
+          {/** Date */}
+          <div className="flex flex-row items-center justify-between">
+            <div className="flex flex-col space-y-2">
+              <label className="text-white theme-light:text-black">
+                <span className="text-indigo">*</span> From
+              </label>
+              <input
+                name="description"
+                type="date"
+                onChange={(e) =>
+                  updateBudget(e.currentTarget.name, e.currentTarget.value)
+                }
+              ></input>
+            </div>
+            <div className="flex flex-col space-y-2">
+              <label className="text-white theme-light:text-black">
+                <span className="text-indigo">*</span> To
+              </label>
+              <input
+                name="description"
+                type="date"
+                onChange={(e) =>
+                  updateBudget(e.currentTarget.name, e.currentTarget.value)
+                }
+              ></input>
+            </div>
+          </div>
+
+          {/** Categories */}
+          <div className="flex flex-col space-y-2">
+            <label className="text-white theme-light:text-black">
+              <span className="text-indigo">*</span> Categories
+            </label>
+            <LinkButton path={"/"} className="cta">
+              Add a new category
+            </LinkButton>
+          </div>
+
+          <Button className="cta">Add budget</Button>
+        </form>
+      </div>
+      <BudgetCategorySelection />
+      <BudgetCategoryEdit
+        budgetCategoryType={{
+          id: "",
+          created_at: null,
+          category: "music",
+          amount: 0,
+          user_id: "",
+          budget_id: "",
+        }}
+      />
+    </>
   );
 };
 

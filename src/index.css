@@ -43,7 +43,7 @@
   }
 
   label {
-    @apply font-roboto text-lg;
+    @apply font-roboto;
   }
 
   input {

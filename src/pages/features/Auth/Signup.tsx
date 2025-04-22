@@ -56,7 +56,7 @@ const Signup = () => {
           <div className="flex flex-col space-y-4">
             {/** Name input */}
             <div className="w-full flex flex-col space-y-2">
-              <label className="text-theme-dark-grey text-sm theme-light:text-theme-light-dark-grey">
+              <label className="text-white text-sm theme-light:text-black">
                 Full Name
               </label>
               <input
@@ -69,7 +69,7 @@ const Signup = () => {
 
             {/** Email input */}
             <div className="w-full flex flex-col space-y-2">
-              <label className="text-theme-dark-grey text-sm theme-light:text-theme-light-dark-grey">
+              <label className="text-white text-sm theme-light:text-black">
                 Email
               </label>
               <input
@@ -82,7 +82,7 @@ const Signup = () => {
 
             {/** Password input */}
             <div className="w-full flex flex-col space-y-2">
-              <label className="text-theme-dark-grey text-sm theme-light:text-theme-light-dark-grey">
+              <label className="text-white text-sm theme-light:text-black">
                 Password
               </label>
               <input
