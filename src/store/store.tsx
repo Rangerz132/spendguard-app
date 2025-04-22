@@ -3,6 +3,7 @@ import detailsSlice from "./details/detailsSlice";
 import statusSlice from "./status/statusSlice";
 import activitiesSlice from "./activities/activitiesSlice";
 import budgetsSlice from "./budgets/budgetsSlice";
+import budgetCategoriesSlice from "./budgetCategories/budgetCategoriesSlice";
 
 export const store = configureStore({
   reducer: {
@@ -10,6 +11,7 @@ export const store = configureStore({
     status: statusSlice,
     activities: activitiesSlice,
     budgets: budgetsSlice,
+    budgetCategories: budgetCategoriesSlice,
   },
 });
 

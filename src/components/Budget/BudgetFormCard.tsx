@@ -6,6 +6,7 @@ import { ValidatorService } from "../../services/inputValidation";
 import supabase from "../../config/supabaseConfig";
 import FieldError from "../Form/FieldError";
 import LinkButton from "../UI/LinkButton";
+import Button from "../UI/Button";
 
 const BudgetFormCard = (props: {
   initialBudget?: BudgetType;
@@ -92,6 +93,15 @@ const BudgetFormCard = (props: {
             }
           ></textarea>
         </div>
+        {/** Categories */}
+        <div className="flex flex-col space-y-2">
+          <label className="text-white theme-light:text-black">
+            <span className="text-indigo">*</span> Categories
+          </label>
+          <LinkButton path={"/"} className="cta">
+            Add a new category
+          </LinkButton>
+        </div>
         {/** Date */}
         <div className="flex flex-col space-y-2">
           <label className="text-white theme-light:text-black">
@@ -105,13 +115,7 @@ const BudgetFormCard = (props: {
             }
           ></input>
         </div>
-        {/** Categories */}
-        <div className="flex flex-col space-y-2">
-          <label className="text-white theme-light:text-black">
-            <span className="text-indigo">*</span> Categories
-          </label>
-          <LinkButton path={"/"}>Add a new category</LinkButton>
-        </div>
+        <Button className="cta">Add budget</Button>
       </form>
     </div>
   );

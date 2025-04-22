@@ -1,3 +1,4 @@
+import { BiChevronRight } from "react-icons/bi";
 import useActivities from "../../../hooks/useActivities";
 import ViewMore from "../../../components/UI/ViewMore";
 import Card from "../../../components/Card/Card";
@@ -7,6 +8,7 @@ import LatestActivityCard from "../../../components/Activity/LatestActivityCard"
 import { useNavigate } from "react-router";
 import { useSelector } from "react-redux";
 import { RootState } from "../../../store/store";
+import BudgetLimitCard from "../../../components/Budget/BudgetLimitCard";
 
 const Home = () => {
   const { getExpensesAmount, getIncomesAmount, getBalanceAmount, activities } =
@@ -22,7 +24,9 @@ const Home = () => {
           {/** Overview title */}
           <h2 className="text-white theme-light:text-black">Overview</h2>
           {/** View more */}
-          <ViewMore path={"/analytics"} />
+          <LinkButton path={"/analytics"}>
+            <BiChevronRight className="text-theme-dark-grey icon " />
+          </LinkButton>
         </div>
         {/** Balance title */}
         <Card
@@ -64,40 +68,37 @@ const Home = () => {
         </div>
       </section>
       <section>
-        {/** */}
+        {/** Budgets */}
+
+        {/** Title */}
+        <div className="flex flex-row justify-between items-center">
+          {/** Latest activity title */}
+          <h2 className="text-white theme-light:text-black">Budget</h2>
+          {/** View more */}
+          <LinkButton path={"/budgets"}>
+            <BiChevronRight className="text-theme-dark-grey icon " />
+          </LinkButton>
+        </div>
         {budgets.length > 0 ? (
-          <section>
-            {/** Title */}
-            <div className="flex flex-row justify-between items-center">
-              {/** Latest activity title */}
-              <h2 className="text-white theme-light:text-black">Budget</h2>
-              {/** View more */}
-              <ViewMore path={"/budgets"} />
-            </div>
-            {/** List of budgets */}
-            {budgets.map((budget, index) =>
-              index === budgets.length - 1 ? (
-                <div
-                  className="card"
-                  key={budget.id}
-                  onClick={() => navigate(`/budget/${budget.id}`)}
-                >
-                  <div className="card-inner">
-                    <h3 className="text-theme-dark-grey theme-light:text-theme-light-dark-grey">
-                      {budget.name}
-                    </h3>
-                  </div>
-                </div>
-              ) : (
-                <></>
-              )
-            )}
-          </section>
+          budgets
+            .slice(-1)
+            .map((budget) => (
+              <BudgetLimitCard
+                budget={budget}
+                budgetTitle={budget.name || budget.id}
+                key={budget.id}
+                onClick={() => navigate(`/budget/${budget.id}`)}
+              />
+            ))
         ) : (
           <EmptyCard
             title={"You don't have any budget"}
             description={"Your budget statistics would appear here"}
-            button={<LinkButton path={"/budget"}>Add a budget</LinkButton>}
+            button={
+              <LinkButton path={"/addBudget"} className="cta">
+                Add a budget
+              </LinkButton>
+            }
           />
         )}
       </section>
@@ -108,7 +109,9 @@ const Home = () => {
             Latest activities
           </h2>
           {/** View more */}
-          <ViewMore path={"/activities"} />
+          <LinkButton path={"/activities"}>
+            <BiChevronRight className="text-theme-dark-grey icon " />
+          </LinkButton>
         </div>
         {/** Activities */}
         {activities.length > 0 ? (
@@ -120,7 +123,11 @@ const Home = () => {
           <EmptyCard
             title={"You don't have any activities"}
             description={"List of activities you've created will appear here."}
-            button={<LinkButton path={"/addActivity"}>Add activity</LinkButton>}
+            button={
+              <LinkButton path={"/addActivity"} className="cta">
+                Add activity
+              </LinkButton>
+            }
           />
         )}
       </section>

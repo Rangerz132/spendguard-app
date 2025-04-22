@@ -1,3 +1,4 @@
+import { BiPlus } from "react-icons/bi";
 import { useEffect, useState } from "react";
 import { useParams } from "react-router";
 import { BudgetType } from "../../../components/Budget/type/BudgetType";
@@ -6,13 +7,16 @@ import BackArrowButton from "../../../components/UI/BackArrowButton";
 import { BudgetCategoryType } from "../../../components/Budget/type/BudgetCategoryType";
 import { getBudgetCategoriesByBudgetId } from "../../../services/supabase/budgetCategoryService";
 import BudgetCategoryCard from "../../../components/Budget/BudgetCategoryCard";
+import { format } from "date-fns";
+import Gauge from "../../../components/UI/Gauge";
+import LinkButton from "../../../components/UI/LinkButton";
+import BudgetLimitCard from "../../../components/Budget/BudgetLimitCard";
 
 const Budget = () => {
   const [budget, setBudget] = useState<BudgetType | null>(null);
   const [budgetCategories, setBudgetCategories] = useState<
     BudgetCategoryType[]
   >([]);
-
   const { id } = useParams();
 
   useEffect(() => {
@@ -53,18 +57,33 @@ const Budget = () => {
               </h2>
             </div>
             {/** Description */}
-            <p className="text-theme-dark-grey">{budget.description}</p>
+            <p className="text-theme-dark-grey theme-light:text-theme-light-dark-grey">
+              {budget.description}
+            </p>
           </div>
           {/** Total */}
-          <div className="card"></div>
+          <BudgetLimitCard budget={budget} budgetTitle={"Your limit"} />
           {/** Categories */}
-          <div className="grid grid-cols-2 gap-4">
-            {budgetCategories.map((budgetCategory) => (
-              <BudgetCategoryCard
-                data={budgetCategory}
-                key={budgetCategory.id}
-              />
-            ))}
+          <div className="flex flex-col space-y-2">
+            <div className="flex flex-row items-center justify-between">
+              {/** Title */}
+              <h2 className="text-white theme-light:text-black">
+                Budget categories
+              </h2>
+              <LinkButton path={""}>
+                <BiPlus className="icon text-theme-dark-grey" />
+              </LinkButton>
+            </div>
+
+            {/** Budget Category list */}
+            <div className="grid grid-cols-2 gap-4">
+              {budgetCategories.map((budgetCategory) => (
+                <BudgetCategoryCard
+                  data={budgetCategory}
+                  key={budgetCategory.id}
+                />
+              ))}
+            </div>
           </div>
         </div>
       )}

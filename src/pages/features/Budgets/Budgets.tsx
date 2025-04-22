@@ -3,6 +3,8 @@ import EmptyCard from "../../../components/Card/EmptyCard";
 import LinkButton from "../../../components/UI/LinkButton";
 import { useNavigate } from "react-router";
 import { RootState } from "../../../store/store";
+import BudgetLimitCard from "../../../components/Budget/BudgetLimitCard";
+import { BiPlus } from "react-icons/bi";
 
 const Budgets = () => {
   const navigate = useNavigate();
@@ -10,34 +12,36 @@ const Budgets = () => {
 
   return (
     <div className="wrapper page-wrapper">
-      {budgets.length > 0 ? (
-        <section>
+      <section>
+        {/** Title */}
+        <div className="flex flex-row items-center justify-between">
           {/** Title */}
           <h2 className="text-white theme-light:text-black">Budgets</h2>
-          {/** List of budgets */}
-          {budgets.map((budget) => (
-            <div
-              className="card"
+          <LinkButton path={"/addBudget"}>
+            <BiPlus className="icon text-theme-dark-grey" />
+          </LinkButton>
+        </div>
+        {budgets.length > 0 ? (
+          budgets.map((budget) => (
+            <BudgetLimitCard
+              budget={budget}
+              budgetTitle={budget.name || budget.id}
               key={budget.id}
               onClick={() => navigate(`/budget/${budget.id}`)}
-            >
-              <div className="card-inner">
-                {/** Chart title */}
-                <h3 className="text-theme-dark-grey theme-light:text-theme-light-dark-grey">
-                  {budget.name}
-                </h3>
-              </div>
-            </div>
-          ))}
-          <LinkButton path={"/addBudget"}>Add a new budget</LinkButton>
-        </section>
-      ) : (
-        <EmptyCard
-          title={"You don't have any budget"}
-          description={"Your budget statistics would appear here"}
-          button={<LinkButton path={"/budget"}>Add a new budget</LinkButton>}
-        />
-      )}
+            />
+          ))
+        ) : (
+          <EmptyCard
+            title={"You don't have any budget"}
+            description={"Your budget statistics would appear here"}
+            button={
+              <LinkButton path={"/addBudget"} className="cta">
+                Add a new budget
+              </LinkButton>
+            }
+          />
+        )}
+      </section>
     </div>
   );
 };

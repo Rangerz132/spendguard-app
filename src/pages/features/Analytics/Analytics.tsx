@@ -135,16 +135,18 @@ const Analytics = () => {
           <EmptyCard
             title={"You don't have any activities"}
             description={"List of activities you've created will appear here."}
-            button={<LinkButton path={"/addActivity"}>Add activity</LinkButton>}
+            button={
+              <LinkButton path={"/addActivity"} className="cta">
+                Add activity
+              </LinkButton>
+            }
           />
         )}
       </section>
       <section>
         <div className="flex flex-col space-y-1">
           {/** Expenses title */}
-          <h2 className="text-white theme-light:text-black">
-            Expenses this month
-          </h2>
+          <h2 className="text-white theme-light:text-black">Mothly expenses</h2>
           {/** Expenses subtitle */}
           <h4 className="text-theme-dark-grey text-sm theme-light:text-theme-light-dark-grey">
             You spend money in{" "}
@@ -173,7 +175,11 @@ const Analytics = () => {
           <EmptyCard
             title={"You don't have any activities"}
             description={"List of activities you've created will appear here."}
-            button={<LinkButton path={"/addActivity"}>Add activity</LinkButton>}
+            button={
+              <LinkButton path={"/addActivity"} className="cta">
+                Add activity
+              </LinkButton>
+            }
           />
         )}
       </section>

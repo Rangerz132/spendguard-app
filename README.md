@@ -11,16 +11,12 @@ At the time of writing, SpendGuard is still under active development.
 ### Upcoming features / improvements
 
 - Add a "Create Budget" page (In Progess)
-- Improve the "SignIn" / "SignUp" page visually (In Progess)
-- Implement the date comparaison (To Do)
-- Improve the performence globally (To Do)
-- Add an "Onboarding" page (To Do)
+- Implement the date comparaison logic (To Do)
 - Add an "Edit Profile" page (To Do)
+- Improve the "Empty Card" component visually (To Do)
+- Improve the "SignIn" / "SignUp" page visually (To Do)
+- Add an "Onboarding" page (To Do)
 - Enhance responsiveness for different devices (To Do)
-
-## Known bugs
-
-- Showcase correctly activities when an activity is deleted (In Progess)
 
 ## Getting started
 
@@ -53,7 +49,9 @@ npm run dev
 
 - Analytics & Charts: Gain insights into spending patterns with dynamic visualizations.
 
-- User Authentication: Secure login and account management using Auth0.
+- Budget: Create meaningful budgets to keep track of your objectives. (In Progress)
+
+- User Authentication: Secure login and account management using OAuth.
 
 - Modular Components: Well-structured, reusable components for easy maintenance and scalability.
 

@@ -44,7 +44,7 @@ const Activities = () => {
           <EmptyCard
             title={"You don't have any activities"}
             description={"List of activities you've created will appear here."}
-            button={<LinkButton path={"/addActivity"}>Add activity</LinkButton>}
+            button={<LinkButton path={"/addActivity"} className="cta">Add activity</LinkButton>}
           />
         )}
       </section>
