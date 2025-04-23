@@ -1,13 +1,15 @@
-import React from "react";
 import { BudgetType } from "./type/BudgetType";
 import Gauge from "../UI/Gauge";
 import { format } from "date-fns";
+import useBudgets from "../../hooks/useBudgets";
 
 const BudgetLimitCard = (props: {
   budget: BudgetType;
   budgetTitle: string;
   onClick?: () => void;
 }) => {
+  const { getAmountByBudget } = useBudgets();
+
   return (
     <div className="card" onClick={props.onClick}>
       <div className="flex flex-col space-y-4">
@@ -28,9 +30,9 @@ const BudgetLimitCard = (props: {
           </div>
           {/** Amount */}
           <div className="flex flex-row items-end space-x-1">
-            <h1 className="text-white theme-light:text-black ">${200}</h1>
+            <h1 className="text-white theme-light:text-black ">$200</h1>
             <h3 className="text-theme-dark-grey theme-light:text-theme-light-dark-grey">
-              /300
+              /{getAmountByBudget(props.budget.id)}
             </h3>
           </div>
         </div>

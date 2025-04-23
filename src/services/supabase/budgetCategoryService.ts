@@ -59,3 +59,38 @@ export const getBudgetCategoryById = async (
 
   return data as BudgetCategoryType;
 };
+
+// POST
+export const createBudgetCategory = async (
+  budgetCategory: BudgetCategoryType
+): Promise<BudgetCategoryType | null> => {
+  const { data, error } = await supabase
+    .from("budget_category")
+    .insert([budgetCategory])
+    .select()
+    .single();
+
+  if (error) {
+    console.error("Error creating budget category:", error);
+    return null;
+  }
+
+  return data;
+};
+
+// POST
+export const createBudgetCategories = async (
+  budgetCategories: BudgetCategoryType[]
+): Promise<BudgetCategoryType[] | null> => {
+  const { data, error } = await supabase
+    .from("budget_category")
+    .insert(budgetCategories)
+    .select();
+
+  if (error) {
+    console.error("Error creating budget categories:", error);
+    return null;
+  }
+
+  return data;
+};

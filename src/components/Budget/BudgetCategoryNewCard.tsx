@@ -7,6 +7,7 @@ import {
 
 const BudgetCategoryNewCard = (props: {
   budgetCategory: BudgetCategoryType;
+  onClick: (budgetCategory: BudgetCategoryType) => void;
 }) => {
   const [activityCategory, setActivityCategory] =
     useState<ActivityCategoryType | null>(null);
@@ -17,7 +18,7 @@ const BudgetCategoryNewCard = (props: {
   }, []);
   return (
     activityCategory && (
-      <div className="card">
+      <div className="card" onClick={() => props.onClick(props.budgetCategory)}>
         <div className="card-inner ">
           <div className="flex flex-row space-x-2 items-center">
             {/** Icon category*/}

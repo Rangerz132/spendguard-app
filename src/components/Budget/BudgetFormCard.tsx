@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { v4 as uuidv4 } from "uuid";
 import { BudgetType } from "./type/BudgetType";
 import { AuthContext, useAuthContext } from "../../contexts/AuthContext";
@@ -17,7 +17,11 @@ import BudgetCategoryNewCard from "./BudgetCategoryNewCard";
 
 const BudgetFormCard = (props: {
   initialBudget?: BudgetType;
-  onSubmit: (e: React.FormEvent<HTMLFormElement>, budget: BudgetType) => void;
+  onSubmit: (
+    e: React.FormEvent<HTMLFormElement>,
+    budget: BudgetType,
+    budgetCategories: BudgetCategoryType[]
+  ) => void;
 }) => {
   const [budget, setBudget] = useState<BudgetType>(
     props.initialBudget || {
@@ -25,19 +29,19 @@ const BudgetFormCard = (props: {
       name: "",
       description: "",
       created_at: new Date().toISOString(),
+      from: null,
+      to: null,
       user_id: null,
     }
   );
   const [isAddingCategory, setIsAddingCategory] = useState<boolean>(false);
+  const [isModifyingCategory, setIsModifyingCategory] =
+    useState<boolean>(false);
   const [selectedCategory, setSelectedCategory] =
     useState<BudgetCategoryType | null>(null);
   const [budgetCategories, setBudgetCategories] = useState<
     BudgetCategoryType[]
   >([]);
-
-  useEffect(() => {
-    console.log(budgetCategories);
-  }, [budgetCategories]);
 
   const [errors, setErrors] = useState({ name: "" });
   const { session } = useAuthContext(AuthContext);
@@ -52,12 +56,12 @@ const BudgetFormCard = (props: {
   ) => {
     e.preventDefault();
     const newBudgetCategory = {
-      id: "",
-      created_at: null,
+      id: uuidv4(),
+      created_at: new Date().toISOString(),
       category: category.name,
       amount: 0,
-      user_id: "",
-      budget_id: "",
+      user_id: null,
+      budget_id: null,
     };
     setSelectedCategory(newBudgetCategory);
   };
@@ -70,11 +74,23 @@ const BudgetFormCard = (props: {
     setIsAddingCategory(false);
 
     const updatedCategory = { ...selectedCategory, amount };
-    setBudgetCategories(
-      (prevState) => [...prevState, updatedCategory] as BudgetCategoryType[]
-    );
+    setBudgetCategories((prevState) => {
+      const existingCategory = prevState.find(
+        (category) => category.category === updatedCategory.category
+      );
+
+      if (existingCategory) {
+        return prevState.map((category) =>
+          category.category === updatedCategory.category
+            ? updatedCategory
+            : category
+        );
+      } else {
+        return [...prevState, updatedCategory];
+      }
+    });
     setSelectedCategory(null);
-    setSelectedCategory(null);
+    setIsModifyingCategory(false);
   };
 
   const validate = (activity: BudgetType) => {
@@ -95,17 +111,23 @@ const BudgetFormCard = (props: {
 
     const updatedBudget = { ...budget, user_id: userId as string };
 
+    const updatedBudgetCategories = budgetCategories.map((budgetCategory) => ({
+      ...budgetCategory,
+      user_id: userId as string,
+      budget_id: budget.id,
+    }));
+
     if (validate(updatedBudget)) {
       console.log("Form contains errors, fix them first.");
       return;
     }
 
-    props.onSubmit(e, updatedBudget);
+    props.onSubmit(e, updatedBudget, updatedBudgetCategories);
   };
 
   return (
     <>
-      {!isAddingCategory && (
+      {!isAddingCategory && !isModifyingCategory && (
         <div className="flex flex-col space-y-4">
           {/** Header */}
           <div className="flex flex-row space-x-2 items-center">
@@ -163,7 +185,7 @@ const BudgetFormCard = (props: {
                       <span className="text-indigo">*</span> From
                     </label>
                     <input
-                      name="description"
+                      name="from"
                       type="date"
                       onChange={(e) =>
                         updateBudget(
@@ -179,7 +201,7 @@ const BudgetFormCard = (props: {
                       <span className="text-indigo">*</span> To
                     </label>
                     <input
-                      name="description"
+                      name="to"
                       type="date"
                       onChange={(e) =>
                         updateBudget(
@@ -212,21 +234,25 @@ const BudgetFormCard = (props: {
                     <BudgetCategoryNewCard
                       budgetCategory={budgetCategory}
                       key={budgetCategory.category}
+                      onClick={(budgetCategory) => {
+                        setIsModifyingCategory(true);
+                        setSelectedCategory(budgetCategory);
+                      }}
                     />
                   ))}
                 </div>
               ) : (
                 <EmptyCard
-                  title={"You don't have any activities"}
+                  title={"You don't have any categories"}
                   description={
-                    "List of activities you've created will appear here."
+                    "List of categories you've created will appear here."
                   }
                   button={
                     <Button
                       onClick={() => setIsAddingCategory(true)}
                       className="cta"
                     >
-                      Add activity
+                      Add a new category
                     </Button>
                   }
                 />
@@ -255,6 +281,7 @@ const BudgetFormCard = (props: {
           onCategoryEdit={() => {}}
           onPrevious={() => {
             setSelectedCategory(null);
+            setIsModifyingCategory(false);
           }}
           onBudgetCategoryUpdate={(e, amount) =>
             handleBudgetCategoryUpdate(e, amount)

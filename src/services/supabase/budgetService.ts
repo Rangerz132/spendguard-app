@@ -52,3 +52,21 @@ export const getBudgetAmountById = async (
 
   return data as BudgetCategoryType[];
 };
+
+// POST
+export const createBudget = async (
+  budget: BudgetType
+): Promise<BudgetType | null> => {
+  const { data, error } = await supabase
+    .from("budget")
+    .insert([budget])
+    .select()
+    .single();
+
+  if (error) {
+    console.error("Error creating budget:", error);
+    return null;
+  }
+
+  return data;
+};

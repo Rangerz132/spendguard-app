@@ -23,7 +23,7 @@ const BudgetCategoryCard = (props: { data: BudgetCategoryType }) => {
     const activityType = activityCategoryTypeMap.get(props.data.category);
     setActivityCategoryType(activityType);
     setBudgetAmount(props.data.amount);
-  }, [props.data.amount, props.data.category]); // Only run when category changes
+  }, [props.data.amount, props.data.category]);
 
   return (
     <div className="card">

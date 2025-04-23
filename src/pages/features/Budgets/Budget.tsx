@@ -47,7 +47,7 @@ const Budget = () => {
       {budget && (
         <div className="wrapper page-wrapper py-6">
           {/** Header*/}
-          <div>
+          <div className="flex flex-col space-y-4">
             <div className="flex flex-row space-x-2 items-center">
               {/** Back arrow */}
               <BackArrowButton path="/budgets" />
@@ -64,7 +64,7 @@ const Budget = () => {
           {/** Total */}
           <BudgetLimitCard budget={budget} budgetTitle={"Your limit"} />
           {/** Categories */}
-          <div className="flex flex-col space-y-2">
+          <div className="flex flex-col space-y-4">
             <div className="flex flex-row items-center justify-between">
               {/** Title */}
               <h2 className="text-white theme-light:text-black">
