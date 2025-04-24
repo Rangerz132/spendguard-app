@@ -4,8 +4,11 @@ const Gauge = (props: { value: number; maxValue: number }) => {
   return (
     <div className="w-full h-2 rounded-full bg-black theme-light:bg-theme-light-grey">
       <div
-        className={`h-full rounded-full bg-indigo`}
-        style={{ width: `${clampedValue}%` }}
+        className={`h-full rounded-full `}
+        style={{
+          width: `${clampedValue}%`,
+          backgroundImage: `linear-gradient(270deg, rgba(74, 58, 255, 1) 0%, rgba(74, 58, 255, 0.40) 75%)`,
+        }}
       ></div>
     </div>
   );

@@ -51,38 +51,30 @@ const useActivities = () => {
 
   /** Return the expenses amount in a specific category */
   const getExpensesAmountByCategory = (category: string): number => {
-    if (activityCategories.length === 0) {
-      return 0;
-    } else {
-      const validActivities = activities
-        .filter((activity) => activity.category === category)
-        .filter((activity) => activity.is_expense);
+    const validActivities = activities
+      .filter((activity) => activity.category === category)
+      .filter((activity) => activity.is_expense);
 
-      return validActivities.reduce(
-        (acc, activity) => acc + Number(activity.amount || 0),
-        0
-      );
-    }
+    return validActivities.reduce(
+      (acc, activity) => acc + Number(activity.amount || 0),
+      0
+    );
   };
 
   /** Return the expenses amount per category */
   const getExpensesAmountByCategories = useCallback((): Map<string, number> => {
-    if (activityCategories.length === 0) {
-      return new Map();
-    } else {
-      const expensesAmountByCategories = new Map();
+    const expensesAmountByCategories = new Map();
 
-      activityCategories.map((activityCategory) => {
-        if (getExpensesAmountByCategory(activityCategory) > 0) {
-          expensesAmountByCategories.set(
-            activityCategory,
-            getExpensesAmountByCategory(activityCategory)
-          );
-        }
-      });
+    activityCategories.map((activityCategory) => {
+      if (getExpensesAmountByCategory(activityCategory) > 0) {
+        expensesAmountByCategories.set(
+          activityCategory,
+          getExpensesAmountByCategory(activityCategory)
+        );
+      }
+    });
 
-      return expensesAmountByCategories;
-    }
+    return expensesAmountByCategories;
   }, [activities, activityCategories]);
 
   /** Return the expenses amount per date */

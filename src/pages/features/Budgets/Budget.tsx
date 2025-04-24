@@ -7,21 +7,39 @@ import BudgetCategoryCard from "../../../components/Budget/BudgetCategoryCard";
 import BudgetLimitCard from "../../../components/Budget/BudgetLimitCard";
 import useBudgets from "../../../hooks/useBudgets";
 import CustomStackedBarChart from "../../../components/Chart/CustomStackedBarChart";
+import useActivities from "../../../hooks/useActivities";
 
 const Budget = () => {
   const { id } = useParams();
   const { getBudgetById, getBudgetCategoriesByBudgetId } = useBudgets();
+  const { getExpensesAmountByCategory } = useActivities();
   const [budget, setBudget] = useState<BudgetType | null>(null);
   const [budgetCategories, setBudgetCategories] = useState<
-    BudgetCategoryType[] | null
-  >(null);
+    BudgetCategoryType[]
+  >([]);
+  const [budgetCategoriesData, setBudgetCategoriesData] = useState<any[]>([]);
 
   useEffect(() => {
     if (!id) {
       return;
     }
     setBudget(getBudgetById(id));
-    setBudgetCategories(getBudgetCategoriesByBudgetId(id));
+    const budgetCategoryList = getBudgetCategoriesByBudgetId(id);
+    setBudgetCategories(budgetCategoryList);
+
+    const tempBudgetCategoryAmount: any[] = [];
+    for (let i = 0; i < budgetCategoryList.length; i++) {
+      const currentBudgetCategory = budgetCategoryList[i];
+      const expensesAmount = getExpensesAmountByCategory(
+        currentBudgetCategory.category
+      );
+      tempBudgetCategoryAmount.push({
+        value1: currentBudgetCategory.category,
+        value2: expensesAmount,
+        value3: currentBudgetCategory.amount,
+      });
+    }
+    setBudgetCategoriesData(tempBudgetCategoryAmount);
   }, [id]);
 
   return (
@@ -71,9 +89,9 @@ const Budget = () => {
               <div className="card-inner">
                 {/** Chart title */}
                 <h3 className="text-theme-dark-grey theme-light:text-theme-light-dark-grey">
-                  Expenses Category trends
+                  Expense Category trends
                 </h3>
-                <CustomStackedBarChart />
+                <CustomStackedBarChart data={budgetCategoriesData} />
               </div>
             </div>
           </div>
