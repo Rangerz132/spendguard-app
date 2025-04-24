@@ -18,6 +18,7 @@ const AddActivity = () => {
     await createActivity({
       ...activity,
       created_at: new Date(activity.created_at as string),
+      date: new Date(activity.date as string),
     });
     dispatch(addActivity(activity));
 

@@ -27,6 +27,7 @@ const ActivityFormCard = (props: {
       is_expense: true,
       category: categoryTypes[0].name,
       created_at: new Date().toISOString(),
+      date: new Date().toISOString().split("T")[0],
       user_id: null,
     }
   );
@@ -110,6 +111,21 @@ const ActivityFormCard = (props: {
               updateActivity(e.currentTarget.name, e.currentTarget.value)
             }
           ></textarea>
+        </div>
+
+        {/** Date */}
+        <div className="flex flex-col space-y-2">
+          <label className="text-white theme-light:text-black">
+            <span className="text-indigo">*</span> Date
+          </label>
+          <input
+            name="date"
+            type="date"
+            defaultValue={activity.date!.toString()}
+            onChange={(e) =>
+              updateActivity(e.currentTarget.name, e.currentTarget.value)
+            }
+          ></input>
         </div>
 
         {/** Category */}

@@ -1,4 +1,3 @@
-import { BiPlus } from "react-icons/bi";
 import { useEffect, useState } from "react";
 import { useParams } from "react-router";
 import { BudgetType } from "../../../components/Budget/type/BudgetType";
@@ -7,7 +6,6 @@ import BackArrowButton from "../../../components/UI/BackArrowButton";
 import { BudgetCategoryType } from "../../../components/Budget/type/BudgetCategoryType";
 import { getBudgetCategoriesByBudgetId } from "../../../services/supabase/budgetCategoryService";
 import BudgetCategoryCard from "../../../components/Budget/BudgetCategoryCard";
-import LinkButton from "../../../components/UI/LinkButton";
 import BudgetLimitCard from "../../../components/Budget/BudgetLimitCard";
 
 const Budget = () => {
