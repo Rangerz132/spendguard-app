@@ -7,6 +7,7 @@ import { BudgetCategoryType } from "../../../components/Budget/type/BudgetCatego
 import { addBudgetCategory } from "../../../store/budgetCategories/budgetCategoriesSlice";
 import { createBudget } from "../../../services/supabase/budgetService";
 import { createBudgetCategories } from "../../../services/supabase/budgetCategoryService";
+import { setStatus } from "../../../store/status/statusSlice";
 
 const AddBudget = () => {
   const navigate = useNavigate();
@@ -20,14 +21,21 @@ const AddBudget = () => {
     e.preventDefault();
 
     dispatch(addBudget(budget));
+
     for (let i = 0; i < budgetCategories.length; i++) {
       dispatch(addBudgetCategory(budgetCategories[i]));
     }
 
     await createBudget(budget);
     await createBudgetCategories(budgetCategories);
-
     navigate("/budgets");
+    dispatch(
+      setStatus({
+        message: "You successfully created a new budget",
+        isShowed: true,
+        isValid: true,
+      })
+    );
   };
 
   return (

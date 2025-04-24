@@ -146,7 +146,9 @@ const Analytics = () => {
       <section>
         <div className="flex flex-col space-y-1">
           {/** Expenses title */}
-          <h2 className="text-white theme-light:text-black">Mothly expenses</h2>
+          <h2 className="text-white theme-light:text-black">
+            Monthly expenses
+          </h2>
           {/** Expenses subtitle */}
           <h4 className="text-theme-dark-grey text-sm theme-light:text-theme-light-dark-grey">
             You spend money in{" "}
