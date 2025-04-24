@@ -92,7 +92,7 @@ const useActivities = () => {
     activities
       .filter((activity) => activity.is_expense)
       .forEach((activity) => {
-        const date = activity.created_at as string;
+        const date = activity.date as string;
         const amount = Number(activity.amount) || 0;
 
         expensesAmountByDates.set(
@@ -111,7 +111,7 @@ const useActivities = () => {
     activities
       .filter((activity) => !activity.is_expense)
       .forEach((activity) => {
-        const date = activity.created_at as string;
+        const date = activity.date as string;
         const amount = Number(activity.amount) || 0;
 
         incomesAmountByDates.set(

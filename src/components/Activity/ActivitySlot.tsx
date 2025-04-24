@@ -47,8 +47,7 @@ const ActivitySlot = ({
           <p className="text-white theme-light:text-black">{data.name}</p>
           {/** Date */}
           <p className="text-[10px] text-theme-dark-grey theme-light:text-theme-light-dark-grey">
-            {data?.created_at &&
-              format(new Date(data.created_at), "dd-MM-yyyy")}
+            {data?.date as string}
           </p>
         </div>
       </div>

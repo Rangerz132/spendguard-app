@@ -28,7 +28,8 @@ const LatestActivityCard = (props: {
   };
 
   useEffect(() => {
-    showVisibleActivities(props.activities);
+    const initialFilteredActitivies = filterActivitiesByLatest();
+    showVisibleActivities(initialFilteredActitivies);
   }, [props.activities]);
 
   const showVisibleActivities = (activities: ActivityType[]) => {

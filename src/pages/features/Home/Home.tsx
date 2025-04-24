@@ -1,6 +1,5 @@
 import { BiChevronRight } from "react-icons/bi";
 import useActivities from "../../../hooks/useActivities";
-import ViewMore from "../../../components/UI/ViewMore";
 import Card from "../../../components/Card/Card";
 import EmptyCard from "../../../components/Card/EmptyCard";
 import LinkButton from "../../../components/UI/LinkButton";

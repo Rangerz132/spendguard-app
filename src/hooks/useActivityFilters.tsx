@@ -2,30 +2,30 @@ import { ActivityType } from "../components/Activity/type/ActivityType";
 
 const useActivityFilters = (activities: ActivityType[]) => {
   /** Filter activities by the latest */
-  const filterActivitiesByLatest = () => {
+  const filterActivitiesByOldest = () => {
     return [...activities].sort(
       (a, b) =>
-        new Date(new Date(a.created_at as string) as Date).getTime() -
-        new Date(new Date(b.created_at as string) as Date).getTime()
+        new Date(new Date(a.date as string) as Date).getTime() -
+        new Date(new Date(b.date as string) as Date).getTime()
     );
   };
 
   /** Filter activities by the decreasing amount */
-  const filterActivitiesByDecreasingAmount = () => {
+  const filterActivitiesByIncreasingAmount = () => {
     return [...activities].sort((a, b) => a.amount - b.amount);
   };
 
   /** Filter activities by the increasing amount */
-  const filterActivitiesByIncreasingAmount = () => {
+  const filterActivitiesByDecreasingAmount = () => {
     return [...activities].sort((a, b) => b.amount - a.amount);
   };
 
   /** Filter activities by the oldest */
-  const filterActivitiesByOldest = () => {
+  const filterActivitiesByLatest = () => {
     return [...activities].sort(
       (a, b) =>
-        new Date(new Date(b.created_at as string) as Date).getTime() -
-        new Date(new Date(a.created_at as string) as Date).getTime()
+        new Date(new Date(b.date as string) as Date).getTime() -
+        new Date(new Date(a.date as string) as Date).getTime()
     );
   };
 
