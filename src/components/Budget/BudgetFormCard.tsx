@@ -23,14 +23,18 @@ const BudgetFormCard = (props: {
     budgetCategories: BudgetCategoryType[]
   ) => void;
 }) => {
+  const today = new Date();
+  const nextWeek = new Date(today);
+  nextWeek.setDate(today.getDate() + 7);
+
   const [budget, setBudget] = useState<BudgetType>(
     props.initialBudget || {
       id: uuidv4(),
       name: "",
       description: "",
       created_at: new Date().toISOString(),
-      from: null,
-      to: null,
+      from: new Date().toISOString().split("T")[0],
+      to: nextWeek.toISOString().split("T")[0],
       user_id: null,
     }
   );
@@ -187,6 +191,7 @@ const BudgetFormCard = (props: {
                     <input
                       name="from"
                       type="date"
+                      defaultValue={budget.from?.toString()}
                       onChange={(e) =>
                         updateBudget(
                           e.currentTarget.name,
@@ -203,6 +208,7 @@ const BudgetFormCard = (props: {
                     <input
                       name="to"
                       type="date"
+                      defaultValue={budget.to?.toString()}
                       onChange={(e) =>
                         updateBudget(
                           e.currentTarget.name,

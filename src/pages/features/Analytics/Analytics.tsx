@@ -1,14 +1,14 @@
 import { useEffect, useState } from "react";
 import useActivities from "../../../hooks/useActivities";
-import { format } from "date-fns";
 import Card from "../../../components/Card/Card";
 import CustomLineChart from "../../../components/Chart/CustomLineChart";
 import EmptyCard from "../../../components/Card/EmptyCard";
 import LinkButton from "../../../components/UI/LinkButton";
 import ExpenseListCard from "../../../components/Expense/ExpenseListCard";
-import CustomBarChart from "../../../components/Chart/CustomBarCart";
+
 import { useSelector } from "react-redux";
 import { RootState } from "../../../store/store";
+import CustomBarChart from "../../../components/Chart/CustomBarChart";
 
 const Analytics = () => {
   const [balanceTrends, setBalanceTrends] = useState<any[]>([]);
@@ -29,14 +29,14 @@ const Analytics = () => {
   useEffect(() => {
     const expenseData = Array.from(getExpensesAmountByDates()).map(
       ([date, value]) => ({
-        value1: format(new Date(date), "dd-MM-yyyy"),
+        value1: date,
         value2: value,
       })
     );
 
     const incomeData = Array.from(getIncomesAmountByDates()).map(
       ([date, value]) => ({
-        value1: format(new Date(date), "dd-MM-yyyy"),
+        value1: date,
         value2: value,
       })
     );

@@ -1,41 +1,27 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router";
 import { BudgetType } from "../../../components/Budget/type/BudgetType";
-import { getBudgetById } from "../../../services/supabase/budgetService";
 import BackArrowButton from "../../../components/UI/BackArrowButton";
 import { BudgetCategoryType } from "../../../components/Budget/type/BudgetCategoryType";
-import { getBudgetCategoriesByBudgetId } from "../../../services/supabase/budgetCategoryService";
 import BudgetCategoryCard from "../../../components/Budget/BudgetCategoryCard";
 import BudgetLimitCard from "../../../components/Budget/BudgetLimitCard";
+import useBudgets from "../../../hooks/useBudgets";
+import CustomStackedBarChart from "../../../components/Chart/CustomStackedBarChart";
 
 const Budget = () => {
+  const { id } = useParams();
+  const { getBudgetById, getBudgetCategoriesByBudgetId } = useBudgets();
   const [budget, setBudget] = useState<BudgetType | null>(null);
   const [budgetCategories, setBudgetCategories] = useState<
-    BudgetCategoryType[]
-  >([]);
-  const { id } = useParams();
+    BudgetCategoryType[] | null
+  >(null);
 
   useEffect(() => {
-    const fetchBudget = async () => {
-      if (!id) {
-        return;
-      }
-
-      const specificBudget = await getBudgetById(id);
-      if (specificBudget) {
-        const budgetCategoryList = await getBudgetCategoriesByBudgetId(
-          specificBudget.id
-        );
-
-        if (budgetCategoryList.length > 0) {
-          setBudgetCategories(budgetCategoryList);
-        }
-      }
-
-      setBudget(specificBudget);
-    };
-
-    fetchBudget();
+    if (!id) {
+      return;
+    }
+    setBudget(getBudgetById(id));
+    setBudgetCategories(getBudgetCategoriesByBudgetId(id));
   }, [id]);
 
   return (
@@ -66,14 +52,29 @@ const Budget = () => {
               Budget categories
             </h2>
 
-            {/** Budget Category list */}
+            {/** Budget category list */}
             <div className="grid grid-cols-2 gap-4">
-              {budgetCategories.map((budgetCategory) => (
-                <BudgetCategoryCard
-                  data={budgetCategory}
-                  key={budgetCategory.id}
-                />
-              ))}
+              {budgetCategories &&
+                budgetCategories.map((budgetCategory) => (
+                  <BudgetCategoryCard
+                    data={budgetCategory}
+                    key={budgetCategory.id}
+                  />
+                ))}
+            </div>
+          </div>
+          <div className="flex flex-col space-y-4">
+            {/** Title */}
+            <h2 className="text-white theme-light:text-black">Trends</h2>
+            {/** Budget category portion */}
+            <div className="card">
+              <div className="card-inner">
+                {/** Chart title */}
+                <h3 className="text-theme-dark-grey theme-light:text-theme-light-dark-grey">
+                  Expenses Category trends
+                </h3>
+                <CustomStackedBarChart />
+              </div>
             </div>
           </div>
         </div>

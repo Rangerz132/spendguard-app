@@ -51,7 +51,10 @@ const BudgetCategoryCard = (props: { data: BudgetCategoryType }) => {
           <h1 className="text-white theme-light:text-black">
             ${expenseAmount}
           </h1>
-          <h3 className="text-theme-dark-grey"> /{budgetAmount}</h3>
+          <h3 className="text-theme-dark-grey theme-light:text-theme-light-dark-grey">
+            {" "}
+            /{budgetAmount}
+          </h3>
         </div>
 
         {/** Gauge */}

@@ -1,6 +1,8 @@
 import { useSelector } from "react-redux";
 import { RootState } from "../store/store";
 import useActivities from "./useActivities";
+import { BudgetType } from "../components/Budget/type/BudgetType";
+import { BudgetCategoryType } from "../components/Budget/type/BudgetCategoryType";
 
 const useBudgets = () => {
   const budgets = useSelector((root: RootState) => root.budgets);
@@ -8,6 +10,24 @@ const useBudgets = () => {
     (root: RootState) => root.budgetCategories
   );
   const { getExpensesAmountByCategory } = useActivities();
+
+  /** Return the total budget amount */
+  const getBudgetById = (budgetId: string): BudgetType | null => {
+    const budget = budgets.find((budget) => budget.id === budgetId);
+    if (!budget) {
+      return null;
+    }
+
+    return budget;
+  };
+
+  const getBudgetCategoriesByBudgetId = (
+    budgetId: string
+  ): BudgetCategoryType[] => {
+    return budgetCategories.filter(
+      (budgetCategory) => budgetCategory.budget_id === budgetId
+    );
+  };
 
   /** Return the total budget amount */
   const getMaxAmountByBudget = (budgetId: string): number => {
@@ -38,6 +58,8 @@ const useBudgets = () => {
   };
 
   return {
+    getBudgetById,
+    getBudgetCategoriesByBudgetId,
     getMaxAmountByBudget,
     getCurrentAmountByBudget,
     budgets,

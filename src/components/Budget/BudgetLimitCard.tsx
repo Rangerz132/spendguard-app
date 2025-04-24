@@ -21,11 +21,7 @@ const BudgetLimitCard = (props: {
             </h3>
             {/** Date limit */}
             <p className="text-theme-dark-grey theme-light:text-theme-light-dark-grey text-xs">
-              {/** TODO: Set limit date instead */}
-              {format(
-                new Date(props.budget.created_at as string),
-                "dd-MM-yyyy"
-              )}
+              {props.budget.to as string}
             </p>
           </div>
           {/** Amount */}
@@ -40,10 +36,13 @@ const BudgetLimitCard = (props: {
         </div>
         {/** Gauge */}
         <div className="flex flex-col space-y-2">
-          <Gauge value={200} maxValue={300} />
+          <Gauge
+            value={getCurrentAmountByBudget(props.budget.id)}
+            maxValue={getMaxAmountByBudget(props.budget.id)}
+          />
           <div className="flex flex-row items-center justify-between text-theme-dark-grey theme-light:text-theme-light-dark-grey ">
             <p className="text-xs">0</p>
-            <p className="text-xs">300</p>
+            <p className="text-xs">{getMaxAmountByBudget(props.budget.id)}</p>
           </div>
         </div>
       </div>
