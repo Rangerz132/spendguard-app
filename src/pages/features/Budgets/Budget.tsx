@@ -7,8 +7,6 @@ import BackArrowButton from "../../../components/UI/BackArrowButton";
 import { BudgetCategoryType } from "../../../components/Budget/type/BudgetCategoryType";
 import { getBudgetCategoriesByBudgetId } from "../../../services/supabase/budgetCategoryService";
 import BudgetCategoryCard from "../../../components/Budget/BudgetCategoryCard";
-import { format } from "date-fns";
-import Gauge from "../../../components/UI/Gauge";
 import LinkButton from "../../../components/UI/LinkButton";
 import BudgetLimitCard from "../../../components/Budget/BudgetLimitCard";
 
@@ -65,15 +63,10 @@ const Budget = () => {
           <BudgetLimitCard budget={budget} budgetTitle={"Your limit"} />
           {/** Categories */}
           <div className="flex flex-col space-y-4">
-            <div className="flex flex-row items-center justify-between">
-              {/** Title */}
-              <h2 className="text-white theme-light:text-black">
-                Budget categories
-              </h2>
-              <LinkButton path={""}>
-                <BiPlus className="icon text-theme-dark-grey" />
-              </LinkButton>
-            </div>
+            {/** Title */}
+            <h2 className="text-white theme-light:text-black">
+              Budget categories
+            </h2>
 
             {/** Budget Category list */}
             <div className="grid grid-cols-2 gap-4">

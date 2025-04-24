@@ -8,7 +8,7 @@ const BudgetLimitCard = (props: {
   budgetTitle: string;
   onClick?: () => void;
 }) => {
-  const { getAmountByBudget } = useBudgets();
+  const { getMaxAmountByBudget, getCurrentAmountByBudget } = useBudgets();
 
   return (
     <div className="card" onClick={props.onClick}>
@@ -30,9 +30,11 @@ const BudgetLimitCard = (props: {
           </div>
           {/** Amount */}
           <div className="flex flex-row items-end space-x-1">
-            <h1 className="text-white theme-light:text-black ">$200</h1>
+            <h1 className="text-white theme-light:text-black ">
+              ${getCurrentAmountByBudget(props.budget.id)}
+            </h1>
             <h3 className="text-theme-dark-grey theme-light:text-theme-light-dark-grey">
-              /{getAmountByBudget(props.budget.id)}
+              /{getMaxAmountByBudget(props.budget.id)}
             </h3>
           </div>
         </div>

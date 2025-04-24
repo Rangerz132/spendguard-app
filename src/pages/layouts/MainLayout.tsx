@@ -14,6 +14,8 @@ import { setActivities } from "../../store/activities/activitiesSlice";
 import { getActivities } from "../../services/supabase/activityService";
 import { setBudgets } from "../../store/budgets/budgetsSlice";
 import { getBudgets } from "../../services/supabase/budgetService";
+import { getBudgetCategories } from "../../services/supabase/budgetCategoryService";
+import { setBudgetCategories } from "../../store/budgetCategories/budgetCategoriesSlice";
 
 const MainLayout = () => {
   const dispatch = useDispatch();
@@ -25,6 +27,9 @@ const MainLayout = () => {
 
       const budgets = await getBudgets();
       dispatch(setBudgets(budgets));
+
+      const budgetCategories = await getBudgetCategories();
+      dispatch(setBudgetCategories(budgetCategories));
     };
 
     fetchActivities();
