@@ -42,7 +42,7 @@ const UpdateActivity = () => {
     <div className="wrapper page-wrapper py-6">
       <section>
         <div className="flex flex-row space-x-2 items-center">
-          <BackArrowButton path="/" />
+          <BackArrowButton />
           <h2 className="text-white theme-light:text-black">Update activity</h2>
         </div>
 

@@ -40,7 +40,7 @@ const ActivityCategory = () => {
         {/** Header */}
         <div className="flex flex-row space-x-2 items-center">
           {/** Back arrow */}
-          <BackArrowButton path="/analytics" />
+          <BackArrowButton />
           {/** Title */}
           <h2 className="text-white theme-light:text-black">
             <span className="capitalize">{category}</span> activities

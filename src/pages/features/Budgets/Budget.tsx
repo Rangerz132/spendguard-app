@@ -50,7 +50,7 @@ const Budget = () => {
           <div className="flex flex-col space-y-4">
             <div className="flex flex-row space-x-2 items-center">
               {/** Back arrow */}
-              <BackArrowButton path="/budgets" />
+              <BackArrowButton />
               {/** Title */}
               <h2 className="text-white theme-light:text-black">
                 {budget.name}

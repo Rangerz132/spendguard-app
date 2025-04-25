@@ -1,12 +1,16 @@
 import { BiChevronLeft } from "react-icons/bi";
 import { useNavigate } from "react-router";
 
-const BackArrowButton = (props: { path: string }) => {
+const BackArrowButton = (props: { path?: string }) => {
   const navigate = useNavigate();
   return (
     <BiChevronLeft
       onClick={() => {
-        navigate(props.path);
+        if (props.path) {
+          navigate(props.path);
+        } else {
+          navigate(-1);
+        }
       }}
       className="icon text-white theme-light:text-black cursor-pointer"
     />
