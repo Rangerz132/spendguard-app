@@ -4,7 +4,7 @@ import SearchBar from "../../../components/UI/SearchBar";
 import LatestActivityCard from "../../../components/Activity/LatestActivityCard";
 import { useSelector } from "react-redux";
 import { RootState } from "../../../store/store";
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { ActivityType } from "../../../components/Activity/type/ActivityType";
 import useActivities from "../../../hooks/useActivities";
 import EmptyCard from "../../../components/Card/EmptyCard";

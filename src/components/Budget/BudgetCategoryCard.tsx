@@ -7,8 +7,10 @@ import {
 import React from "react";
 import Gauge from "../UI/Gauge";
 import useActivities from "../../hooks/useActivities";
+import { useNavigate } from "react-router";
 
 const BudgetCategoryCard = (props: { data: BudgetCategoryType }) => {
+  const navigate = useNavigate();
   const [activityCategoryType, setActivityCategoryType] =
     useState<ActivityCategoryType | null>(null);
   const [budgetAmount, setBudgetAmount] = useState<number>(0);
@@ -26,7 +28,12 @@ const BudgetCategoryCard = (props: { data: BudgetCategoryType }) => {
   }, [props.data.amount, props.data.category]);
 
   return (
-    <div className="card">
+    <div
+      className="card cursor-pointer"
+      onClick={() =>
+        navigate(`/activityCategory/${activityCategoryType?.name}`)
+      }
+    >
       <div className="card-inner ">
         <div className="flex flex-row space-x-2 items-center">
           {/** Icon category*/}

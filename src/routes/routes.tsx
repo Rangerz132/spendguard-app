@@ -16,6 +16,7 @@ import Budget from "../pages/features/Budgets/Budget";
 import AddBudget from "../pages/features/Budgets/AddBudget";
 import ActivityCategory from "../pages/features/Activities/ActivityCategory";
 import DynamicLayout from "../pages/layouts/DynamicLayout";
+import UpdateBudget from "../pages/features/Budgets/UpdateBudget";
 
 const authRoutes = [
   {
@@ -74,6 +75,18 @@ const dynamicRoutes = [
         element: <AddBudget />,
         name: "AddBudget",
         id: "addBudget",
+      },
+    ],
+  },
+  {
+    path: "/updateBudget/:id",
+    element: <DynamicLayout />,
+    children: [
+      {
+        path: "",
+        element: <UpdateBudget />,
+        name: "Update Budget",
+        id: "updateBudget",
       },
     ],
   },

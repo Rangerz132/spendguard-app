@@ -10,14 +10,13 @@ At the time of writing, SpendGuard is still under active development.
 
 ### Upcoming features / improvements
 
-- Improve the "Budget" components visually (In Progress)
 - Improve the "Empty Card" component visually (In Progress)
 - Improve the "SignIn" / "SignUp" page visually (In Progress)
-- Edit an existing Budget (In Progress)
-- Implement the date comparaison logic (To Do)
 - Add an "Edit Profile" page (To Do)
-- Add an "Onboarding" page (To Do)
 - Enhance responsiveness for different devices (To Do)
+- Add recurrent activity option (To Do)
+- Add notification system
+- Add an "Onboarding" page (To Do)
 - Improve optimisation and overall structure (To Do)
 
 ## Getting started

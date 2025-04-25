@@ -1,3 +1,4 @@
+import { BiEditAlt } from "react-icons/bi";
 import { useEffect, useState } from "react";
 import { useParams } from "react-router";
 import { BudgetType } from "../../../components/Budget/type/BudgetType";
@@ -8,6 +9,7 @@ import BudgetLimitCard from "../../../components/Budget/BudgetLimitCard";
 import useBudgets from "../../../hooks/useBudgets";
 import CustomStackedBarChart from "../../../components/Chart/CustomStackedBarChart";
 import useActivities from "../../../hooks/useActivities";
+import LinkButton from "../../../components/UI/LinkButton";
 
 const Budget = () => {
   const { id } = useParams();
@@ -48,14 +50,25 @@ const Budget = () => {
         <div className="wrapper page-wrapper py-6">
           {/** Header*/}
           <div className="flex flex-col space-y-4">
-            <div className="flex flex-row space-x-2 items-center">
-              {/** Back arrow */}
-              <BackArrowButton />
-              {/** Title */}
-              <h2 className="text-white theme-light:text-black">
-                {budget.name}
-              </h2>
+            <div className="flex flex-row items-center justify-between">
+              <div className="flex flex-row space-x-2 items-center">
+                {/** Back arrow */}
+                <BackArrowButton />
+                {/** Title */}
+                <h2 className="text-white theme-light:text-black">
+                  {budget.name}
+                </h2>
+              </div>
+
+              {/** Edit */}
+              <LinkButton
+                path={`/updateBudget/${id}`}
+                className="cursor-pointer"
+              >
+                <BiEditAlt className="icon text-theme-dark-grey" />
+              </LinkButton>
             </div>
+
             {/** Description */}
             <p className="text-theme-dark-grey theme-light:text-theme-light-dark-grey">
               {budget.description}

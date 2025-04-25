@@ -266,7 +266,10 @@ const BudgetFormCard = (props: {
             </div>
 
             {/** Add budget button */}
-            <Button className="cta">Add budget</Button>
+            <Button className="cta">
+              {" "}
+              {props.initialBudget ? " Update budget" : "Add budget"}
+            </Button>
           </form>
         </div>
       )}
