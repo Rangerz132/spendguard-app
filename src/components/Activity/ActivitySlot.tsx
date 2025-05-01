@@ -7,8 +7,10 @@ import {
   useOverlayContext,
 } from "../../contexts/OverlayContext";
 import { useDispatch } from "react-redux";
-import { setDetails, showDetails } from "../../store/details/detailsSlice";
-import { format } from "date-fns";
+import {
+  setActivityDetails,
+  showActivityDetails,
+} from "../../store/details/activityDetailsSlice";
 
 const ActivitySlot = ({
   data,
@@ -23,13 +25,13 @@ const ActivitySlot = ({
   const category = getFullCategory(data.category);
 
   function setActivityDetail() {
-    dispatch(setDetails(data));
-    dispatch(showDetails());
+    dispatch(setActivityDetails(data));
+    dispatch(showActivityDetails());
   }
 
   return (
     <div className="flex flex-row justify-between items-center">
-      <div className="flex flex-row space-x-2">
+      <div className="flex flex-row space-x-2 items-center">
         {/** Icon */}
         <div
           className={`w-10 h-10 rounded-md flex items-center justify-center`}

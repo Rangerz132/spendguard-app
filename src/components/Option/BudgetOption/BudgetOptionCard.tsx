@@ -2,21 +2,20 @@ import { useDispatch, useSelector } from "react-redux";
 
 import { useNavigate } from "react-router";
 import { RootState } from "../../../store/store";
-import ActivitySlot from "../../Activity/ActivitySlot";
 import OptionSlot from "../OptionSlot";
 
 import {
   OverlayContext,
   useOverlayContext,
 } from "../../../contexts/OverlayContext";
-import { activityOptions } from "./ActivityOption";
-import { hideActivityDetails } from "../../../store/details/activityDetailsSlice";
+import { hideBudgetDetails } from "../../../store/details/budgetDetailsSlice";
+import { budgetOptions } from "./BudgetOption";
 
-const ActivityOptionCard = (props: { children?: React.ReactNode }) => {
+const BudgetOptionCard = (props: { children?: React.ReactNode }) => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const { setOverlay } = useOverlayContext(OverlayContext);
-  const details = useSelector((store: RootState) => store.activityDetails);
+  const details = useSelector((store: RootState) => store.budgetDetails);
 
   return (
     <div
@@ -26,19 +25,20 @@ const ActivityOptionCard = (props: { children?: React.ReactNode }) => {
     >
       {details.data && (
         <div className="flex flex-col space-y-4">
-          {/** Activity Slot */}
-          <ActivitySlot data={details.data} addDetails={false} />
+          <h3 className="text-white theme-light:text-theme-light-dark-grey">
+            {details.data.name}
+          </h3>
           {/** Border*/}
           <div className="bg-white/5 w-full h-[0.5px] theme-light:bg-black/5"></div>
           {/** Options*/}
           <div className="flex flex-col space-y-6">
-            {activityOptions.map((option, index) => (
+            {budgetOptions.map((option, index) => (
               <OptionSlot
                 key={index}
                 activityOption={option}
                 data={{ ...details.data, navigate, dispatch }}
                 onClick={() => {
-                  dispatch(hideActivityDetails());
+                  dispatch(hideBudgetDetails());
                   setOverlay(false);
                 }}
               />
@@ -50,4 +50,4 @@ const ActivityOptionCard = (props: { children?: React.ReactNode }) => {
   );
 };
 
-export default ActivityOptionCard;
+export default BudgetOptionCard;

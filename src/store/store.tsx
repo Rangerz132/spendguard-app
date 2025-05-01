@@ -1,13 +1,15 @@
 import { configureStore } from "@reduxjs/toolkit";
-import detailsSlice from "./details/detailsSlice";
 import statusSlice from "./status/statusSlice";
 import activitiesSlice from "./activities/activitiesSlice";
 import budgetsSlice from "./budgets/budgetsSlice";
 import budgetCategoriesSlice from "./budgetCategories/budgetCategoriesSlice";
+import activityDetailsSlice from "./details/activityDetailsSlice";
+import budgetDetailsSlice from "./details/budgetDetailsSlice";
 
 export const store = configureStore({
   reducer: {
-    details: detailsSlice,
+    activityDetails: activityDetailsSlice,
+    budgetDetails: budgetDetailsSlice,
     status: statusSlice,
     activities: activitiesSlice,
     budgets: budgetsSlice,

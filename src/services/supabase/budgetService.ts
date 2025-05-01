@@ -70,3 +70,41 @@ export const createBudget = async (
 
   return data;
 };
+
+// PUT
+export const updateBudget = async (
+  budget: BudgetType
+): Promise<BudgetType | null> => {
+  const { data, error } = await supabase
+    .from("budget")
+    .update(budget)
+    .eq("id", budget.id)
+    .select()
+    .single();
+
+  if (error) {
+    console.error("Error updating budget:", error);
+    return null;
+  }
+
+  return data;
+};
+
+
+
+// DELETE
+export const deleteBudget = async (
+  budgetId: string
+): Promise<BudgetType | null> => {
+  const { data, error } = await supabase
+    .from("budget")
+    .delete()
+    .eq("id", budgetId);
+
+  if (error) {
+    console.error("Error deleting budget:", error);
+    return null;
+  }
+
+  return data;
+};

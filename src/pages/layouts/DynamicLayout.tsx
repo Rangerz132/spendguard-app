@@ -6,6 +6,7 @@ import { SettingsContextProvider } from "../../contexts/SettingsContext";
 import Overlay from "../../components/Overlay/Overlay";
 import ActivityOptionCard from "../../components/Option/ActivityOption/ActivityOptionCard";
 import StatusCard from "../../components/Status/StatusCard";
+import BudgetOptionCard from "../../components/Option/BudgetOption/BudgetOptionCard";
 
 const DynamicLayout = () => {
   return (
@@ -15,8 +16,8 @@ const DynamicLayout = () => {
           <SettingsContextProvider>
             <Overlay />
             <ActivityOptionCard />
+            <BudgetOptionCard />
             <StatusCard />
-
             <Outlet />
           </SettingsContextProvider>
         </OverlayContextProvider>

@@ -16,6 +16,7 @@ import { setBudgets } from "../../store/budgets/budgetsSlice";
 import { getBudgets } from "../../services/supabase/budgetService";
 import { getBudgetCategories } from "../../services/supabase/budgetCategoryService";
 import { setBudgetCategories } from "../../store/budgetCategories/budgetCategoriesSlice";
+import BudgetOptionCard from "../../components/Option/BudgetOption/BudgetOptionCard";
 
 const MainLayout = () => {
   const dispatch = useDispatch();
@@ -45,6 +46,7 @@ const MainLayout = () => {
             <Sidebar />
             <Overlay />
             <ActivityOptionCard />
+            <BudgetOptionCard />
             <StatusCard />
             <div className="py-16">
               <Outlet />

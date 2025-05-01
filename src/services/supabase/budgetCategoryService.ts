@@ -30,7 +30,7 @@ export const getBudgetCategoriesByBudgetId = async (
 
   const { data, error } = await supabase
     .from("budget_category")
-    .select()
+    .select("*")
     .eq("user_id", budget.user_id)
     .eq("budget_id", budget.id);
 
@@ -82,9 +82,35 @@ export const createBudgetCategory = async (
 export const createBudgetCategories = async (
   budgetCategories: BudgetCategoryType[]
 ): Promise<BudgetCategoryType[] | null> => {
+  // Step 1: Get all IDs from the new categories
+  const newIds = budgetCategories.map((cat) => cat.id);
+
+  // Step 2: Check which IDs already exist in the database
+  const { data: existingCategories, error: fetchError } = await supabase
+    .from("budget_category")
+    .select("id")
+    .in("id", newIds);
+
+  if (fetchError) {
+    console.error("Error checking existing categories:", fetchError);
+    return null;
+  }
+
+  // Step 3: Filter out categories that already exist
+  const existingIds = new Set((existingCategories || []).map((cat) => cat.id));
+  const categoriesToInsert = budgetCategories.filter(
+    (cat) => !existingIds.has(cat.id)
+  );
+
+  // If there’s nothing new to insert, return an empty array
+  if (categoriesToInsert.length === 0) {
+    return [];
+  }
+
+  // Step 4: Insert only new categories
   const { data, error } = await supabase
     .from("budget_category")
-    .insert(budgetCategories)
+    .insert(categoriesToInsert)
     .select();
 
   if (error) {
@@ -93,4 +119,36 @@ export const createBudgetCategories = async (
   }
 
   return data;
+};
+
+// PUT
+export const updateBudgetCategory = async (
+  budgetCategory: BudgetCategoryType
+): Promise<BudgetCategoryType | null> => {
+  const { data, error } = await supabase
+    .from("budget_category")
+    .update(budgetCategory)
+    .eq("id", budgetCategory.id)
+    .select()
+    .single();
+
+  if (error) {
+    return null;
+  }
+
+  return data;
+};
+
+// PUT
+export const updateBudgetCategories = async (
+  budgetCategories: BudgetCategoryType[]
+): Promise<BudgetCategoryType[] | null> => {
+  const updatedBudgetCategories: BudgetCategoryType[] = [];
+
+  for (const budgetCategory of budgetCategories) {
+    const updated = await updateBudgetCategory(budgetCategory);
+    updatedBudgetCategories.push(updated as BudgetCategoryType);
+  }
+
+  return updatedBudgetCategories;
 };

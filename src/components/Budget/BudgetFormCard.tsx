@@ -1,4 +1,5 @@
-import { useState } from "react";
+import { BsThreeDotsVertical } from "react-icons/bs";
+import { useEffect, useState } from "react";
 import { v4 as uuidv4 } from "uuid";
 import { BudgetType } from "./type/BudgetType";
 import { AuthContext, useAuthContext } from "../../contexts/AuthContext";
@@ -14,6 +15,7 @@ import BackArrowButton from "../UI/BackArrowButton";
 import { ActivityCategoryType } from "../Activity/type/ActivityCategoryType";
 import EmptyCard from "../Card/EmptyCard";
 import BudgetCategoryNewCard from "./BudgetCategoryNewCard";
+import { getBudgetCategoriesByBudgetId } from "../../services/supabase/budgetCategoryService";
 
 const BudgetFormCard = (props: {
   initialBudget?: BudgetType;
@@ -49,6 +51,21 @@ const BudgetFormCard = (props: {
 
   const [errors, setErrors] = useState({ name: "" });
   const { session } = useAuthContext(AuthContext);
+
+  useEffect(() => {
+    const fetchBudgetCategories = async () => {
+      if (!props.initialBudget) {
+        return;
+      }
+      const budgetCategoryList = await getBudgetCategoriesByBudgetId(budget.id);
+
+      if (budgetCategoryList.length > 0) {
+        setBudgetCategories(budgetCategoryList);
+      }
+    };
+
+    fetchBudgetCategories();
+  }, [budget]);
 
   const updateBudget = (key: string, value: any) => {
     setBudget({ ...budget, [key]: value });
@@ -134,14 +151,17 @@ const BudgetFormCard = (props: {
       {!isAddingCategory && !isModifyingCategory && (
         <div className="flex flex-col space-y-4">
           {/** Header */}
-          <div className="flex flex-row space-x-2 items-center">
-            {/** Back arrow */}
-            <BackArrowButton />
-            {/** Title */}
-            <h2 className="text-white theme-light:text-black">
-              Create a new budget
-            </h2>
+          <div className="flex items-center justify-between">
+            <div className="flex flex-row space-x-2 items-center">
+              {/** Back arrow */}
+              <BackArrowButton />
+              {/** Title */}
+              <h2 className="text-white theme-light:text-black">
+                {props.initialBudget ? "Update budget" : "Create a new budget"}
+              </h2>
+            </div>
           </div>
+
           <form
             className="flex flex-col space-y-4"
             onSubmit={(e) => handleSubmit(e)}
@@ -267,7 +287,6 @@ const BudgetFormCard = (props: {
 
             {/** Add budget button */}
             <Button className="cta">
-              {" "}
               {props.initialBudget ? " Update budget" : "Add budget"}
             </Button>
           </form>

@@ -1,12 +1,12 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { ActivityType } from "../../components/Activity/type/ActivityType";
 
-interface DetailsState {
+interface ActivityDetailsState {
   data: ActivityType;
   isShowed: boolean;
 }
 
-const initialState: DetailsState = {
+const initialState: ActivityDetailsState = {
   data: {
     id: "",
     name: "",
@@ -16,26 +16,28 @@ const initialState: DetailsState = {
     category: "music",
     created_at: null,
     user_id: null,
+    date: null,
   },
   isShowed: false,
 };
 
-export const detailsSlice = createSlice({
-  name: "details",
+export const activityDetailsSlice = createSlice({
+  name: "activityDetails",
   initialState,
   reducers: {
-    setDetails: (state, action: PayloadAction<ActivityType>) => {
+    setActivityDetails: (state, action: PayloadAction<ActivityType>) => {
       state.data = action.payload;
     },
-    showDetails: (state) => {
+    showActivityDetails: (state) => {
       state.isShowed = true;
     },
-    hideDetails: (state) => {
+    hideActivityDetails: (state) => {
       state.isShowed = false;
     },
   },
 });
 
-export const { setDetails, showDetails, hideDetails } = detailsSlice.actions;
+export const { setActivityDetails, showActivityDetails, hideActivityDetails } =
+  activityDetailsSlice.actions;
 
-export default detailsSlice.reducer;
+export default activityDetailsSlice.reducer;

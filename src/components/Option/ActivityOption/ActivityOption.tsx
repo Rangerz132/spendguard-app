@@ -18,16 +18,20 @@ export const activityDeleteOption: OptionType = {
   icon: <BiTrash />,
   title: "Remove the activity",
   action: async (data: any) => {
-    await deleteActivity(data.id);
-    if (data?.dispatch) {
-      data.dispatch(deleteActivityRedux(data.id));
-      data.dispatch(
-        setStatus({
-          message: "You successfully removed an activty.",
-          isShowed: true,
-          isValid: true,
-        })
-      );
+    try {
+      await deleteActivity(data.id);
+      if (data?.dispatch) {
+        data.dispatch(deleteActivityRedux(data.id));
+        data.dispatch(
+          setStatus({
+            message: "You successfully removed an activty.",
+            isShowed: true,
+            isValid: true,
+          })
+        );
+      }
+    } catch (error) {
+      console.error("Error when removing an activity:", error);
     }
   },
 };

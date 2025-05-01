@@ -20,22 +20,33 @@ const AddBudget = () => {
   ) => {
     e.preventDefault();
 
-    dispatch(addBudget(budget));
+    try {
+      dispatch(addBudget(budget));
 
-    for (let i = 0; i < budgetCategories.length; i++) {
-      dispatch(addBudgetCategory(budgetCategories[i]));
+      for (let i = 0; i < budgetCategories.length; i++) {
+        dispatch(addBudgetCategory(budgetCategories[i]));
+      }
+
+      await createBudget(budget);
+      await createBudgetCategories(budgetCategories);
+      navigate("/budgets");
+      dispatch(
+        setStatus({
+          message: "You successfully created a new budget",
+          isShowed: true,
+          isValid: true,
+        })
+      );
+    } catch (error) {
+      console.log("An error occurred when creating a new budget:", error);
+      dispatch(
+        setStatus({
+          message: "An error occurred when creating a new budget",
+          isShowed: true,
+          isValid: false,
+        })
+      );
     }
-
-    await createBudget(budget);
-    await createBudgetCategories(budgetCategories);
-    navigate("/budgets");
-    dispatch(
-      setStatus({
-        message: "You successfully created a new budget",
-        isShowed: true,
-        isValid: true,
-      })
-    );
   };
 
   return (

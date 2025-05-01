@@ -1,4 +1,3 @@
-import { BiEditAlt } from "react-icons/bi";
 import { useEffect, useState } from "react";
 import { useParams } from "react-router";
 import { BudgetType } from "../../../components/Budget/type/BudgetType";
@@ -9,12 +8,23 @@ import BudgetLimitCard from "../../../components/Budget/BudgetLimitCard";
 import useBudgets from "../../../hooks/useBudgets";
 import CustomStackedBarChart from "../../../components/Chart/CustomStackedBarChart";
 import useActivities from "../../../hooks/useActivities";
-import LinkButton from "../../../components/UI/LinkButton";
+import { BsThreeDotsVertical } from "react-icons/bs";
+import {
+  OverlayContext,
+  useOverlayContext,
+} from "../../../contexts/OverlayContext";
+import { useDispatch } from "react-redux";
+import {
+  setBudgetDetails,
+  showBudgetDetails,
+} from "../../../store/details/budgetDetailsSlice";
 
 const Budget = () => {
   const { id } = useParams();
+  const dispatch = useDispatch();
   const { getBudgetById, getBudgetCategoriesByBudgetId } = useBudgets();
   const { getExpensesAmountByCategory } = useActivities();
+  const { setOverlay } = useOverlayContext(OverlayContext);
   const [budget, setBudget] = useState<BudgetType | null>(null);
   const [budgetCategories, setBudgetCategories] = useState<
     BudgetCategoryType[]
@@ -44,6 +54,12 @@ const Budget = () => {
     setBudgetCategoriesData(tempBudgetCategoryAmount);
   }, [id]);
 
+  const handleOptionClick = () => {
+    setOverlay(true);
+    dispatch(setBudgetDetails(budget));
+    dispatch(showBudgetDetails());
+  };
+
   return (
     <div>
       {budget && (
@@ -59,14 +75,11 @@ const Budget = () => {
                   {budget.name}
                 </h2>
               </div>
-
               {/** Edit */}
-              <LinkButton
-                path={`/updateBudget/${id}`}
-                className="cursor-pointer"
-              >
-                <BiEditAlt className="icon text-theme-dark-grey" />
-              </LinkButton>
+              <BsThreeDotsVertical
+                className="icon text-theme-dark-grey"
+                onClick={handleOptionClick}
+              />
             </div>
 
             {/** Description */}
