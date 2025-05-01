@@ -16,6 +16,8 @@ type AuthContextType = {
   signOut: any;
   signIn: any;
   signInWithOAuth: any;
+  loading: any;
+  setLoading: any;
 };
 
 export const AuthContext = createContext<any>(null);

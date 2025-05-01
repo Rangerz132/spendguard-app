@@ -68,10 +68,7 @@ const BudgetFormCard = (props: {
     setBudget({ ...budget, [key]: value });
   };
 
-  const handleCategorySelection = (
-    e: unknown,
-    category: ActivityCategoryType
-  ) => {
+  const handleCategorySelection = (e: any, category: ActivityCategoryType) => {
     e.preventDefault();
     const newBudgetCategory = {
       id: uuidv4(),
