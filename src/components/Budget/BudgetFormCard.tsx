@@ -68,7 +68,10 @@ const BudgetFormCard = (props: {
     setBudget({ ...budget, [key]: value });
   };
 
-  const handleCategorySelection = (e: any, category: ActivityCategoryType) => {
+  const handleCategorySelection = (
+    e: unknown,
+    category: ActivityCategoryType
+  ) => {
     e.preventDefault();
     const newBudgetCategory = {
       id: uuidv4(),
@@ -89,21 +92,22 @@ const BudgetFormCard = (props: {
     setIsAddingCategory(false);
 
     const updatedCategory = { ...selectedCategory, amount };
-    setBudgetCategories((prevState) => {
-      const existingCategory = prevState.find(
-        (category) => category.category === updatedCategory.category
-      );
+    console.log(updatedCategory);
+    // setBudgetCategories((prevState) => {
+    //   const existingCategory = prevState.find(
+    //     (category) => category.category === updatedCategory.category
+    //   );
 
-      if (existingCategory) {
-        return prevState.map((category) =>
-          category.category === updatedCategory.category
-            ? updatedCategory
-            : category
-        );
-      } else {
-        return [...prevState, updatedCategory];
-      }
-    });
+    //   if (existingCategory) {
+    //     return prevState.map((category) =>
+    //       category.category === updatedCategory.category
+    //         ? updatedCategory
+    //         : category
+    //     );
+    //   } else {
+    //     return [...prevState, updatedCategory];
+    //   }
+    // });
     setSelectedCategory(null);
     setIsModifyingCategory(false);
   };
