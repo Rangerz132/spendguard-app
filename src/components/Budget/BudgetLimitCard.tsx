@@ -1,6 +1,5 @@
 import { BudgetType } from "./type/BudgetType";
 import Gauge from "../UI/Gauge";
-import { format } from "date-fns";
 import useBudgets from "../../hooks/useBudgets";
 
 const BudgetLimitCard = (props: {

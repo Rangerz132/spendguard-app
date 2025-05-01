@@ -9,7 +9,7 @@ import {
 } from "recharts";
 import CustomTooltip from "./CustomTooltip";
 
-const CustomStackedBarChart = (props: { data: any[] }) => {
+const CustomStackedBarChart = (props: { data: unknown[] }) => {
   const textSize = 10;
 
   return (

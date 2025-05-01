@@ -1,5 +1,4 @@
 import { JSX, useEffect, useState } from "react";
-import BackArrowButton from "../UI/BackArrowButton";
 import {
   ActivityCategoryType,
   categoryTypes,
@@ -9,10 +8,7 @@ import { BiChevronLeft } from "react-icons/bi";
 import { BudgetCategoryType } from "./type/BudgetCategoryType";
 
 const BudgetCategorySelection = (props: {
-  onCategorySelect: (
-    e: React.FormEvent<HTMLFormElement>,
-    category: ActivityCategoryType
-  ) => void;
+  onCategorySelect: (e: unknown, category: ActivityCategoryType) => void;
   onPrevious: () => void;
   usedBudgetCategories: BudgetCategoryType[];
 }) => {

@@ -9,7 +9,7 @@ import {
 } from "recharts";
 import CustomTooltip from "./CustomTooltip";
 
-const CustomLineChart = (props: { data: any[] }) => {
+const CustomLineChart = (props: { data: unknown[] }) => {
   const textSize = 10;
 
   return (

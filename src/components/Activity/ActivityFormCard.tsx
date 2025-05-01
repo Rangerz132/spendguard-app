@@ -8,7 +8,6 @@ import { v4 as uuidv4 } from "uuid";
 import React from "react";
 import FieldError from "../Form/FieldError";
 import { ValidatorService } from "../../services/inputValidation";
-import { AuthContext, useAuthContext } from "../../contexts/AuthContext";
 import supabase from "../../config/supabaseConfig";
 
 const ActivityFormCard = (props: {
@@ -32,9 +31,8 @@ const ActivityFormCard = (props: {
     }
   );
   const [errors, setErrors] = useState({ name: "", amount: "" });
-  const { session } = useAuthContext(AuthContext);
 
-  const updateActivity = (key: string, value: any) => {
+  const updateActivity = (key: string, value: unknown) => {
     setActivity({ ...activity, [key]: value });
   };
 

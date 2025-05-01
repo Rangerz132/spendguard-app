@@ -1,8 +1,6 @@
-import { BsThreeDotsVertical } from "react-icons/bs";
 import { useEffect, useState } from "react";
 import { v4 as uuidv4 } from "uuid";
 import { BudgetType } from "./type/BudgetType";
-import { AuthContext, useAuthContext } from "../../contexts/AuthContext";
 import { ValidatorService } from "../../services/inputValidation";
 import supabase from "../../config/supabaseConfig";
 import FieldError from "../Form/FieldError";
@@ -50,7 +48,6 @@ const BudgetFormCard = (props: {
   >([]);
 
   const [errors, setErrors] = useState({ name: "" });
-  const { session } = useAuthContext(AuthContext);
 
   useEffect(() => {
     const fetchBudgetCategories = async () => {
@@ -67,12 +64,12 @@ const BudgetFormCard = (props: {
     fetchBudgetCategories();
   }, [budget]);
 
-  const updateBudget = (key: string, value: any) => {
+  const updateBudget = (key: string, value: unknown) => {
     setBudget({ ...budget, [key]: value });
   };
 
   const handleCategorySelection = (
-    e: React.FormEvent<HTMLFormElement>,
+    e: unknown,
     category: ActivityCategoryType
   ) => {
     e.preventDefault();

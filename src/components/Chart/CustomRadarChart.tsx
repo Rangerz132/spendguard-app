@@ -9,7 +9,7 @@ import {
 } from "recharts";
 import CustomTooltip from "./CustomTooltip";
 
-const CustomRadarChart = (props: { data: any[] }) => {
+const CustomRadarChart = (props: { data: unknown[] }) => {
   return (
     <ResponsiveContainer width="75%" height={200}>
       <RadarChart cx="50%" cy="50%" outerRadius="75%" data={props.data}>
