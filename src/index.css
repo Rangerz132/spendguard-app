@@ -22,6 +22,10 @@
 }
 
 @layer base {
+  body * {
+    @apply transition-colors duration-300;
+  }
+
   body {
     @apply bg-black theme-light:bg-white;
   }

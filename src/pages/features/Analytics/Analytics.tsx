@@ -5,7 +5,7 @@ import CustomLineChart from "../../../components/Chart/CustomLineChart";
 import EmptyCard from "../../../components/Card/EmptyCard";
 import LinkButton from "../../../components/UI/LinkButton";
 import ExpenseListCard from "../../../components/Expense/ExpenseListCard";
-
+import emptyActivity from "../../../../public/images/states/emptyActivity.svg";
 import { useSelector } from "react-redux";
 import { RootState } from "../../../store/store";
 import CustomBarChart from "../../../components/Chart/CustomBarChart";
@@ -140,6 +140,7 @@ const Analytics = () => {
                 Add activity
               </LinkButton>
             }
+            imagePath={emptyActivity}
           />
         )}
       </section>
@@ -182,6 +183,7 @@ const Analytics = () => {
                 Add activity
               </LinkButton>
             }
+            imagePath={emptyActivity}
           />
         )}
       </section>

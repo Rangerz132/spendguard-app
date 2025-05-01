@@ -6,6 +6,7 @@ import EmptyCard from "../../../components/Card/EmptyCard";
 import LinkButton from "../../../components/UI/LinkButton";
 import { useSelector } from "react-redux";
 import { RootState } from "../../../store/store";
+import emptyActivity from "../../../../public/images/states/emptyActivity.svg";
 
 const Activities = () => {
   const activities = useSelector((root: RootState) => root.activities);
@@ -44,7 +45,12 @@ const Activities = () => {
           <EmptyCard
             title={"You don't have any activities"}
             description={"List of activities you've created will appear here."}
-            button={<LinkButton path={"/addActivity"} className="cta">Add activity</LinkButton>}
+            button={
+              <LinkButton path={"/addActivity"} className="cta">
+                Add activity
+              </LinkButton>
+            }
+            imagePath={emptyActivity}
           />
         )}
       </section>

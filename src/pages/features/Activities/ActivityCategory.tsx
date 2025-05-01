@@ -9,6 +9,7 @@ import { ActivityType } from "../../../components/Activity/type/ActivityType";
 import useActivities from "../../../hooks/useActivities";
 import EmptyCard from "../../../components/Card/EmptyCard";
 import LinkButton from "../../../components/UI/LinkButton";
+import emptyCategory from "../../../../public/images/states/emptyActivity.svg";
 
 const ActivityCategory = () => {
   const { category } = useParams();
@@ -62,6 +63,7 @@ const ActivityCategory = () => {
                 Add activity
               </LinkButton>
             }
+            imagePath={emptyCategory}
           />
         )}
       </section>

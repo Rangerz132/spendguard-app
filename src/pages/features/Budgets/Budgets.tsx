@@ -5,6 +5,7 @@ import { useNavigate } from "react-router";
 import { RootState } from "../../../store/store";
 import BudgetLimitCard from "../../../components/Budget/BudgetLimitCard";
 import { BiPlus } from "react-icons/bi";
+import emptyBudget from "../../../../public/images/states/emptyBudget.svg";
 
 const Budgets = () => {
   const navigate = useNavigate();
@@ -39,6 +40,7 @@ const Budgets = () => {
                 Add a new budget
               </LinkButton>
             }
+            imagePath={emptyBudget}
           />
         )}
       </section>

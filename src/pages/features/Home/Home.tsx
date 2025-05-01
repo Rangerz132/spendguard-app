@@ -8,6 +8,8 @@ import { useNavigate } from "react-router";
 import { useSelector } from "react-redux";
 import { RootState } from "../../../store/store";
 import BudgetLimitCard from "../../../components/Budget/BudgetLimitCard";
+import emptyActivity from "../../../../public/images/states/emptyActivity.svg";
+import emptyBudget from "../../../../public/images/states/emptyBudget.svg";
 
 const Home = () => {
   const { getExpensesAmount, getIncomesAmount, getBalanceAmount, activities } =
@@ -98,6 +100,7 @@ const Home = () => {
                 Add a budget
               </LinkButton>
             }
+            imagePath={emptyBudget}
           />
         )}
       </section>
@@ -127,6 +130,7 @@ const Home = () => {
                 Add activity
               </LinkButton>
             }
+            imagePath={emptyActivity}
           />
         )}
       </section>

@@ -14,6 +14,7 @@ import { ActivityCategoryType } from "../Activity/type/ActivityCategoryType";
 import EmptyCard from "../Card/EmptyCard";
 import BudgetCategoryNewCard from "./BudgetCategoryNewCard";
 import { getBudgetCategoriesByBudgetId } from "../../services/supabase/budgetCategoryService";
+import emptyCategory from "../../../public/images/states/emptyCategory.svg";
 
 const BudgetFormCard = (props: {
   initialBudget?: BudgetType;
@@ -280,6 +281,7 @@ const BudgetFormCard = (props: {
                       Add a new category
                     </Button>
                   }
+                  imagePath={emptyCategory}
                 />
               )}
             </div>
