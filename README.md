@@ -4,6 +4,8 @@
 
 SpendGuard is a modern, interactive budgeting application built with React that empowers users to efficiently manage their personal finances. Developed entirely by me, the app provides dynamic tools to track incomes and expenses while offering insightful analytics and visualizations on budget trends. It delivers a smooth and responsive user experience through the use of React, React Router, Supabase, and Tailwind CSS.
 
+[Demo](https://spendguard-app.vercel.app/)
+
 ## Roadmap
 
 At the time of writing, SpendGuard is still under active development.
