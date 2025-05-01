@@ -88,23 +88,27 @@ const BudgetFormCard = (props: {
     e.preventDefault();
     setIsAddingCategory(false);
 
-    const updatedCategory = { ...selectedCategory, amount };
-    console.log(updatedCategory);
-    // setBudgetCategories((prevState) => {
-    //   const existingCategory = prevState.find(
-    //     (category) => category.category === updatedCategory.category
-    //   );
+    if (selectedCategory == null) {
+      return;
+    }
 
-    //   if (existingCategory) {
-    //     return prevState.map((category) =>
-    //       category.category === updatedCategory.category
-    //         ? updatedCategory
-    //         : category
-    //     );
-    //   } else {
-    //     return [...prevState, updatedCategory];
-    //   }
-    // });
+    const updatedCategory = { ...selectedCategory, amount };
+
+    setBudgetCategories((prevState) => {
+      const existingCategory = prevState.find(
+        (category) => category.category === updatedCategory.category
+      );
+
+      if (existingCategory) {
+        return prevState.map((category) =>
+          category.category === updatedCategory.category
+            ? updatedCategory
+            : category
+        );
+      } else {
+        return [...prevState, updatedCategory];
+      }
+    });
     setSelectedCategory(null);
     setIsModifyingCategory(false);
   };
