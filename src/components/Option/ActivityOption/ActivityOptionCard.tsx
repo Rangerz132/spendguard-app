@@ -12,7 +12,7 @@ import {
 import { activityOptions } from "./ActivityOption";
 import { hideActivityDetails } from "../../../store/details/activityDetailsSlice";
 
-const ActivityOptionCard = (props: { children?: React.ReactNode }) => {
+const ActivityOptionCard = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const { setOverlay } = useOverlayContext(OverlayContext);

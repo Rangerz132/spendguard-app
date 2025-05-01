@@ -9,7 +9,7 @@ export const budgetCategoriesSlice = createSlice({
   initialState,
   reducers: {
     setBudgetCategories: (
-      state,
+      _state,
       action: PayloadAction<BudgetCategoryType[]>
     ) => {
       return action.payload;

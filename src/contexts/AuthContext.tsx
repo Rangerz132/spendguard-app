@@ -6,7 +6,8 @@ type AuthContextType = {
   setSession: any;
   signUp: (
     email: string,
-    password: string
+    password: string,
+    displayName?: string
   ) => Promise<{
     success: boolean;
     data?: any;
@@ -123,7 +124,9 @@ export function AuthContextProvider({
 }
 
 // Custom hook to use the context
-export function useAuthContext(AuthContext: any): AuthContextType {
+export function useAuthContext(
+  AuthContext: React.Context<AuthContextType>
+): AuthContextType {
   const context = useContext(AuthContext);
 
   if (!context) {

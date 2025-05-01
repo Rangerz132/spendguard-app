@@ -7,7 +7,7 @@ export const activitiesSlice = createSlice({
   name: "activities",
   initialState,
   reducers: {
-    setActivities: (state, action: PayloadAction<ActivityType[]>) => {
+    setActivities: (_state, action: PayloadAction<ActivityType[]>) => {
       return action.payload;
     },
     addActivity: (state, action: PayloadAction<ActivityType>) => {

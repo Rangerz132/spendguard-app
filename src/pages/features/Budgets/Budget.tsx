@@ -56,7 +56,7 @@ const Budget = () => {
 
   const handleOptionClick = () => {
     setOverlay(true);
-    dispatch(setBudgetDetails(budget));
+    dispatch(setBudgetDetails(budget as BudgetType));
     dispatch(showBudgetDetails());
   };
 

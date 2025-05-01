@@ -7,7 +7,7 @@ export const budgetsSlice = createSlice({
   name: "budgets",
   initialState,
   reducers: {
-    setBudgets: (state, action: PayloadAction<BudgetType[]>) => {
+    setBudgets: (_state, action: PayloadAction<BudgetType[]>) => {
       return action.payload;
     },
     addBudget: (state, action: PayloadAction<BudgetType>) => {

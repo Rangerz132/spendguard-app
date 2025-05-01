@@ -11,7 +11,7 @@ import {
 import { hideBudgetDetails } from "../../../store/details/budgetDetailsSlice";
 import { budgetOptions } from "./BudgetOption";
 
-const BudgetOptionCard = (props: { children?: React.ReactNode }) => {
+const BudgetOptionCard = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const { setOverlay } = useOverlayContext(OverlayContext);
