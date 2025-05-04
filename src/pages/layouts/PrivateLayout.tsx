@@ -1,10 +1,9 @@
 import { useNavigate } from "react-router";
-
 import { useEffect } from "react";
-import { AuthContext, useAuthContext } from "../../contexts/AuthContext";
+import { useAuthContext } from "../../contexts/AuthContext";
 
 const PrivateLayout = ({ children }: { children: React.ReactNode }) => {
-  const { session, loading } = useAuthContext(AuthContext);
+  const { session, loading } = useAuthContext();
   const navigate = useNavigate();
 
   useEffect(() => {

@@ -82,10 +82,8 @@ export const createBudgetCategory = async (
 export const createBudgetCategories = async (
   budgetCategories: BudgetCategoryType[]
 ): Promise<BudgetCategoryType[] | null> => {
-  // Step 1: Get all IDs from the new categories
   const newIds = budgetCategories.map((cat) => cat.id);
 
-  // Step 2: Check which IDs already exist in the database
   const { data: existingCategories, error: fetchError } = await supabase
     .from("budget_category")
     .select("id")
@@ -96,18 +94,15 @@ export const createBudgetCategories = async (
     return null;
   }
 
-  // Step 3: Filter out categories that already exist
   const existingIds = new Set((existingCategories || []).map((cat) => cat.id));
   const categoriesToInsert = budgetCategories.filter(
     (cat) => !existingIds.has(cat.id)
   );
 
-  // If there’s nothing new to insert, return an empty array
   if (categoriesToInsert.length === 0) {
     return [];
   }
 
-  // Step 4: Insert only new categories
   const { data, error } = await supabase
     .from("budget_category")
     .insert(categoriesToInsert)

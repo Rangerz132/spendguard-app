@@ -1,22 +1,17 @@
 import Avatar from "../Avatar/Avatar";
-import {
-  SettingsContext,
-  useSettingsContext,
-} from "../../contexts/SettingsContext";
+import { useSettingsContext } from "../../contexts/SettingsContext";
 import { settingsOptions } from "../Option/SettingsOption/SettingsOption";
 import OptionSlot from "../Option/OptionSlot";
-import {
-  OverlayContext,
-  useOverlayContext,
-} from "../../contexts/OverlayContext";
+import { useOverlayContext } from "../../contexts/OverlayContext";
 import SignOut from "../Sign/SignOut";
 import supabase from "../../config/supabaseConfig";
 import { useEffect, useState } from "react";
+import { useThemeContext } from "../../contexts/ThemeContext";
 
 const Sidebar = () => {
-  const { setOverlay } = useOverlayContext(OverlayContext);
-  const { settings, setSettings } = useSettingsContext(SettingsContext);
-
+  const { setOverlay } = useOverlayContext();
+  const { setTheme } = useThemeContext();
+  const { settings, setSettings } = useSettingsContext();
   const [userName, setUserName] = useState<string>("Invalid Name");
 
   useEffect(() => {
@@ -56,7 +51,7 @@ const Sidebar = () => {
             <OptionSlot
               key={settingOption.title}
               activityOption={settingOption}
-              data={undefined}
+              data={{ setTheme }}
               onClick={() => {
                 setSettings(false);
                 setOverlay(false);

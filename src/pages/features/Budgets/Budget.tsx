@@ -9,10 +9,7 @@ import useBudgets from "../../../hooks/useBudgets";
 import CustomStackedBarChart from "../../../components/Chart/CustomStackedBarChart";
 import useActivities from "../../../hooks/useActivities";
 import { BsThreeDotsVertical } from "react-icons/bs";
-import {
-  OverlayContext,
-  useOverlayContext,
-} from "../../../contexts/OverlayContext";
+import { useOverlayContext } from "../../../contexts/OverlayContext";
 import { useDispatch } from "react-redux";
 import {
   setBudgetDetails,
@@ -24,7 +21,7 @@ const Budget = () => {
   const dispatch = useDispatch();
   const { getBudgetById, getBudgetCategoriesByBudgetId } = useBudgets();
   const { getExpensesAmountByCategory } = useActivities();
-  const { setOverlay } = useOverlayContext(OverlayContext);
+  const { setOverlay } = useOverlayContext();
   const [budget, setBudget] = useState<BudgetType | null>(null);
   const [budgetCategories, setBudgetCategories] = useState<
     BudgetCategoryType[]

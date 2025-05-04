@@ -4,17 +4,14 @@ import { useNavigate } from "react-router";
 import { RootState } from "../../../store/store";
 import OptionSlot from "../OptionSlot";
 
-import {
-  OverlayContext,
-  useOverlayContext,
-} from "../../../contexts/OverlayContext";
+import { useOverlayContext } from "../../../contexts/OverlayContext";
 import { hideBudgetDetails } from "../../../store/details/budgetDetailsSlice";
 import { budgetOptions } from "./BudgetOption";
 
 const BudgetOptionCard = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  const { setOverlay } = useOverlayContext(OverlayContext);
+  const { setOverlay } = useOverlayContext();
   const details = useSelector((store: RootState) => store.budgetDetails);
 
   return (

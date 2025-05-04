@@ -17,6 +17,7 @@ import { getBudgets } from "../../services/supabase/budgetService";
 import { getBudgetCategories } from "../../services/supabase/budgetCategoryService";
 import { setBudgetCategories } from "../../store/budgetCategories/budgetCategoriesSlice";
 import BudgetOptionCard from "../../components/Option/BudgetOption/BudgetOptionCard";
+import { ThemeContextProvider } from "../../contexts/ThemeContext";
 
 const MainLayout = () => {
   const dispatch = useDispatch();
@@ -39,20 +40,22 @@ const MainLayout = () => {
   return (
     <>
       <PrivateLayout>
-        <OverlayContextProvider>
-          <SettingsContextProvider>
-            <Header />
-            <Menu />
-            <Sidebar />
-            <Overlay />
-            <ActivityOptionCard />
-            <BudgetOptionCard />
-            <StatusCard />
-            <div className="py-16">
-              <Outlet />
-            </div>
-          </SettingsContextProvider>
-        </OverlayContextProvider>
+        <ThemeContextProvider>
+          <OverlayContextProvider>
+            <SettingsContextProvider>
+              <Header />
+              <Menu />
+              <Sidebar />
+              <Overlay />
+              <ActivityOptionCard />
+              <BudgetOptionCard />
+              <StatusCard />
+              <div className="py-16">
+                <Outlet />
+              </div>
+            </SettingsContextProvider>
+          </OverlayContextProvider>
+        </ThemeContextProvider>
       </PrivateLayout>
     </>
   );

@@ -126,9 +126,7 @@ export function AuthContextProvider({
 }
 
 // Custom hook to use the context
-export function useAuthContext(
-  AuthContext: React.Context<AuthContextType>
-): AuthContextType {
+export function useAuthContext(): AuthContextType {
   const context = useContext(AuthContext);
 
   if (!context) {

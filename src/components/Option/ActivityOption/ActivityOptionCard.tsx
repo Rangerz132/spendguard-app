@@ -5,17 +5,14 @@ import { RootState } from "../../../store/store";
 import ActivitySlot from "../../Activity/ActivitySlot";
 import OptionSlot from "../OptionSlot";
 
-import {
-  OverlayContext,
-  useOverlayContext,
-} from "../../../contexts/OverlayContext";
+import { useOverlayContext } from "../../../contexts/OverlayContext";
 import { activityOptions } from "./ActivityOption";
 import { hideActivityDetails } from "../../../store/details/activityDetailsSlice";
 
 const ActivityOptionCard = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  const { setOverlay } = useOverlayContext(OverlayContext);
+  const { setOverlay } = useOverlayContext();
   const details = useSelector((store: RootState) => store.activityDetails);
 
   return (

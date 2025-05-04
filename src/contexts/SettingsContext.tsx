@@ -21,10 +21,8 @@ export function SettingsContextProvider({
   );
 }
 
-export function useSettingsContext(
-  settingsContext: React.Context<SettingsContext | null>
-) {
-  const context = useContext(settingsContext);
+export function useSettingsContext() {
+  const context = useContext(SettingsContext);
 
   if (!context) {
     throw new Error(

@@ -1,16 +1,10 @@
-import {
-  OverlayContext,
-  useOverlayContext,
-} from "../../contexts/OverlayContext";
-import {
-  SettingsContext,
-  useSettingsContext,
-} from "../../contexts/SettingsContext";
+import { useOverlayContext } from "../../contexts/OverlayContext";
+import { useSettingsContext } from "../../contexts/SettingsContext";
 import Avatar09 from "/images/avatars/avatar-09.png";
 
 const Avatar = (props: { enableInteraction: boolean }) => {
-  const { setOverlay } = useOverlayContext(OverlayContext);
-  const { setSettings } = useSettingsContext(SettingsContext);
+  const { setOverlay } = useOverlayContext();
+  const { setSettings } = useSettingsContext();
   const handleClick = () => {
     setOverlay(true);
     setSettings(true);

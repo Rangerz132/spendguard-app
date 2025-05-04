@@ -2,10 +2,7 @@ import { BsThreeDotsVertical } from "react-icons/bs";
 import React, { JSX } from "react";
 import { ActivityType } from "./type/ActivityType";
 import { getFullCategory } from "./type/ActivityCategoryType";
-import {
-  OverlayContext,
-  useOverlayContext,
-} from "../../contexts/OverlayContext";
+import { useOverlayContext } from "../../contexts/OverlayContext";
 import { useDispatch } from "react-redux";
 import {
   setActivityDetails,
@@ -21,7 +18,7 @@ const ActivitySlot = ({
 }) => {
   const dispatch = useDispatch();
 
-  const { setOverlay } = useOverlayContext(OverlayContext);
+  const { setOverlay } = useOverlayContext();
   const category = getFullCategory(data.category);
 
   function setActivityDetail() {

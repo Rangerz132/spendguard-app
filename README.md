@@ -13,7 +13,6 @@ At the time of writing, SpendGuard is still under active development.
 ### Upcoming features / improvements
 
 - Add an "Edit Profile" page (To Do)
-- Improve the "SignIn" / "SignUp" page visually (In Progress)
 - Enhance responsiveness for different devices (To Do)
 - Add recurrent activity option (To Do)
 - Add notification system

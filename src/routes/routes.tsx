@@ -1,3 +1,4 @@
+import { BiBullseye } from "react-icons/bi";
 import { BiCalendar } from "react-icons/bi";
 import { BiPulse } from "react-icons/bi";
 import { BiMessageAltAdd } from "react-icons/bi";
@@ -115,7 +116,7 @@ const mainRoutes = {
       element: <Budgets />,
       name: "budgets",
       id: "budgets",
-      icon: <BiCalendar />,
+      icon: <BiBullseye />,
     },
     {
       path: "/analytics",

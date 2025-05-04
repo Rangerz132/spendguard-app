@@ -1,9 +1,9 @@
 import { BiDoorOpen } from "react-icons/bi";
 import { useNavigate } from "react-router";
-import { AuthContext, useAuthContext } from "../../contexts/AuthContext";
+import { useAuthContext } from "../../contexts/AuthContext";
 
 const SignOut = () => {
-  const { signOut } = useAuthContext(AuthContext);
+  const { signOut } = useAuthContext();
   const navigate = useNavigate();
 
   const handleSignOut = async (event) => {

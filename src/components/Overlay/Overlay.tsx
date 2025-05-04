@@ -1,10 +1,7 @@
-import {
-  OverlayContext,
-  useOverlayContext,
-} from "../../contexts/OverlayContext";
+import { useOverlayContext } from "../../contexts/OverlayContext";
 
 const Overlay = () => {
-  const { overlay } = useOverlayContext(OverlayContext);
+  const { overlay } = useOverlayContext();
   return (
     <div
       className={`fixed z-20 left-0 top-0 w-screen h-screen bg-black ${

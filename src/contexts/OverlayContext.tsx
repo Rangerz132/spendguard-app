@@ -21,10 +21,8 @@ export function OverlayContextProvider({
   );
 }
 
-export function useOverlayContext(
-  overlayContext: React.Context<OverlayContext | null>
-) {
-  const context = useContext(overlayContext);
+export function useOverlayContext() {
+  const context = useContext(OverlayContext);
 
   if (!context) {
     throw new Error(

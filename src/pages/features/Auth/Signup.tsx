@@ -1,7 +1,7 @@
 import { Link, useNavigate } from "react-router";
 import { useEffect, useState } from "react";
 import GoogleLogo from "/images/providers/logo-google.svg";
-import { AuthContext, useAuthContext } from "../../../contexts/AuthContext";
+import { useAuthContext } from "../../../contexts/AuthContext";
 import Button from "../../../components/UI/Button";
 
 const Signup = () => {
@@ -10,7 +10,7 @@ const Signup = () => {
   const [displayName, setDisplayName] = useState("");
   const [error, setError] = useState("");
 
-  const { signUp, signInWithOAuth, session } = useAuthContext(AuthContext);
+  const { signUp, signInWithOAuth, session } = useAuthContext();
   const navigate = useNavigate();
 
   const handleSignUp = async (event: React.FormEvent<HTMLFormElement>) => {
