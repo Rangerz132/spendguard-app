@@ -74,7 +74,7 @@ const Budget = () => {
               </div>
               {/** Edit */}
               <BsThreeDotsVertical
-                className="icon text-theme-dark-grey"
+                className="icon text-theme-dark-grey theme-lgihttext-theme-light-dark-grey cursor-pointer"
                 onClick={handleOptionClick}
               />
             </div>

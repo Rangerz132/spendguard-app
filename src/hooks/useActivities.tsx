@@ -2,10 +2,12 @@ import { useCallback, useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import { RootState } from "../store/store";
 import { ActivityType } from "../components/Activity/type/ActivityType";
+import useActivityFilters from "./useActivityFilters";
 
 const useActivities = () => {
   const activities = useSelector((store: RootState) => store.activities);
   const [activityCategories, setActivityCategory] = useState<string[]>([]);
+  const { filterActivitiesWithinDateRange } = useActivityFilters(activities);
 
   useEffect(() => {
     const fetchActivities = () => {
@@ -52,6 +54,22 @@ const useActivities = () => {
   /** Return the expenses amount in a specific category */
   const getExpensesAmountByCategory = (category: string): number => {
     const validActivities = activities
+      .filter((activity) => activity.category === category)
+      .filter((activity) => activity.is_expense);
+
+    return validActivities.reduce(
+      (acc, activity) => acc + Number(activity.amount || 0),
+      0
+    );
+  };
+
+  /** Return the expenses amount in a specific category */
+  const getExpensesAmountByCategoryWithinDateRange = (
+    category: string,
+    from: string | Date,
+    to: string | Date
+  ): number => {
+    const validActivities = filterActivitiesWithinDateRange(from, to)
       .filter((activity) => activity.category === category)
       .filter((activity) => activity.is_expense);
 
@@ -124,6 +142,7 @@ const useActivities = () => {
     getIncomesAmount,
     getBalanceAmount,
     getExpensesAmountByCategory,
+    getExpensesAmountByCategoryWithinDateRange,
     getExpensesAmountByCategories,
     getExpensesAmountByDates,
     getIncomesAmountByDates,

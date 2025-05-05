@@ -10,7 +10,10 @@ const BudgetLimitCard = (props: {
   const { getMaxAmountByBudget, getCurrentAmountByBudget } = useBudgets();
 
   return (
-    <div className="card" onClick={props.onClick}>
+    <div
+      className={`card ${props.onClick && "cursor-pointer"}`}
+      onClick={props.onClick}
+    >
       <div className="flex flex-col space-y-4">
         <div className="flex flex-col space-y-2">
           <div className="flex flex-row justify-between items-center">
