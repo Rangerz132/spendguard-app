@@ -12,12 +12,18 @@ At the time of writing, SpendGuard is still under active development.
 
 ### Upcoming features / improvements
 
-- Add an "Edit Profile" page (To Do)
+- Add an "Edit Profile" page (In Progress)
 - Enhance responsiveness for different devices (To Do)
 - Add recurrent activity option (To Do)
 - Add notification system
 - Add an "Onboarding" page (To Do)
 - Improve optimisation and overall structure (To Do)
+
+### Bugs
+
+- Fix budget date filter (In Progress)
+- Fix slider in the analytics page (In Progress)
+- Fix locked budget categories (In Progress)
 
 ## Getting started
 
