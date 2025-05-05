@@ -146,6 +146,14 @@ const BudgetFormCard = (props: {
     props.onSubmit(e, updatedBudget, updatedBudgetCategories);
   };
 
+  const handleDeleteCategory = (deletedCategoryId: string) => {
+    setBudgetCategories((prev) =>
+      prev.filter((cat) => cat.id !== deletedCategoryId)
+    );
+    setSelectedCategory(null);
+    setIsModifyingCategory(false);
+  };
+
   return (
     <>
       {!isAddingCategory && !isModifyingCategory && (
@@ -177,7 +185,7 @@ const BudgetFormCard = (props: {
                     type="text"
                     name="name"
                     placeholder="Enter a name..."
-                    defaultValue={props.initialBudget?.name || ""}
+                    defaultValue={props.initialBudget?.name || budget.name}
                     onChange={(e) =>
                       updateBudget(e.currentTarget.name, e.currentTarget.value)
                     }
@@ -195,7 +203,9 @@ const BudgetFormCard = (props: {
                   <textarea
                     name="description"
                     placeholder="Enter a description..."
-                    defaultValue={props.initialBudget?.description || ""}
+                    defaultValue={
+                      props.initialBudget?.description || budget.description
+                    }
                     onChange={(e) =>
                       updateBudget(e.currentTarget.name, e.currentTarget.value)
                     }
@@ -308,6 +318,9 @@ const BudgetFormCard = (props: {
         <BudgetCategoryEdit
           budgetCategoryType={selectedCategory}
           onCategoryEdit={() => {}}
+          onDeleteCategory={(deletedCategoryId: string) =>
+            handleDeleteCategory(deletedCategoryId)
+          }
           onPrevious={() => {
             setSelectedCategory(null);
             setIsModifyingCategory(false);

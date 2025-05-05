@@ -147,3 +147,19 @@ export const updateBudgetCategories = async (
 
   return updatedBudgetCategories;
 };
+
+// DELETE
+export const deleteBudgetCategory = async (budgetCategoryId: string): Promise<boolean> => {
+  const { error } = await supabase
+    .from("budget_category")
+    .delete()
+    .eq("id", budgetCategoryId);
+
+  if (error) {
+    console.error("Error deleting budgetCategory:", error);
+    return false;
+  }
+
+  return true;
+};
+
