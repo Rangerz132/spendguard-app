@@ -22,7 +22,6 @@ At the time of writing, SpendGuard is still under active development.
 ### Bugs
 
 - Fix budget date filter (In Progress)
-- Fix slider in the analytics page (In Progress)
 - Fix locked budget categories (In Progress)
 
 ## Getting started

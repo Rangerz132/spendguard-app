@@ -7,7 +7,7 @@ const ExpenseListCard = () => {
   return (
     <div className="relative">
       {/* Carousel */}
-      <div className="carousel">
+      <div className="carousel scrollbar-hidden">
         {Array.from(getExpensesAmountByCategories()).map(
           ([key, value]: [string, number]) => (
             <ExpenseCard key={key} category={key} value={value} />

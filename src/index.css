@@ -116,3 +116,11 @@
     @apply w-6 h-6;
   }
 }
+
+@layer utilities {
+  .scrollbar-hidden {
+    &::-webkit-scrollbar {
+      display: none;
+    }
+  }
+}
