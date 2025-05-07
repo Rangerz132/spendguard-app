@@ -19,7 +19,7 @@ const Analytics = () => {
     getExpensesAmount,
     getIncomesAmount,
     getBalanceAmount,
-    getExpensesAmountByCategories,
+    getExpensesAmountByCategoriesWithinCurrentMonth,
     getExpensesAmountByDates,
     getIncomesAmountByDates,
   } = useActivities();
@@ -44,7 +44,7 @@ const Analytics = () => {
     );
 
     const expensesByCategoryData = Array.from(
-      getExpensesAmountByCategories()
+      getExpensesAmountByCategoriesWithinCurrentMonth()
     ).map(([date, value]) => ({
       value1: date,
       value2: value,
@@ -57,7 +57,7 @@ const Analytics = () => {
   }, [
     getExpensesAmountByDates,
     getIncomesAmountByDates,
-    getExpensesAmountByCategories,
+    getExpensesAmountByCategoriesWithinCurrentMonth,
     activities,
   ]);
 
@@ -156,7 +156,7 @@ const Analytics = () => {
           <h4 className="text-theme-dark-grey text-sm theme-light:text-theme-light-dark-grey">
             You spend money in{" "}
             <span className="font-semibold text-white theme-light:text-black">
-              {getExpensesAmountByCategories().size}
+              {getExpensesAmountByCategoriesWithinCurrentMonth().size}
             </span>{" "}
             categories.
           </h4>

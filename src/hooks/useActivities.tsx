@@ -1,148 +1,123 @@
-import { useCallback, useEffect, useState } from "react";
+import { useCallback, useMemo } from "react";
 import { useSelector } from "react-redux";
 import { RootState } from "../store/store";
 import useActivityFilters from "./useActivityFilters";
+import { ActivityType } from "../components/Activity/type/ActivityType";
 
 const useActivities = () => {
-  const activities = useSelector((store: RootState) => store.activities);
-  const [activityCategories, setActivityCategory] = useState<string[]>([]);
-  const { filterActivitiesWithinDateRange } = useActivityFilters(activities);
+  const activities = useSelector((state: RootState) => state.activities);
+  const {
+    filterActivitiesWithinDateRange,
+    filterActivitiesWithinCurrentMonth,
+  } = useActivityFilters(activities);
 
-  useEffect(() => {
-    if (!activities || activities.length === 0) return;
-
-    const categories = [
-      ...new Set(activities.map((activity) => activity.category)),
-    ];
-    setActivityCategory(categories);
+  const activityCategories = useMemo(() => {
+    if (!activities || activities.length === 0) return [];
+    return [...new Set(activities.map((a) => a.category))];
   }, [activities]);
 
-  /** Return the total expenses amount */
-  const getExpensesAmount = (): number => {
-    if (activities.length === 0) {
-      return 0;
-    } else {
-      return activities
-        .filter((activity) => activity.is_expense)
-        .reduce((acc, activity) => acc + (Number(activity.amount) || 0), 0);
-    }
-  };
+  const getExpensesAmount = useCallback((): number => {
+    return activities
+      .filter((a) => a.is_expense)
+      .reduce((acc, a) => acc + (Number(a.amount) || 0), 0);
+  }, [activities]);
 
-  /** Return the total incomes amount */
-  const getIncomesAmount = (): number => {
-    if (activities.length === 0) {
-      return 0;
-    } else {
-      return activities
-        .filter((activity) => !activity.is_expense)
-        .reduce((acc, activity) => acc + (Number(activity.amount) || 0), 0);
-    }
-  };
+  const getIncomesAmount = useCallback((): number => {
+    return activities
+      .filter((a) => !a.is_expense)
+      .reduce((acc, a) => acc + (Number(a.amount) || 0), 0);
+  }, [activities]);
 
-  /** Return the total balance amount */
-  const getBalanceAmount = (): number => {
-    if (activities.length === 0) {
-      return 0;
-    } else {
-      const incomes = getIncomesAmount();
-      const expenses = getExpensesAmount();
-      return incomes - expenses;
-    }
-  };
+  const getBalanceAmount = useCallback((): number => {
+    return getIncomesAmount() - getExpensesAmount();
+  }, [getIncomesAmount, getExpensesAmount]);
 
-  /** Return the expenses amount in a specific category */
-  const getExpensesAmountByCategory = (category: string): number => {
-    const validActivities = activities
-      .filter((activity) => activity.category === category)
-      .filter((activity) => activity.is_expense);
+  const getExpensesAmountByCategory = useCallback(
+    (category: string, source?: ActivityType[]): number => {
+      const filtered = (source || activities).filter(
+        (a) => a.category === category && a.is_expense
+      );
+      return filtered.reduce((acc, a) => acc + Number(a.amount || 0), 0);
+    },
+    [activities]
+  );
 
-    return validActivities.reduce(
-      (acc, activity) => acc + Number(activity.amount || 0),
-      0
-    );
-  };
+  const getExpensesAmountByCategoryWithinDateRange = useCallback(
+    (category: string, from: string | Date, to: string | Date): number => {
+      const filtered = filterActivitiesWithinDateRange(from, to).filter(
+        (a) => a.category === category && a.is_expense
+      );
+      return filtered.reduce((acc, a) => acc + Number(a.amount || 0), 0);
+    },
+    [filterActivitiesWithinDateRange]
+  );
 
-  /** Return the expenses amount in a specific category */
-  const getExpensesAmountByCategoryWithinDateRange = (
-    category: string,
-    from: string | Date,
-    to: string | Date
-  ): number => {
-    const validActivities = filterActivitiesWithinDateRange(from, to)
-      .filter((activity) => activity.category === category)
-      .filter((activity) => activity.is_expense);
+  const getExpensesAmountByCategoriesWithinCurrentMonth = useCallback(() => {
+    const map = new Map<string, number>();
+    const currentMonthActivities = filterActivitiesWithinCurrentMonth();
 
-    return validActivities.reduce(
-      (acc, activity) => acc + Number(activity.amount || 0),
-      0
-    );
-  };
+    const categories = [
+      ...new Set(currentMonthActivities.map((a) => a.category)),
+    ];
 
-  /** Return the expenses amount per category */
-  const getExpensesAmountByCategories = useCallback((): Map<string, number> => {
-    const expensesAmountByCategories = new Map();
+    categories.forEach((category) => {
+      const total = currentMonthActivities
+        .filter((a) => a.category === category && a.is_expense)
+        .reduce((acc, a) => acc + (Number(a.amount) || 0), 0);
 
-    activityCategories.map((activityCategory) => {
-      if (getExpensesAmountByCategory(activityCategory) > 0) {
-        expensesAmountByCategories.set(
-          activityCategory,
-          getExpensesAmountByCategory(activityCategory)
-        );
+      if (total > 0) {
+        map.set(category, total);
       }
     });
 
-    return expensesAmountByCategories;
-  }, [activities, activityCategories]);
-
-  /** Return the expenses amount per date */
-  const getExpensesAmountByDates = useCallback((): Map<string, number> => {
-    const expensesAmountByDates = new Map<string, number>();
-
-    activities
-      .filter((activity) => activity.is_expense)
-      .forEach((activity) => {
-        const date = activity.date as string;
-        const amount = Number(activity.amount) || 0;
-
-        expensesAmountByDates.set(
-          date,
-          (expensesAmountByDates.get(date) || 0) + amount
-        );
-      });
-
-    return expensesAmountByDates;
+    return map;
   }, [activities]);
 
-  /** Return the incomes amount per date */
-  const getIncomesAmountByDates = useCallback((): Map<string, number> => {
-    const incomesAmountByDates = new Map<string, number>();
+  const getExpensesAmountByCategories = useCallback(() => {
+    const byCategory = new Map<string, number>();
+    activityCategories.forEach((category) => {
+      const amount = getExpensesAmountByCategory(category);
+      if (amount > 0) byCategory.set(category, amount);
+    });
+    return byCategory;
+  }, [activityCategories, getExpensesAmountByCategory]);
 
+  const getExpensesAmountByDates = useCallback(() => {
+    const byDate = new Map<string, number>();
     activities
-      .filter((activity) => !activity.is_expense)
-      .forEach((activity) => {
-        const date = activity.date as string;
-        const amount = Number(activity.amount) || 0;
-
-        incomesAmountByDates.set(
-          date,
-          (incomesAmountByDates.get(date) || 0) + amount
-        );
+      .filter((a) => a.is_expense)
+      .forEach((a) => {
+        const date = a.date as string;
+        const amount = Number(a.amount) || 0;
+        byDate.set(date, (byDate.get(date) || 0) + amount);
       });
+    return byDate;
+  }, [activities]);
 
-    return incomesAmountByDates;
+  const getIncomesAmountByDates = useCallback(() => {
+    const byDate = new Map<string, number>();
+    activities
+      .filter((a) => !a.is_expense)
+      .forEach((a) => {
+        const date = a.date as string;
+        const amount = Number(a.amount) || 0;
+        byDate.set(date, (byDate.get(date) || 0) + amount);
+      });
+    return byDate;
   }, [activities]);
 
   return {
+    activities,
+    activityCategories,
     getExpensesAmount,
     getIncomesAmount,
     getBalanceAmount,
     getExpensesAmountByCategory,
     getExpensesAmountByCategoryWithinDateRange,
+    getExpensesAmountByCategoriesWithinCurrentMonth,
     getExpensesAmountByCategories,
     getExpensesAmountByDates,
     getIncomesAmountByDates,
-    activities,
-    activityCategories,
   };
 };
 

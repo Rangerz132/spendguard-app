@@ -2,13 +2,13 @@ import useActivities from "../../hooks/useActivities";
 import ExpenseCard from "./ExpenseCard";
 
 const ExpenseListCard = (props: { query?: string }) => {
-  const { getExpensesAmountByCategories } = useActivities();
+  const { getExpensesAmountByCategoriesWithinCurrentMonth } = useActivities();
 
   return (
     <div className="relative">
       {/* Carousel */}
       <div className="carousel scrollbar-hidden">
-        {Array.from(getExpensesAmountByCategories()).map(
+        {Array.from(getExpensesAmountByCategoriesWithinCurrentMonth()).map(
           ([key, value]: [string, number]) => (
             <ExpenseCard
               key={key}

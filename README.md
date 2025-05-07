@@ -15,14 +15,13 @@ At the time of writing, SpendGuard is still under active development.
 - Add an "Edit Profile" page (In Progress)
 - Enhance responsiveness for different devices (To Do)
 - Add recurrent activity option (To Do)
-- Add notification system
+- Add notification system (To Do)
 - Add an "Onboarding" page (To Do)
 - Improve optimisation and overall structure (To Do)
 
 ### Bugs
 
-- Fix budget date filter (In Progress)
-- Fix locked budget categories (In Progress)
+- SignIn / SignUp via Oauth doesn't work on the server
 
 ## Getting started
 
