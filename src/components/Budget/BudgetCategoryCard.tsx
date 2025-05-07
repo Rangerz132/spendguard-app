@@ -39,7 +39,9 @@ const BudgetCategoryCard = (props: {
     <div
       className="card cursor-pointer"
       onClick={() =>
-        navigate(`/activityCategory/${activityCategoryType?.name}`)
+        navigate(
+          `/activityCategory/${activityCategoryType?.name}?start=${props.budget.from}&end=${props.budget.to}`
+        )
       }
     >
       <div className="card-inner ">
