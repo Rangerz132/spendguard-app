@@ -26,6 +26,8 @@ const Analytics = () => {
 
   const activities = useSelector((root: RootState) => root.activities);
 
+  const query = `month=current`;
+
   useEffect(() => {
     const expenseData = Array.from(getExpensesAmountByDates()).map(
       ([date, value]) => ({
@@ -163,7 +165,7 @@ const Analytics = () => {
         {/** Expense list */}
         {activities.length > 0 ? (
           <>
-            <ExpenseListCard />
+            <ExpenseListCard query={query} />
             <div className="card">
               <div className="card-inner">
                 {/** Chart title */}

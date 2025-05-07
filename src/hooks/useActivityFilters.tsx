@@ -35,7 +35,10 @@ const useActivityFilters = (activities: ActivityType[]) => {
   };
 
   /** Filter activities by date range */
-  const filterActivitiesWithinDateRange = (from: string, to: string) => {
+  const filterActivitiesWithinDateRange = (
+    from: string | Date,
+    to: string | Date
+  ) => {
     const fromTime = new Date(from).getTime();
     const toTime = new Date(to).getTime();
 

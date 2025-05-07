@@ -8,18 +8,26 @@ import React from "react";
 import Gauge from "../UI/Gauge";
 import useActivities from "../../hooks/useActivities";
 import { useNavigate } from "react-router";
+import { BudgetType } from "./type/BudgetType";
 
-const BudgetCategoryCard = (props: { data: BudgetCategoryType }) => {
+const BudgetCategoryCard = (props: {
+  data: BudgetCategoryType;
+  budget: BudgetType;
+}) => {
   const navigate = useNavigate();
   const [activityCategoryType, setActivityCategoryType] =
     useState<ActivityCategoryType | null>(null);
   const [budgetAmount, setBudgetAmount] = useState<number>(0);
 
-  const { getExpensesAmountByCategory } = useActivities();
+  const { getExpensesAmountByCategoryWithinDateRange } = useActivities();
 
   const expenseAmount = useMemo(() => {
-    return getExpensesAmountByCategory(props.data.category);
-  }, [props.data.category, getExpensesAmountByCategory]);
+    return getExpensesAmountByCategoryWithinDateRange(
+      props.data.category,
+      props.budget.from as string | Date,
+      props.budget.to as string | Date
+    );
+  }, [props.data.category, getExpensesAmountByCategoryWithinDateRange]);
 
   useEffect(() => {
     const activityType = activityCategoryTypeMap.get(props.data.category);

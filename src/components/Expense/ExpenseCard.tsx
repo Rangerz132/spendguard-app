@@ -7,12 +7,19 @@ const ExpenseCard = (props: {
   className?: string;
   category: string;
   value: number;
+  query?: string;
 }) => {
   const category = getFullCategory(props.category);
   const navigate = useNavigate();
   return (
     <div
-      onClick={() => navigate(`/activityCategory/${props.category}`)}
+      onClick={() =>
+        navigate(
+          `/activityCategory/${props.category}${
+            props.query ? `?${props.query}` : ``
+          }`
+        )
+      }
       className={`${props.className} card min-w-40 shrink-0 cursor-pointer`}
     >
       <div className="card-inner ">

@@ -1,4 +1,4 @@
-import { useParams } from "react-router";
+import { useParams, useSearchParams } from "react-router";
 import BackArrowButton from "../../../components/UI/BackArrowButton";
 import SearchBar from "../../../components/UI/SearchBar";
 import LatestActivityCard from "../../../components/Activity/LatestActivityCard";
@@ -6,13 +6,14 @@ import { useSelector } from "react-redux";
 import { RootState } from "../../../store/store";
 import { useEffect, useState } from "react";
 import { ActivityType } from "../../../components/Activity/type/ActivityType";
-import useActivities from "../../../hooks/useActivities";
 import EmptyCard from "../../../components/Card/EmptyCard";
 import LinkButton from "../../../components/UI/LinkButton";
 import emptyCategory from "../../../../public/images/states/emptyActivity.svg";
+import useActivityFilters from "../../../hooks/useActivityFilters";
 
 const ActivityCategory = () => {
   const { category } = useParams();
+  const [searchParams] = useSearchParams();
   const activities = useSelector((root: RootState) => root.activities);
   const [categoryActivities, setCategoryActivities] = useState<ActivityType[]>(
     []
@@ -20,12 +21,32 @@ const ActivityCategory = () => {
   const [filteredActivities, setFilteredActivities] = useState<ActivityType[]>(
     []
   );
-  const { getActitiviesByCategory } = useActivities();
+  const {
+    filterActivitiesWithinDateRange,
+    filterActivitiesWithinCurrentMonth,
+  } = useActivityFilters(activities);
 
   useEffect(() => {
-    const data = getActitiviesByCategory(category as string);
-    setCategoryActivities(data);
-    setFilteredActivities(data);
+    let filtered = [...activities];
+    filtered = filtered.filter((activity) => activity.category === category);
+    const start = searchParams.get("start");
+    const end = searchParams.get("end");
+    const month = searchParams.get("month");
+
+    // Apply filters based on query params
+    if (month === "current") {
+      filtered = filterActivitiesWithinCurrentMonth();
+    } else if (start || end) {
+      filtered = filterActivitiesWithinDateRange(
+        start as string,
+        end as string
+      );
+    }
+
+    filtered.filter((activity) => activity.category === category);
+
+    setCategoryActivities(filtered);
+    setFilteredActivities(filtered);
   }, [activities]);
 
   const handleSearchFilter = (value: string) => {

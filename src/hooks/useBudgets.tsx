@@ -1,15 +1,15 @@
 import { useSelector } from "react-redux";
 import { RootState } from "../store/store";
-import useActivities from "./useActivities";
 import { BudgetType } from "../components/Budget/type/BudgetType";
 import { BudgetCategoryType } from "../components/Budget/type/BudgetCategoryType";
+import useActivities from "./useActivities";
 
 const useBudgets = () => {
   const budgets = useSelector((root: RootState) => root.budgets);
   const budgetCategories = useSelector(
     (root: RootState) => root.budgetCategories
   );
-  const { getExpensesAmountByCategory } = useActivities();
+  const { getExpensesAmountByCategoryWithinDateRange } = useActivities();
 
   /** Return the total budget amount */
   const getBudgetById = (budgetId: string): BudgetType | null => {
@@ -45,13 +45,22 @@ const useBudgets = () => {
   };
 
   const getCurrentAmountByBudget = (budgetId: string): number => {
+    const budget = getBudgetById(budgetId);
+    if (!budget) {
+      return 0;
+    }
+
     const validBudgetCategories = budgetCategories.filter(
       (budgetCategory) => budgetCategory.budget_id === budgetId
     );
 
     let amount = 0;
     for (let i = 0; i < validBudgetCategories.length; i++) {
-      amount += getExpensesAmountByCategory(validBudgetCategories[i].category);
+      amount += getExpensesAmountByCategoryWithinDateRange(
+        validBudgetCategories[i].category,
+        budget.from as string | Date,
+        budget.to as string | Date
+      );
     }
 
     return amount;

@@ -20,7 +20,7 @@ const Budget = () => {
   const { id } = useParams();
   const dispatch = useDispatch();
   const { getBudgetById, getBudgetCategoriesByBudgetId } = useBudgets();
-  const { getExpensesAmountByCategory } = useActivities();
+  const { getExpensesAmountByCategoryWithinDateRange } = useActivities();
   const { setOverlay } = useOverlayContext();
   const [budget, setBudget] = useState<BudgetType | null>(null);
   const [budgetCategories, setBudgetCategories] = useState<
@@ -39,8 +39,11 @@ const Budget = () => {
     const tempBudgetCategoryAmount: any[] = [];
     for (let i = 0; i < budgetCategoryList.length; i++) {
       const currentBudgetCategory = budgetCategoryList[i];
-      const expensesAmount = getExpensesAmountByCategory(
-        currentBudgetCategory.category
+
+      const expensesAmount = getExpensesAmountByCategoryWithinDateRange(
+        currentBudgetCategory.category,
+        budget?.from as string | Date,
+        budget?.to as string | Date
       );
       tempBudgetCategoryAmount.push({
         value1: currentBudgetCategory.category,
@@ -49,7 +52,7 @@ const Budget = () => {
       });
     }
     setBudgetCategoriesData(tempBudgetCategoryAmount);
-  }, [id]);
+  }, [id, budget]);
 
   const handleOptionClick = () => {
     setOverlay(true);
@@ -99,6 +102,7 @@ const Budget = () => {
                 budgetCategories.map((budgetCategory) => (
                   <BudgetCategoryCard
                     data={budgetCategory}
+                    budget={budget}
                     key={budgetCategory.id}
                   />
                 ))}
