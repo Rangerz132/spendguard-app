@@ -24,8 +24,8 @@ const useActivityFilters = (activities: ActivityType[]) => {
   const filterActivitiesByLatest = () => {
     return [...activities].sort(
       (a, b) =>
-        new Date(new Date(b.date as string) as Date).getTime() -
-        new Date(new Date(a.date as string) as Date).getTime()
+        new Date(b.date as string).getTime() -
+        new Date(a.date as string).getTime()
     );
   };
 
@@ -52,13 +52,18 @@ const useActivityFilters = (activities: ActivityType[]) => {
   const filterActivitiesWithinCurrentMonth = () => {
     return [...activities].filter((activity) => {
       const activityDate = new Date(activity.date as string);
-      const currentMonth = new Date().getMonth();
+      const currentMonth = new Date().getMonth() + 1;
       const currentYear = new Date().getFullYear();
       return (
-        activityDate.getMonth() === currentMonth &&
+        activityDate.getMonth() + 1 === currentMonth &&
         activityDate.getFullYear() === currentYear
       );
     });
+  };
+
+  /** Get activities by current month */
+  const getActivitiesByCategory = (category: string): ActivityType[] => {
+    return [...activities].filter((activity) => activity.category === category);
   };
 
   return {
@@ -69,6 +74,7 @@ const useActivityFilters = (activities: ActivityType[]) => {
     filterActivitiesByIncreasingAmount,
     filterActivitiesWithinDateRange,
     filterActivitiesWithinCurrentMonth,
+    getActivitiesByCategory,
   };
 };
 

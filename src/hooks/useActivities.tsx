@@ -1,7 +1,6 @@
 import { useCallback, useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import { RootState } from "../store/store";
-import { ActivityType } from "../components/Activity/type/ActivityType";
 import useActivityFilters from "./useActivityFilters";
 
 const useActivities = () => {
@@ -10,12 +9,12 @@ const useActivities = () => {
   const { filterActivitiesWithinDateRange } = useActivityFilters(activities);
 
   useEffect(() => {
-    const fetchActivities = () => {
-      setActivityCategory([
-        ...new Set(activities.map((activity) => activity.category)),
-      ]);
-    };
-    fetchActivities();
+    if (!activities || activities.length === 0) return;
+
+    const categories = [
+      ...new Set(activities.map((activity) => activity.category)),
+    ];
+    setActivityCategory(categories);
   }, [activities]);
 
   /** Return the total expenses amount */
@@ -133,10 +132,6 @@ const useActivities = () => {
     return incomesAmountByDates;
   }, [activities]);
 
-  const getActitiviesByCategory = (category: string): ActivityType[] => {
-    return [...activities].filter((activity) => activity.category === category);
-  };
-
   return {
     getExpensesAmount,
     getIncomesAmount,
@@ -146,7 +141,6 @@ const useActivities = () => {
     getExpensesAmountByCategories,
     getExpensesAmountByDates,
     getIncomesAmountByDates,
-    getActitiviesByCategory,
     activities,
     activityCategories,
   };

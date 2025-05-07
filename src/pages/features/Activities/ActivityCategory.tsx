@@ -24,16 +24,16 @@ const ActivityCategory = () => {
   const {
     filterActivitiesWithinDateRange,
     filterActivitiesWithinCurrentMonth,
+    getActivitiesByCategory,
   } = useActivityFilters(activities);
 
   useEffect(() => {
-    let filtered = [...activities];
-    filtered = filtered.filter((activity) => activity.category === category);
+    let filtered = getActivitiesByCategory(category as string);
+
     const start = searchParams.get("start");
     const end = searchParams.get("end");
     const month = searchParams.get("month");
 
-    // Apply filters based on query params
     if (month === "current") {
       filtered = filterActivitiesWithinCurrentMonth();
     } else if (start || end) {
@@ -43,11 +43,12 @@ const ActivityCategory = () => {
       );
     }
 
-    filtered.filter((activity) => activity.category === category);
+    // Only keep activities in this category
+    filtered = filtered.filter((activity) => activity.category === category);
 
     setCategoryActivities(filtered);
     setFilteredActivities(filtered);
-  }, [activities]);
+  }, [activities, searchParams, category]);
 
   const handleSearchFilter = (value: string) => {
     const filteredItems = categoryActivities.filter((item) =>
