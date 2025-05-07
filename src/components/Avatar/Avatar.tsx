@@ -1,13 +1,17 @@
 import { useOverlayContext } from "../../contexts/OverlayContext";
 import { useSettingsContext } from "../../contexts/SettingsContext";
-import Avatar09 from "/images/avatars/avatar-09.png";
 
-const Avatar = (props: { enableInteraction: boolean }) => {
+const Avatar = (props: {
+  enableInteraction: boolean;
+  avatarUrl: string;
+  onClick: () => void;
+}) => {
   const { setOverlay } = useOverlayContext();
   const { setSettings } = useSettingsContext();
   const handleClick = () => {
     setOverlay(true);
     setSettings(true);
+    props.onClick();
   };
 
   return (
@@ -17,7 +21,10 @@ const Avatar = (props: { enableInteraction: boolean }) => {
       }`}
       onClick={() => props.enableInteraction && handleClick()}
     >
-      <img src={Avatar09} className="w-full h-full" />
+      <img
+        src={`/images/avatars/${props.avatarUrl}.png`}
+        className="w-full h-full"
+      />
     </div>
   );
 };

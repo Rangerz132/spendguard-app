@@ -2,7 +2,7 @@ import { ActivityType } from "../../components/Activity/type/ActivityType";
 import supabase from "../../config/supabaseConfig";
 
 // GET
-export const getActivities = async (): Promise<ActivityType[]> => {
+export const getUserActivities = async (): Promise<ActivityType[]> => {
   const dataUser = await supabase.auth.getUser();
   const { data, error } = await supabase
     .from("activity")

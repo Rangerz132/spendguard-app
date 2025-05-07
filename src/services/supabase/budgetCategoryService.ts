@@ -3,7 +3,9 @@ import supabase from "../../config/supabaseConfig";
 import { getBudgetById } from "./budgetService";
 
 // GET
-export const getBudgetCategories = async (): Promise<BudgetCategoryType[]> => {
+export const getUserBudgetCategories = async (): Promise<
+  BudgetCategoryType[]
+> => {
   const dataUser = await supabase.auth.getUser();
   const { data, error } = await supabase
     .from("budget_category")
@@ -149,7 +151,9 @@ export const updateBudgetCategories = async (
 };
 
 // DELETE
-export const deleteBudgetCategory = async (budgetCategoryId: string): Promise<boolean> => {
+export const deleteBudgetCategory = async (
+  budgetCategoryId: string
+): Promise<boolean> => {
   const { error } = await supabase
     .from("budget_category")
     .delete()
@@ -162,4 +166,3 @@ export const deleteBudgetCategory = async (budgetCategoryId: string): Promise<bo
 
   return true;
 };
-

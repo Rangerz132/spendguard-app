@@ -3,7 +3,7 @@ import { BudgetType } from "../../components/Budget/type/BudgetType";
 import supabase from "../../config/supabaseConfig";
 
 // GET
-export const getBudgets = async (): Promise<BudgetType[]> => {
+export const getUserBudgets = async (): Promise<BudgetType[]> => {
   const dataUser = await supabase.auth.getUser();
   const { data, error } = await supabase
     .from("budget")
@@ -89,8 +89,6 @@ export const updateBudget = async (
 
   return data;
 };
-
-
 
 // DELETE
 export const deleteBudget = async (

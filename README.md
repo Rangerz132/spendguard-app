@@ -12,16 +12,15 @@ At the time of writing, SpendGuard is still under active development.
 
 ### Upcoming features / improvements
 
-- Add an "Edit Profile" page (In Progress)
+- Add recurrent activity option (In progress)
 - Enhance responsiveness for different devices (To Do)
-- Add recurrent activity option (To Do)
 - Add notification system (To Do)
 - Add an "Onboarding" page (To Do)
 - Improve optimisation and overall structure (To Do)
 
 ### Bugs
 
-- SignIn / SignUp via Oauth doesn't work on the server
+- SignIn / SignUp via Oauth doesn't work on the server (In progress)
 
 ## Getting started
 

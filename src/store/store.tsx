@@ -5,6 +5,7 @@ import budgetsSlice from "./budgets/budgetsSlice";
 import budgetCategoriesSlice from "./budgetCategories/budgetCategoriesSlice";
 import activityDetailsSlice from "./details/activityDetailsSlice";
 import budgetDetailsSlice from "./details/budgetDetailsSlice";
+import profilsSlice from "./profils/profilSlices";
 
 export const store = configureStore({
   reducer: {
@@ -14,6 +15,7 @@ export const store = configureStore({
     activities: activitiesSlice,
     budgets: budgetsSlice,
     budgetCategories: budgetCategoriesSlice,
+    profils: profilsSlice,
   },
 });
 

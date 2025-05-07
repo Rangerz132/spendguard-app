@@ -7,12 +7,20 @@ import SignOut from "../Sign/SignOut";
 import supabase from "../../config/supabaseConfig";
 import { useEffect, useState } from "react";
 import { useThemeContext } from "../../contexts/ThemeContext";
+import { useNavigate } from "react-router";
+import { useSelector } from "react-redux";
+import { RootState } from "../../store/store";
+import { ProfilType } from "../Profil/ProfilType";
 
 const Sidebar = () => {
   const { setOverlay } = useOverlayContext();
   const { setTheme } = useThemeContext();
   const { settings, setSettings } = useSettingsContext();
   const [userName, setUserName] = useState<string>("Invalid Name");
+  const profils = useSelector((root: RootState) => root.profils);
+  const [profil, setProfil] = useState<ProfilType | null>(null);
+
+  const navigate = useNavigate();
 
   useEffect(() => {
     const fetchUser = async () => {
@@ -20,13 +28,18 @@ const Sidebar = () => {
         const { data } = await supabase.auth.getUser();
         const displayName = data.user?.user_metadata.display_name;
         setUserName(displayName);
+        const currentProfil = profils.find(
+          (profil) => profil.user_id === data.user?.id
+        );
+
+        setProfil(currentProfil as ProfilType);
       } catch (error) {
         console.error(error);
       }
     };
 
     fetchUser();
-  }, []);
+  }, [profils]);
 
   return (
     <div
@@ -37,7 +50,14 @@ const Sidebar = () => {
       <div className=" flex flex-col relative h-full">
         <div className="flex flex-row space-x-2 items-center p-6 ">
           {/** Avatar */}
-          <Avatar enableInteraction={false} />
+          {profil && (
+            <Avatar
+              enableInteraction={false}
+              avatarUrl={profil.avatar_url as string}
+              onClick={() => {}}
+            />
+          )}
+
           {/** Info */}
           <div className="flex flex-col ">
             <h3 className="text-white theme-light:text-black">{userName}</h3>
@@ -51,7 +71,7 @@ const Sidebar = () => {
             <OptionSlot
               key={settingOption.title}
               activityOption={settingOption}
-              data={{ setTheme }}
+              data={{ setTheme, navigate }}
               onClick={() => {
                 setSettings(false);
                 setOverlay(false);
