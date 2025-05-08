@@ -52,3 +52,21 @@ export const updateProfil = async (
 
   return data;
 };
+
+// POST
+export const createProfil = async (
+  profil: ProfilType
+): Promise<ProfilType | null> => {
+  const { data, error } = await supabase
+    .from("profil")
+    .insert([profil])
+    .select()
+    .single();
+
+  if (error) {
+    console.error("Error creating profil:", error);
+    return null;
+  }
+
+  return data;
+};

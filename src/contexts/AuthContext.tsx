@@ -1,5 +1,10 @@
 import { createContext, useContext, useEffect, useState } from "react";
 import supabase from "../config/supabaseConfig";
+import { ProfilType } from "../components/Profil/ProfilType";
+import { v4 as uuidv4 } from "uuid";
+import { useDispatch } from "react-redux";
+import { addProfil } from "../store/profils/profilSlices";
+import { createProfil } from "../services/supabase/profilService";
 
 type AuthContextType = {
   session: any;
@@ -29,6 +34,7 @@ export function AuthContextProvider({
 }) {
   const [session, setSession] = useState<any>(null);
   const [loading, setLoading] = useState(true);
+  const dispatch = useDispatch();
 
   /** Sign up via email  */
   const signUp = async (
@@ -49,6 +55,8 @@ export function AuthContextProvider({
       return { success: false, error };
     }
 
+    addNewProfil(data.user?.id as string, displayName);
+
     return { success: true, data };
   };
 
@@ -57,8 +65,6 @@ export function AuthContextProvider({
     const { error } = await supabase.auth.signInWithOAuth({
       provider: "google",
     });
-
-    console.log();
 
     if (error) {
       console.error("OAuth error:", error.message);
@@ -87,6 +93,19 @@ export function AuthContextProvider({
     if (error) {
       console.error("There was an error:", error);
     }
+  };
+
+  const addNewProfil = async (userId: string, displayName: string) => {
+    const userProfil: ProfilType = {
+      id: uuidv4(),
+      created_at: new Date(),
+      avatar_url: "avatar-01",
+      user_id: userId,
+      display_name: displayName,
+    };
+
+    await createProfil(userProfil);
+    dispatch(addProfil(userProfil));
   };
 
   useEffect(() => {

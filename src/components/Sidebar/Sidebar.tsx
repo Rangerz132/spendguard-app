@@ -4,8 +4,6 @@ import { settingsOptions } from "../Option/SettingsOption/SettingsOption";
 import OptionSlot from "../Option/OptionSlot";
 import { useOverlayContext } from "../../contexts/OverlayContext";
 import SignOut from "../Sign/SignOut";
-import supabase from "../../config/supabaseConfig";
-import { useEffect, useState } from "react";
 import { useThemeContext } from "../../contexts/ThemeContext";
 import { useNavigate } from "react-router";
 import { useSelector } from "react-redux";
@@ -16,30 +14,9 @@ const Sidebar = () => {
   const { setOverlay } = useOverlayContext();
   const { setTheme } = useThemeContext();
   const { settings, setSettings } = useSettingsContext();
-  const [userName, setUserName] = useState<string>("Invalid Name");
-  const profils = useSelector((root: RootState) => root.profils);
-  const [profil, setProfil] = useState<ProfilType | null>(null);
+  const userProfil = useSelector((root: RootState) => root.profils.userProfil);
 
   const navigate = useNavigate();
-
-  useEffect(() => {
-    const fetchUser = async () => {
-      try {
-        const { data } = await supabase.auth.getUser();
-        const displayName = data.user?.user_metadata.display_name;
-        setUserName(displayName);
-        const currentProfil = profils.find(
-          (profil) => profil.user_id === data.user?.id
-        );
-
-        setProfil(currentProfil as ProfilType);
-      } catch (error) {
-        console.error(error);
-      }
-    };
-
-    fetchUser();
-  }, [profils]);
 
   return (
     <div
@@ -50,17 +27,19 @@ const Sidebar = () => {
       <div className=" flex flex-col relative h-full">
         <div className="flex flex-row space-x-2 items-center p-6 ">
           {/** Avatar */}
-          {profil && (
+          {userProfil && (
             <Avatar
               enableInteraction={false}
-              avatarUrl={profil.avatar_url as string}
+              avatarUrl={(userProfil as ProfilType).avatar_url as string}
               onClick={() => {}}
             />
           )}
 
           {/** Info */}
           <div className="flex flex-col ">
-            <h3 className="text-white theme-light:text-black">{userName}</h3>
+            <h3 className="text-white theme-light:text-black">
+              {userProfil?.display_name}
+            </h3>
           </div>
         </div>
         {/** Border */}

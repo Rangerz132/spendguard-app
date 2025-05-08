@@ -19,7 +19,9 @@ import { setBudgetCategories } from "../../store/budgetCategories/budgetCategori
 import BudgetOptionCard from "../../components/Option/BudgetOption/BudgetOptionCard";
 import { ThemeContextProvider } from "../../contexts/ThemeContext";
 import { getProfils } from "../../services/supabase/profilService";
-import { setProfils } from "../../store/profils/profilSlices";
+import { setProfils, setUserProfil } from "../../store/profils/profilSlices";
+import supabase from "../../config/supabaseConfig";
+import { ProfilType } from "../../components/Profil/ProfilType";
 
 const MainLayout = () => {
   const dispatch = useDispatch();
@@ -37,6 +39,12 @@ const MainLayout = () => {
 
       const profils = await getProfils();
       dispatch(setProfils(profils));
+
+      const { data } = await supabase.auth.getUser();
+      const currentProfil = profils.find(
+        (profil) => profil.user_id === data.user?.id
+      );
+      dispatch(setUserProfil(currentProfil as ProfilType));
     };
 
     fetchData();

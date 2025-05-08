@@ -3,4 +3,5 @@ export type ProfilType = {
   created_at: string | Date | null;
   avatar_url: string | null;
   user_id: string | null;
+  display_name: string | null;
 };
