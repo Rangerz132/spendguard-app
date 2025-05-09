@@ -3,18 +3,36 @@ import { useEffect, useState } from "react";
 import GoogleLogo from "/images/providers/logo-google.svg";
 import { useAuthContext } from "../../../contexts/AuthContext";
 import Button from "../../../components/UI/Button";
+import FieldError from "../../../components/Form/FieldError";
+import { ValidatorService } from "../../../services/inputValidation";
 
 const Signup = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [displayName, setDisplayName] = useState("");
-  const [error, setError] = useState("");
+
+  const [errors, setErrors] = useState({ fullName: "" });
 
   const { signUp, signInWithOAuth, session } = useAuthContext();
   const navigate = useNavigate();
 
+  const validate = (value: string) => {
+    const newErrors = {
+      fullName: ValidatorService.minCharacters(value, 3),
+    };
+
+    setErrors(newErrors);
+
+    return Object.values(newErrors).some((error) => error !== "");
+  };
+
   const handleSignUp = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
+
+    if (validate(displayName)) {
+      console.log("Form contains errors, fix them first.");
+      return;
+    }
 
     try {
       const result = await signUp(email, password, displayName);
@@ -22,11 +40,7 @@ const Signup = () => {
         navigate("/");
       }
     } catch (error) {
-      if (error instanceof Error) {
-        setError(error.message);
-      } else {
-        setError("An unknown error occurred");
-      }
+      console.log(error);
     }
   };
 
@@ -55,7 +69,7 @@ const Signup = () => {
         <form onSubmit={handleSignUp}>
           <div className="flex flex-col space-y-4">
             {/** Name input */}
-            <div className="w-full flex flex-col space-y-2">
+            <div className="w-full flex flex-col space-y-2 relative">
               <label className="text-white text-sm theme-light:text-black">
                 Full Name
               </label>
@@ -65,6 +79,10 @@ const Signup = () => {
                 type="text"
                 className="border border-theme-dark-grey theme-light:border-theme-light-grey "
               ></input>
+              <FieldError
+                message={errors.fullName}
+                className="absolute right-0 top-0 text-right"
+              />
             </div>
 
             {/** Email input */}
@@ -96,8 +114,6 @@ const Signup = () => {
             <Button className="cta" type="submit">
               Sign up
             </Button>
-            {/** Error */}
-            {error && <p className="text-white">{error}</p>}
           </div>
         </form>
         {/** Border */}
