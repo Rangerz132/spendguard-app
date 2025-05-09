@@ -34,6 +34,13 @@ export const budgetDeleteOption: OptionType = {
         }
       }
     } catch (error) {
+      data.dispatch(
+        setStatus({
+          message: "An error occured while removing a budget.",
+          isShowed: true,
+          isValid: false,
+        })
+      );
       console.error("Error when removing the budget:", error);
     }
   },

@@ -32,7 +32,7 @@ const AddBudget = () => {
       navigate("/budgets");
       dispatch(
         setStatus({
-          message: "You successfully created a new budget",
+          message: "You successfully created a new budget.",
           isShowed: true,
           isValid: true,
         })
@@ -41,7 +41,7 @@ const AddBudget = () => {
       console.log("An error occurred when creating a new budget:", error);
       dispatch(
         setStatus({
-          message: "An error occurred when creating a new budget",
+          message: "An error occurred when creating a new budget.",
           isShowed: true,
           isValid: false,
         })

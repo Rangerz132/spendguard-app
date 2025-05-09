@@ -15,21 +15,33 @@ const AddActivity = () => {
     activity: ActivityType
   ) => {
     e.preventDefault();
-    await createActivity({
-      ...activity,
-      created_at: new Date(activity.created_at as string),
-      date: new Date(activity.date as string),
-    });
-    dispatch(addActivity(activity));
 
-    navigate("/");
-    dispatch(
-      setStatus({
-        message: "You successfully created a new activity",
-        isShowed: true,
-        isValid: true,
-      })
-    );
+    try {
+      await createActivity({
+        ...activity,
+        created_at: new Date(activity.created_at as string),
+        date: new Date(activity.date as string),
+      });
+      dispatch(addActivity(activity));
+
+      navigate("/");
+      dispatch(
+        setStatus({
+          message: "You successfully created a new activity.",
+          isShowed: true,
+          isValid: true,
+        })
+      );
+    } catch (error) {
+      dispatch(
+        setStatus({
+          message: "An error occured while creating an activty.",
+          isShowed: true,
+          isValid: false,
+        })
+      );
+      console.log(error);
+    }
   };
 
   return (

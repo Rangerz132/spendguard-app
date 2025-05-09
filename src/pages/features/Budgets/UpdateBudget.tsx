@@ -37,7 +37,7 @@ const UpdateBudget = () => {
 
       dispatch(
         setStatus({
-          message: "You successfully updated a budget",
+          message: "You successfully updated a budget.",
           isShowed: true,
           isValid: true,
         })
@@ -46,7 +46,7 @@ const UpdateBudget = () => {
     } catch (error) {
       console.log("An error occurred when updating a budget:", error);
       setStatus({
-        message: "An error occurred when updating a budget",
+        message: "An error occurred when updating a budget.",
         isShowed: true,
         isValid: false,
       });

@@ -9,21 +9,50 @@ import {
   updateProfil as updateProfilRedux,
   setUserProfil,
 } from "../../../store/profils/profilSlices";
+import Button from "../../../components/UI/Button";
+import { useNavigate } from "react-router";
+import { setStatus } from "../../../store/status/statusSlice";
 
 const EditProfil = () => {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
+
   const userProfil = useSelector((root: RootState) => root.profils.userProfil);
   const [selectedAvatar, setSelectedAvatar] = useState<string>(
     (userProfil as ProfilType).avatar_url as string
   );
+  const [displayName, setDisplayName] = useState<string>(
+    userProfil?.display_name || userProfil?.user_id || ""
+  );
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
 
-  const handleAvatarSelection = async (avatar: string) => {
-    setSelectedAvatar(avatar);
-
-    const updatedProfil = { ...(userProfil as ProfilType), avatar_url: avatar };
+    const updatedProfil = {
+      ...(userProfil as ProfilType),
+      avatar_url: selectedAvatar,
+      display_name: displayName,
+    };
     dispatch(updateProfilRedux(updatedProfil));
     dispatch(setUserProfil(updatedProfil));
-    await updateProfil(updatedProfil);
+
+    try {
+      await updateProfil(updatedProfil);
+      dispatch(
+        setStatus({
+          message: "You successfully updated your profile.",
+          isShowed: true,
+          isValid: true,
+        })
+      );
+      navigate(-1);
+    } catch (error) {
+      console.error("Error while updating profil :", error);
+      setStatus({
+        message: "An error occured while updating your profile.",
+        isShowed: true,
+        isValid: false,
+      });
+    }
   };
 
   return (
@@ -39,13 +68,19 @@ const EditProfil = () => {
           </h2>
         </div>
         <div className="card">
-          <form className="flex flex-col space-y-4">
+          <form
+            className="flex flex-col space-y-4"
+            onSubmit={(e) => handleSubmit(e)}
+          >
             <div className="flex flex-col space-y-2 relative">
               {/** Avatar lable */}
               <label className="text-white theme-light:text-black">
                 Full Name
               </label>
-              <input></input>
+              <input
+                defaultValue={displayName}
+                onChange={(e) => setDisplayName(e.currentTarget.value)}
+              ></input>
             </div>
             <div className="flex flex-col space-y-2 relative">
               {/** Avatar lable */}
@@ -58,7 +93,7 @@ const EditProfil = () => {
                   <div
                     key={index}
                     className=" flex items-center justify-center overflow-hidden"
-                    onClick={() => handleAvatarSelection(avatar.filename)}
+                    onClick={() => setSelectedAvatar(avatar.filename)}
                   >
                     <img
                       src={avatar.src}
@@ -72,6 +107,9 @@ const EditProfil = () => {
                 ))}
               </div>
             </div>
+            <Button type="submit" className="cta">
+              Save changes
+            </Button>
           </form>
         </div>
       </section>

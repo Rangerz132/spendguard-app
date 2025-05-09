@@ -22,20 +22,31 @@ const UpdateActivity = () => {
     updatedActivity: ActivityType
   ) => {
     e.preventDefault();
-    await updateActivity({
-      ...updatedActivity,
-      created_at: new Date(updatedActivity.created_at as string),
-    } as ActivityType);
+    try {
+      await updateActivity({
+        ...updatedActivity,
+        created_at: new Date(updatedActivity.created_at as string),
+      } as ActivityType);
 
-    dispatch(updateActivityRedux(updatedActivity as ActivityType));
-    navigate("/");
-    dispatch(
-      setStatus({
-        message: "You successfully updated an activity",
-        isShowed: true,
-        isValid: true,
-      })
-    );
+      dispatch(updateActivityRedux(updatedActivity as ActivityType));
+      navigate("/");
+      dispatch(
+        setStatus({
+          message: "You successfully updated an activity.",
+          isShowed: true,
+          isValid: true,
+        })
+      );
+    } catch (error) {
+      console.log(error);
+      dispatch(
+        setStatus({
+          message: "An error occured while updating an activity.",
+          isShowed: true,
+          isValid: true,
+        })
+      );
+    }
   };
 
   return (

@@ -31,6 +31,13 @@ export const activityDeleteOption: OptionType = {
         );
       }
     } catch (error) {
+      data.dispatch(
+        setStatus({
+          message: "An error occured while removing an activty.",
+          isShowed: true,
+          isValid: false,
+        })
+      );
       console.error("Error when removing an activity:", error);
     }
   },
