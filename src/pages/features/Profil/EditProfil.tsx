@@ -12,10 +12,13 @@ import {
 import Button from "../../../components/UI/Button";
 import { useNavigate } from "react-router";
 import { setStatus } from "../../../store/status/statusSlice";
+import FieldError from "../../../components/Form/FieldError";
+import { ValidatorService } from "../../../services/inputValidation";
 
 const EditProfil = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  const [errors, setErrors] = useState({ fullName: "" });
 
   const userProfil = useSelector((root: RootState) => root.profils.userProfil);
   const [selectedAvatar, setSelectedAvatar] = useState<string>(
@@ -24,18 +27,34 @@ const EditProfil = () => {
   const [displayName, setDisplayName] = useState<string>(
     userProfil?.display_name || userProfil?.user_id || ""
   );
+
+  const validate = (value: string) => {
+    const newErrors = {
+      fullName: ValidatorService.minCharacters(value, 3),
+    };
+
+    setErrors(newErrors);
+
+    return Object.values(newErrors).some((error) => error !== "");
+  };
+
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
-    const updatedProfil = {
-      ...(userProfil as ProfilType),
-      avatar_url: selectedAvatar,
-      display_name: displayName,
-    };
-    dispatch(updateProfilRedux(updatedProfil));
-    dispatch(setUserProfil(updatedProfil));
+    if (validate(displayName)) {
+      console.log("Form contains errors, fix them first.");
+      return;
+    }
 
     try {
+      const updatedProfil = {
+        ...(userProfil as ProfilType),
+        avatar_url: selectedAvatar,
+        display_name: displayName,
+      };
+      dispatch(updateProfilRedux(updatedProfil));
+      dispatch(setUserProfil(updatedProfil));
+
       await updateProfil(updatedProfil);
       dispatch(
         setStatus({
@@ -81,6 +100,10 @@ const EditProfil = () => {
                 defaultValue={displayName}
                 onChange={(e) => setDisplayName(e.currentTarget.value)}
               ></input>
+              <FieldError
+                message={errors.fullName}
+                className="absolute right-0 top-0 text-right"
+              />
             </div>
             <div className="flex flex-col space-y-2 relative">
               {/** Avatar lable */}
