@@ -56,6 +56,8 @@ export function AuthContextProvider({
       return { success: false, error };
     }
 
+    addNewProfil(data.user?.id as string, displayName);
+
     return { success: true, data };
   };
 
@@ -95,7 +97,7 @@ export function AuthContextProvider({
   };
 
   const addNewProfil = async (userId: string, displayName: string) => {
-    const randomIndex = Math.floor(Math.random() * avatars.length - 1);
+    const randomIndex = Math.floor(Math.random() * avatars.length);
     const userProfil: ProfilType = {
       id: uuidv4(),
       created_at: new Date(),
@@ -109,44 +111,17 @@ export function AuthContextProvider({
   };
 
   useEffect(() => {
-    const { data: listener } = supabase.auth.onAuthStateChange(
-      async (_event, session) => {
-        setSession(session);
-        setLoading(false);
-
-        const user = session?.user;
-        if (!user) return;
-
-        // Check if profile already exists in the 'profils' table
-        const { data: existingProfiles, error } = await supabase
-          .from("profil")
-          .select()
-          .eq("user_id", user.id)
-          .limit(1);
-
-        if (error) {
-          console.error("Error checking existing profile:", error);
-          return;
-        }
-
-        // If no profile exists, create one
-        if (existingProfiles.length === 0) {
-          const displayName =
-            user.user_metadata.display_name ||
-            user.user_metadata.full_name ||
-            user.user_metadata.name ||
-            user.id;
-
-          await addNewProfil(user.id, displayName);
-        }
-      }
-    );
-
-    // Initial session load
     supabase.auth.getSession().then(({ data: { session } }) => {
       setSession(session);
       setLoading(false);
     });
+
+    const { data: listener } = supabase.auth.onAuthStateChange(
+      (_event, session) => {
+        setSession(session);
+        setLoading(false);
+      }
+    );
 
     return () => {
       listener.subscription.unsubscribe();
