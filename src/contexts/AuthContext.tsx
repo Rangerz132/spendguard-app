@@ -56,7 +56,7 @@ export function AuthContextProvider({
       return { success: false, error };
     }
 
-    addNewProfil(data.user?.id as string, displayName);
+    //addNewProfil(data.user?.id as string, displayName);
 
     return { success: true, data };
   };
@@ -100,7 +100,7 @@ export function AuthContextProvider({
     const randomIndex = Math.floor(Math.random() * avatars.length);
     const userProfil: ProfilType = {
       id: uuidv4(),
-      created_at: new Date(),
+      created_at: new Date().toISOString(),
       avatar_url: avatars[randomIndex].filename,
       user_id: userId,
       display_name: displayName,
@@ -118,8 +118,31 @@ export function AuthContextProvider({
 
     const { data: listener } = supabase.auth.onAuthStateChange(
       (_event, session) => {
-        setSession(session);
-        setLoading(false);
+        (async () => {
+          setSession(session);
+          setLoading(false);
+
+          const user = session?.user;
+
+          if (user) {
+            const { error } = await supabase
+              .from("profil")
+              .select()
+              .eq("user_id", user.id)
+              .single();
+
+            if (error && error.code === "PGRST116") {
+              // No profile found, so create one
+              const displayName =
+                user.user_metadata.display_name ||
+                user.user_metadata.full_name ||
+                user.user_metadata.name ||
+                user.id;
+
+              await addNewProfil(user.id, displayName);
+            }
+          }
+        })();
       }
     );
 
