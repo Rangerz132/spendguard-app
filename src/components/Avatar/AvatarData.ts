@@ -9,7 +9,7 @@ import Avatar08 from "/images/avatars/avatar-08.png";
 import Avatar09 from "/images/avatars/avatar-09.png";
 import Avatar10 from "/images/avatars/avatar-10.png";
 
-const avatars = [
+const avatars: AvatarType[] = [
   { filename: "avatar-01", src: Avatar01 },
   { filename: "avatar-02", src: Avatar02 },
   { filename: "avatar-03", src: Avatar03 },
@@ -21,5 +21,10 @@ const avatars = [
   { filename: "avatar-09", src: Avatar09 },
   { filename: "avatar-10", src: Avatar10 },
 ];
+
+export type AvatarType = {
+  filename: string;
+  src: string;
+};
 
 export default avatars;
