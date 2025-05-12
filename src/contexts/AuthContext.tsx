@@ -56,8 +56,6 @@ export function AuthContextProvider({
       return { success: false, error };
     }
 
-    //addNewProfil(data.user?.id as string, displayName);
-
     return { success: true, data };
   };
 
